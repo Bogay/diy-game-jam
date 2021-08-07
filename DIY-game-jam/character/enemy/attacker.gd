@@ -26,6 +26,6 @@ func _physics_process(delta):
 	if path == null:
 		return
 	offset += speed.value() * delta
-	path.unit_offset = offset
-	position = path.position
+	path.offset = offset
+	global_position = path.global_position
 	print(offset)
