@@ -1,0 +1,64 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=4
+
+_global_script_classes=[ {
+"base": "Node2D",
+"class": "Attacker",
+"language": "GDScript",
+"path": "res://character/enemy/attacker.gd"
+}, {
+"base": "Resource",
+"class": "AttackerData",
+"language": "GDScript",
+"path": "res://character/enemy/attacker_data.gd"
+}, {
+"base": "Reference",
+"class": "Buffable",
+"language": "GDScript",
+"path": "res://utils/buffable.gd"
+}, {
+"base": "Node2D",
+"class": "Level",
+"language": "GDScript",
+"path": "res://level/level.gd"
+}, {
+"base": "Resource",
+"class": "Wave",
+"language": "GDScript",
+"path": "res://level/wave.gd"
+} ]
+_global_script_class_icons={
+"Attacker": "",
+"AttackerData": "",
+"Buffable": "",
+"Level": "",
+"Wave": ""
+}
+
+[application]
+
+config/name="DIY-game-jam"
+run/main_scene="res://level/Main.tscn"
+config/icon="res://icon.png"
+
+[display]
+
+window/size/width=1920
+window/size/height=1080
+window/size/resizable=false
+window/size/fullscreen=true
+
+[physics]
+
+common/enable_pause_aware_picking=true
+
+[rendering]
+
+environment/default_environment="res://default_env.tres"
