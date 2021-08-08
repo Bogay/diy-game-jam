@@ -25,7 +25,6 @@ func load_json(path: String) -> JSONParseResult:
 
 func setup():
 	wave_data = load_json(wave_json_path).result
-	print_debug("Load attackers")
 	for key in attackers:
 		var attacker = load(attackers[key])
 		assert(attacker is PackedScene)

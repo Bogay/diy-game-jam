@@ -5,9 +5,10 @@ extends Node2D
 export(Array, NodePath) var paths
 # Array of attackers' waves
 export(Array, Resource) var waves
+var level_menu: PackedScene = preload("res://ui/level_menu.tscn")
 var wave_idx = 0
 
-func prepare_paths() -> void:
+func setup_paths() -> void:
 	if paths.size() == 0:
 		paths = get_tree().get_nodes_in_group('attacker_path')
 		# No group found
@@ -24,9 +25,16 @@ func prepare_paths() -> void:
 	for path in paths:
 		assert(path is Path2D)
 
+# Instantiate level menu and connect signal callback
+func setup_menu():
+	var level_menu_ins: LevelMenu = level_menu.instance()
+	add_child(level_menu_ins)
+	level_menu_ins.btn_spawn.connect("pressed", self, "_on_next_wave")
+
 
 func _ready():
-	prepare_paths()
+	setup_paths()
+	setup_menu()
 	for wave in waves:
 		wave.setup()
 

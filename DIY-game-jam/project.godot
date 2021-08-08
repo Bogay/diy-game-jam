@@ -29,6 +29,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://level/level.gd"
 }, {
+"base": "CanvasLayer",
+"class": "LevelMenu",
+"language": "GDScript",
+"path": "res://ui/level_menu.gd"
+}, {
 "base": "Resource",
 "class": "Wave",
 "language": "GDScript",
@@ -39,6 +44,7 @@ _global_script_class_icons={
 "AttackerData": "",
 "Buffable": "",
 "Level": "",
+"LevelMenu": "",
 "Wave": ""
 }
 

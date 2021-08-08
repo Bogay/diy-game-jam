@@ -1,35 +1,62 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://level/level.gd" type="Script" id=1]
 [ext_resource path="res://level/level0/wave0.tres" type="Resource" id=2]
+[ext_resource path="res://level/level0/think-friend-think.jpg" type="Texture" id=3]
 
 [sub_resource type="Curve2D" id=1]
 _data = {
-"points": PoolVector2Array( 0, 0, 0, 0, 2, 2, 0, 0, 0, 0, 288, 112, 0, 0, 0, 0, 465, 88, 0, 0, 0, 0, 713, 250, 0, 0, 0, 0, 769, 321 )
+"points": PoolVector2Array( 0, 0, 0, 0, -81.5311, -9.38425, 0, 0, 0, 0, 157.604, 83.8117, 0, 0, 0, 0, 250.547, 146.715, 0, 0, 0, 0, 491.992, 166.232, 0, 0, 0, 0, 556.174, 185.351 )
+}
+
+[sub_resource type="Curve2D" id=2]
+_data = {
+"points": PoolVector2Array( 0, 0, 0, 0, -107.81, 68.6464, 0, 0, 0, 0, 37.3023, 92.5006, 0, 0, 0, 0, 175.861, 132.258, 0, 0, 0, 0, 301.314, 277.551, 0, 0, 0, 0, 706.094, 322.115 )
+}
+
+[sub_resource type="Curve2D" id=3]
+_data = {
+"points": PoolVector2Array( 0, 0, 0, 0, 462.133, -57.4595, 0, 0, 0, 0, 383.195, 161.895, 0, 0, 0, 0, 561.105, 442.08 )
+}
+
+[sub_resource type="Curve2D" id=4]
+_data = {
+"points": PoolVector2Array( 0, 0, 0, 0, -120.929, 297.068, 0, 0, 0, 0, -35.3329, 312.814, 0, 0, 0, 0, 62.1628, 345.876, 0, 0, 0, 0, 386.336, 352.027, 0, 0, 0, 0, 856.334, 411.739 )
 }
 
 [node name="Level" type="Node2D"]
 script = ExtResource( 1 )
 waves = [ ExtResource( 2 ) ]
 
-[node name="Path0" type="Path2D" parent="." groups=[
-"attacker_path",
-]]
-curve = SubResource( 1 )
+[node name="Background" type="Sprite" parent="."]
+position = Vector2( 948.017, 537.453 )
+scale = Vector2( 2.29778, 2.29778 )
+texture = ExtResource( 3 )
 
 [node name="Path1" type="Path2D" parent="." groups=[
 "attacker_path",
 ]]
+position = Vector2( 89.5884, -46.1295 )
+scale = Vector2( 2.67853, 2.71524 )
 curve = SubResource( 1 )
 
-[node name="Button" type="Button" parent="."]
-margin_left = 378.0
-margin_top = 12.0
-margin_right = 524.0
-margin_bottom = 65.0
-text = "Spawn"
-__meta__ = {
-"_edit_use_anchors_": false
-}
+[node name="Path2" type="Path2D" parent="." groups=[
+"attacker_path",
+]]
+position = Vector2( -52.7574, -39.6183 )
+scale = Vector2( 2.52922, 3.27574 )
+curve = SubResource( 2 )
 
-[connection signal="pressed" from="Button" to="." method="_on_next_wave"]
+[node name="Path3" type="Path2D" parent="." groups=[
+"attacker_path",
+]]
+position = Vector2( 22.2266, 10.3559 )
+scale = Vector2( 1.90747, 3.02337 )
+curve = SubResource( 3 )
+
+[node name="Path4" type="Path2D" parent="." groups=[
+"attacker_path",
+]]
+position = Vector2( -50.6008, 264.757 )
+scale = Vector2( 1.98162, 1.88865 )
+curve = SubResource( 4 )
