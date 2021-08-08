@@ -8,9 +8,15 @@ var attack: Buffable
 var defense: Buffable
 var magic_attack: Buffable
 var magic_defense: Buffable
+var attack_distance: Buffable
+var detect_distance: Buffable
 var speed: Buffable
 var offset = 0
 var path: PathFollow2D = null
+onready var attack_area: Area2D = $AttackArea
+onready var detect_area: Area2D = $DetectArea
+onready var attack_shape: CollisionShape2D = $AttackArea/CollisionShape2D
+onready var detect_shape: CollisionShape2D = $DetectArea/CollisionShape2D
 
 func _ready():
 	assert(attacker_data is AttackerData)
@@ -21,6 +27,12 @@ func _ready():
 	magic_attack = Buffable.new(attacker_data.magic_attack)
 	magic_defense = Buffable.new(attacker_data.magic_defense)
 	speed = Buffable.new(attacker_data.speed)
+	# Setup collision
+	attack_distance = Buffable.new(attacker_data.attack_distance)
+	detect_distance = Buffable.new(attacker_data.detect_distance)
+	(attack_shape.shape as CircleShape2D).radius = attack_distance.value()
+	(detect_shape.shape as CircleShape2D).radius = detect_distance.value()
+
 	
 func _physics_process(delta):
 	if path == null:

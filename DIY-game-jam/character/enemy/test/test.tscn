@@ -1,12 +1,29 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://character/enemy/attacker.gd" type="Script" id=1]
 [ext_resource path="res://character/enemy/test/test_data.tres" type="Resource" id=2]
 [ext_resource path="res://icon.png" type="Texture" id=3]
 
-[node name="Attacker" type="Node2D"]
+[sub_resource type="CircleShape2D" id=1]
+
+[sub_resource type="CircleShape2D" id=2]
+
+[node name="Attacker" type="Node2D" groups=[
+"attacker",
+]]
+position = Vector2( 1, 0 )
 script = ExtResource( 1 )
 attacker_data = ExtResource( 2 )
 
 [node name="Sprite" type="Sprite" parent="."]
 texture = ExtResource( 3 )
+
+[node name="AttackArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackArea"]
+shape = SubResource( 1 )
+
+[node name="DetectArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectArea"]
+shape = SubResource( 2 )
