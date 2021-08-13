@@ -25,6 +25,16 @@ _global_script_classes=[ {
 "path": "res://utils/buffable.gd"
 }, {
 "base": "Node2D",
+"class": "Defender",
+"language": "GDScript",
+"path": "res://character/monster/defender.gd"
+}, {
+"base": "Resource",
+"class": "DefenderData",
+"language": "GDScript",
+"path": "res://character/monster/defender_data.gd"
+}, {
+"base": "Node2D",
 "class": "Level",
 "language": "GDScript",
 "path": "res://level/level.gd"
@@ -48,6 +58,8 @@ _global_script_class_icons={
 "Attacker": "",
 "AttackerData": "",
 "Buffable": "",
+"Defender": "",
+"DefenderData": "",
 "Level": "",
 "LevelMenu": "",
 "Slot": "",

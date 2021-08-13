@@ -6,6 +6,7 @@ enum State {
 	HOVERD,
 	SELECTED,
 	PRESSED,
+	OCCUPIED,
 }
 
 export(NodePath) var area2d_path = @"Area2D"
@@ -25,6 +26,11 @@ func _ready():
 func set_state(new_state):
 	print('New state', new_state)
 	state = new_state
+	# TODO: process event
+	if state == State.SELECTED:
+		var test_defender = load("res://character/monster/test/test.tscn") as PackedScene
+		add_child(test_defender.instance())
+		state = State.OCCUPIED
 
 
 func _on_input(_viewport, _event, _shape_id):
