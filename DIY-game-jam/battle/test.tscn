@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://battle/bullet.gd" type="Script" id=1]
 [ext_resource path="res://character/monster/tentacle_shooter/bullet/data.tres" type="Resource" id=2]
@@ -13,9 +13,20 @@ animations = [ {
 "speed": 5.0
 } ]
 
+[sub_resource type="CapsuleShape2D" id=2]
+radius = 7.93084
+height = 29.9693
+
 [node name="Bullet" type="Node2D"]
 script = ExtResource( 1 )
 bullet_data = ExtResource( 2 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 1 )
+
+[node name="DamageArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DamageArea"]
+position = Vector2( 9.20279, 0 )
+rotation = 1.5708
+shape = SubResource( 2 )

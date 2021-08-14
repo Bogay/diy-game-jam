@@ -18,6 +18,7 @@ onready var detect_area: Area2D = $DetectArea
 onready var attack_shape: CollisionShape2D = $AttackArea/CollisionShape2D
 onready var detect_shape: CollisionShape2D = $DetectArea/CollisionShape2D
 
+
 func _ready():
 	assert(attacker_data is AttackerData)
 	max_hp = Buffable.new(attacker_data.max_hp)
@@ -41,4 +42,18 @@ func _physics_process(delta):
 	offset += speed.value() * delta
 	path.offset = offset
 	global_position = path.global_position
-	# print(offset)
+
+
+func take_damage(damage: int):
+	var def_value = defense.value()
+	var dmg_decrease = def_value / (def_value + 100)
+	damage *= (1 - dmg_decrease)
+	hp -= damage
+	print("HP: ", hp)
+	if hp <= 0:
+		die()
+
+
+func die():
+	print("I am die QAQ")
+	queue_free()

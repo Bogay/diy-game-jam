@@ -30,7 +30,7 @@ func _ready():
 	attack_distance = Buffable.new(defender_data.attack_distance)
 	(attack_shape.shape as CircleShape2D).radius = attack_distance.value()
 	assert(attack_distance.connect("value_changed", self, "_on_attack_distance_changed") == OK)
-	assert(attack_area.connect("body_entered", self, "_on_body_entered") == OK)
+	assert(attack_area.connect("area_entered", self, "_on_area_entered") == OK)
 	add_to_group("defender")
 
 
@@ -51,6 +51,7 @@ func shoot() -> void:
 	yield(get_tree().create_timer(1 / speed.value()), "timeout")
 	can_attack = 1
 
+
 func get_target_attacker() -> Node:
 	var id = detected_attackers.keys()[0]
 	return detected_attackers[id]
@@ -60,9 +61,9 @@ func _on_attack_distance_changed(dis):
 	(attack_shape.shape as CircleShape2D).radius = dis
 
 
-func _on_body_entered(a: Node):
-	var attacker = a.get_parent()
-	if not attacker is Attacker:
+func _on_area_entered(area: Area2D):
+	var attacker = area.get_parent() as Attacker
+	if attacker == null or area.name != "DamageArea":
 		return
 	enqueue_attacker(attacker)
 
