@@ -27,7 +27,7 @@ func _on_area_entered(area: Area2D):
 	attack(attacker)
 
 
-func attack(target: Attacker):
-	target.take_damage(bullet_data.attack)
+func attack(attack_target: Attacker):
+	attack_target.take_damage(bullet_data.attack)
 	# TODO: play dead VFX
 	queue_free()
