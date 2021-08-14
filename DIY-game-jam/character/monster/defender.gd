@@ -45,7 +45,9 @@ func shoot() -> void:
 	# TODO: read bullet from defender data
 	var bullet_scene = preload("res://battle/test.tscn") as PackedScene
 	var bullet = bullet_scene.instance() as Bullet
-	bullet.target = get_target_attacker()
+	var target = get_target_attacker()
+	assert(target.connect("tree_exiting", bullet, "_on_target_exiting") == OK)
+	bullet.target = target
 	add_child(bullet)
 	can_attack = 0
 	yield(get_tree().create_timer(1 / speed.value()), "timeout")
@@ -71,5 +73,18 @@ func _on_area_entered(area: Area2D):
 func enqueue_attacker(attacker: Attacker):
 	var attacker_id = attacker.get_instance_id()
 	assert(not attacker_id in detected_attackers)
+	# FIX: I can't find a way to get the exited node id,
+	#   so I need to scan the dictionary to remove attacker.
+	assert(attacker.connect("tree_exited", self, "refresh_attackers") == OK)
 	detected_attackers[attacker_id] = attacker
 	print('Got you: ', attacker.name)
+
+
+func refresh_attackers():
+	var will_remove = []
+	for id in detected_attackers:
+		var attacker =  detected_attackers[id]
+		if not attacker.is_inside_tree():
+			will_remove.append(id)
+	for id in will_remove:
+		detected_attackers.erase(id)
