@@ -31,6 +31,7 @@ func _ready():
 	(attack_shape.shape as CircleShape2D).radius = attack_distance.value()
 	assert(attack_distance.connect("value_changed", self, "_on_attack_distance_changed") == OK)
 	assert(attack_area.connect("area_entered", self, "_on_area_entered") == OK)
+	assert(attack_area.connect("area_exited", self, "_on_area_exited") == OK)
 	add_to_group("defender")
 
 
@@ -77,7 +78,21 @@ func enqueue_attacker(attacker: Attacker):
 	#   so I need to scan the dictionary to remove attacker.
 	assert(attacker.connect("tree_exited", self, "refresh_attackers") == OK)
 	detected_attackers[attacker_id] = attacker
-	print('Got you: ', attacker.name)
+	print("Got you: ", attacker.name)
+
+
+func _on_area_exited(area: Area2D):
+	var attacker = area.get_parent() as Attacker
+	if attacker == null or area.name != "DamageArea":
+		return
+	dequeue_attacker(attacker)
+
+
+func dequeue_attacker(attacker: Attacker):
+	var attacker_id = attacker.get_instance_id()
+	assert(attacker_id in detected_attackers)
+	detected_attackers.erase(attacker_id)
+	print("Good bye: ", attacker.name)
 
 
 func refresh_attackers():
