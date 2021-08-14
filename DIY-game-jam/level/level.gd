@@ -7,11 +7,12 @@ export(Array, NodePath) var paths
 export(Array, Resource) var waves
 var level_menu: PackedScene = preload("res://ui/level_menu.tscn")
 var wave_idx = 0
+var attacker_cnt = 0
 
 func setup_paths() -> void:
 	if paths.size() == 0:
 		paths = get_tree().get_nodes_in_group('attacker_path')
-		# No group found
+		# No path found in group
 		if paths.size() == 0:
 			for child in get_children():
 				if child is Path2D:
@@ -40,16 +41,31 @@ func _ready():
 
 
 func spawn_wave(wave):
+	for _i in range(2):
+		var attacker = wave.attackers["test"].instance()
+		spawn_attacker(attacker)
+		yield(get_tree().create_timer(0.6), "timeout")
+
+
+func spawn_attacker(attacker: Attacker):
+	attacker_cnt += 1
+	assert(attacker.connect("tree_exiting", self, "_on_attacker_exiting") == OK)
 	var follow = PathFollow2D.new()
 	paths[0].add_child(follow)
-	var attacker = wave.attackers["test"].instance()
 	attacker.path = follow
 	add_child(attacker)
 
 
+func _on_attacker_exiting():
+	attacker_cnt -= 1
+	assert(attacker_cnt >= 0)
+	if attacker_cnt == 0 and wave_idx >= waves.size():
+		emit_signal("level_completed")
+		print("level completed!")
+
+
 func _on_next_wave():
 	if wave_idx >= waves.size():
-		emit_signal("level_completed")
 		return
 	spawn_wave(waves[wave_idx])
 	wave_idx += 1
