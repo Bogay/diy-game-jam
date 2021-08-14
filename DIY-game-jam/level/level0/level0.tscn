@@ -1,27 +1,28 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://level/level.gd" type="Script" id=1]
 [ext_resource path="res://level/level0/wave0.tres" type="Resource" id=2]
-[ext_resource path="res://level/level0/think-friend-think.jpg" type="Texture" id=3]
+[ext_resource path="res://level/level0/background.jpg" type="Texture" id=3]
+[ext_resource path="res://slot/slot.tscn" type="PackedScene" id=4]
 
 [sub_resource type="Curve2D" id=1]
 _data = {
-"points": PoolVector2Array( 0, 0, 0, 0, -81.5311, -9.38425, 0, 0, 0, 0, 157.604, 83.8117, 0, 0, 0, 0, 250.547, 146.715, 0, 0, 0, 0, 491.992, 166.232, 0, 0, 0, 0, 556.174, 185.351 )
+"points": PoolVector2Array( 0, 0, 0, 0, -63.0817, 336.504, 0, 0, 0, 0, 62.101, 254.288, 0, 0, 0, 0, 176.054, 178.61, 0, 0, 0, 0, 239.539, 127.677, 0, 0, 0, 0, 303.067, 69.9298, 0, 0, 0, 0, 309.708, -7.14039 )
 }
 
 [sub_resource type="Curve2D" id=2]
 _data = {
-"points": PoolVector2Array( 0, 0, 0, 0, -107.81, 68.6464, 0, 0, 0, 0, 37.3023, 92.5006, 0, 0, 0, 0, 175.861, 132.258, 0, 0, 0, 0, 301.314, 277.551, 0, 0, 0, 0, 706.094, 322.115 )
+"points": PoolVector2Array( 0, 0, 0, 0, 376.886, -5.21628, 0, 0, 0, 0, 369.489, 55.1608, 39.3535, -3.20896, -39.3535, 3.20896, 301.575, 87.816, 48.8183, -3.84622, -48.8183, 3.84622, 196.466, 97.047, 21.4203, -29.2313, -21.4203, 29.2313, 65.454, 148.202, -5.97775, -12.6925, 5.97775, 12.6925, 61.967, 215.895, 0, 0, 0, 0, 94.3465, 232.049, -86.5145, -18.1517, 86.5145, 18.1517, 414.956, 283.223, -12.6664, -45.2317, 12.6664, 45.2317, 554.842, 375.672 )
 }
 
 [sub_resource type="Curve2D" id=3]
 _data = {
-"points": PoolVector2Array( 0, 0, 0, 0, 462.133, -57.4595, 0, 0, 0, 0, 383.195, 161.895, 0, 0, 0, 0, 561.105, 442.08 )
+"points": PoolVector2Array( 0, 0, 0, 0, 477.477, -24.0844, 0, 0, 0, 0, 466.935, 44.5948, 0, 0, 0, 0, 413.612, 80.822, 0, 0, 0, 0, 293.247, 143.075, -25.8925, -33.5546, 25.8925, 33.5546, 418.995, 188.524, 0, 0, 0, 0, 400.412, 253.923, 0, 0, 0, 0, 223.308, 383.766 )
 }
 
 [sub_resource type="Curve2D" id=4]
 _data = {
-"points": PoolVector2Array( 0, 0, 0, 0, -120.929, 297.068, 0, 0, 0, 0, -35.3329, 312.814, 0, 0, 0, 0, 62.1628, 345.876, 0, 0, 0, 0, 386.336, 352.027, 0, 0, 0, 0, 856.334, 411.739 )
+"points": PoolVector2Array( 0, 0, 0, 0, 504.09, -170.517, 0, 0, 0, 0, 492.189, -62.2163, 0, 0, 0, 0, 437.51, -1.51003, -38.1482, -30.0196, 38.1482, 30.0196, 553.571, 42.5018, -17.8025, -58.0378, 17.8025, 58.0378, 647.084, 188.732, 0, 0, 0, 0, 669.563, 341.567, 0, 0, 0, 0, 735.441, 489.146 )
 }
 
 [node name="Level" type="Node2D"]
@@ -29,8 +30,7 @@ script = ExtResource( 1 )
 waves = [ ExtResource( 2 ) ]
 
 [node name="Background" type="Sprite" parent="."]
-position = Vector2( 948.017, 537.453 )
-scale = Vector2( 2.29778, 2.29778 )
+position = Vector2( 960, 540 )
 texture = ExtResource( 3 )
 
 [node name="Path1" type="Path2D" parent="." groups=[
@@ -60,3 +60,6 @@ curve = SubResource( 3 )
 position = Vector2( -50.6008, 264.757 )
 scale = Vector2( 1.98162, 1.88865 )
 curve = SubResource( 4 )
+
+[node name="Slot" parent="." instance=ExtResource( 4 )]
+position = Vector2( 609.018, 551.318 )
