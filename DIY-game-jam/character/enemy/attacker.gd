@@ -32,6 +32,7 @@ func _ready():
 	detect_distance = Buffable.new(attacker_data.detect_distance)
 	(attack_shape.shape as CircleShape2D).radius = attack_distance.value()
 	(detect_shape.shape as CircleShape2D).radius = detect_distance.value()
+	add_to_group("attacker")
 
 	
 func _physics_process(delta):
@@ -40,4 +41,4 @@ func _physics_process(delta):
 	offset += speed.value() * delta
 	path.offset = offset
 	global_position = path.global_position
-	print(offset)
+	# print(offset)

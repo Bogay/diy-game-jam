@@ -11,4 +11,4 @@ magic_attack = 0
 magic_defense = 0
 attack_distance = 50
 detect_distance = 200
-speed = 30.0
+speed = 10.0
