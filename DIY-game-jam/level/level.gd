@@ -29,7 +29,7 @@ func setup_paths() -> void:
 func setup_menu():
 	var level_menu_ins: LevelMenu = level_menu.instance()
 	add_child(level_menu_ins)
-	level_menu_ins.btn_spawn.connect("pressed", self, "_on_next_wave")
+	assert(level_menu_ins.btn_spawn.connect("pressed", self, "_on_next_wave") == OK)
 
 
 func _ready():

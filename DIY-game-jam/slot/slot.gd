@@ -18,9 +18,9 @@ onready var area2d = get_node(area2d_path)
 func _ready():
 	assert(area2d is Area2D)
 	print('Slot init')
-	area2d.connect("mouse_entered", self, "_on_mouse_entered")
-	area2d.connect("mouse_exited", self, "_on_mouse_exited")
-	area2d.connect("input_event", self, "_on_input")
+	assert(area2d.connect("mouse_entered", self, "_on_mouse_entered") == OK)
+	assert(area2d.connect("mouse_exited", self, "_on_mouse_exited") == OK)
+	assert(area2d.connect("input_event", self, "_on_input") == OK)
 
 	
 func set_state(new_state):

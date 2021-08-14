@@ -28,8 +28,8 @@ func _ready():
 	speed = Buffable.new(defender_data.speed)
 	attack_distance = Buffable.new(defender_data.attack_distance)
 	(attack_shape.shape as CircleShape2D).radius = attack_distance.value()
-	attack_distance.connect("value_changed", self, "_on_attack_distance_changed")
-	attack_area.connect("body_entered", self, "_on_body_entered")
+	assert(attack_distance.connect("value_changed", self, "_on_attack_distance_changed") == OK)
+	assert(attack_area.connect("body_entered", self, "_on_body_entered") == OK)
 	add_to_group("defender")
 
 
