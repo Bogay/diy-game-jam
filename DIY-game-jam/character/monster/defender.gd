@@ -13,6 +13,7 @@ var attack_distance: Buffable
 # Attack speed
 var speed: Buffable
 var detected_attackers = {}
+var can_attack = 1
 onready var attack_area: Area2D = $AttackArea
 onready var attack_shape: CollisionShape2D = $AttackArea/CollisionShape2D
 
@@ -33,6 +34,28 @@ func _ready():
 	add_to_group("defender")
 
 
+func _process(_delta: float):
+	if not detected_attackers.empty():
+		if not can_attack:
+			return
+		shoot()
+
+
+func shoot() -> void:
+	# TODO: read bullet from defender data
+	var bullet_scene = preload("res://battle/test.tscn") as PackedScene
+	var bullet = bullet_scene.instance() as Bullet
+	bullet.target = get_target_attacker()
+	add_child(bullet)
+	can_attack = 0
+	yield(get_tree().create_timer(1 / speed.value()), "timeout")
+	can_attack = 1
+
+func get_target_attacker() -> Node:
+	var id = detected_attackers.keys()[0]
+	return detected_attackers[id]
+
+
 func _on_attack_distance_changed(dis):
 	(attack_shape.shape as CircleShape2D).radius = dis
 
@@ -45,7 +68,7 @@ func _on_body_entered(a: Node):
 
 
 func enqueue_attacker(attacker: Attacker):
-	var attacker_id = attack.get_instance_id()
+	var attacker_id = attacker.get_instance_id()
 	assert(not attacker_id in detected_attackers)
 	detected_attackers[attacker_id] = attacker
 	print('Got you: ', attacker.name)
