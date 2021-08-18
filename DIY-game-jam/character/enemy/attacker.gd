@@ -13,6 +13,7 @@ var detect_distance: Buffable
 var speed: Buffable
 var offset = 0
 var path: PathFollow2D = null
+var path_offset: Vector2 = Vector2.ZERO
 onready var attack_area: Area2D = $AttackArea
 onready var detect_area: Area2D = $DetectArea
 onready var attack_shape: CollisionShape2D = $AttackArea/CollisionShape2D
@@ -33,15 +34,27 @@ func _ready():
 	detect_distance = Buffable.new(attacker_data.detect_distance)
 	(attack_shape.shape as CircleShape2D).radius = attack_distance.value()
 	(detect_shape.shape as CircleShape2D).radius = detect_distance.value()
+	# FIXME: It's not a good idea to hard-code the radius value
+	path_offset = get_path_offset(15)
+	print("Path offset: ", path_offset)
+	# TODO: Make this a static variable or mathod.
+	# 	Anyway, give it a consitent way to judge whether it is a attacker
 	add_to_group("attacker")
 
-	
+
 func _physics_process(delta):
 	if path == null:
 		return
 	offset += speed.value() * delta
 	path.offset = offset
-	global_position = path.global_position
+	global_position = path.global_position + path_offset
+
+
+func get_path_offset(radius: float = 1) -> Vector2:
+	var rng = RandomNumberGenerator.new()
+	rng.randomize()
+	var angle = rng.randf_range(0, 2 * PI)
+	return Vector2(cos(angle), sin(angle)) * radius
 
 
 func take_damage(damage: int):
