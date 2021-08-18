@@ -12,12 +12,10 @@ enum State {
 export(NodePath) var area2d_path = @"Area2D"
 var state = State.IDLE setget set_state
 var was_select = false
-onready var area2d = get_node(area2d_path)
-
+onready var area2d: Area2D = get_node(area2d_path)
+onready var sprite: Sprite = $Sprite
 
 func _ready():
-	assert(area2d is Area2D)
-	print('Slot init')
 	assert(area2d.connect("mouse_entered", self, "_on_mouse_entered") == OK)
 	assert(area2d.connect("mouse_exited", self, "_on_mouse_exited") == OK)
 	assert(area2d.connect("input_event", self, "_on_input") == OK)
@@ -28,9 +26,18 @@ func set_state(new_state):
 	state = new_state
 	# TODO: process event
 	if state == State.SELECTED:
-		var test_defender = load("res://character/monster/test/test.tscn") as PackedScene
-		add_child(test_defender.instance())
+		_on_selected()
 		state = State.OCCUPIED
+		
+
+func _on_selected():
+	spawn_defender()
+	sprite.hide()
+
+
+func spawn_defender():
+	var test_defender = load("res://character/monster/test/test.tscn") as PackedScene
+	add_child(test_defender.instance())
 
 
 func _on_input(_viewport, _event, _shape_id):
