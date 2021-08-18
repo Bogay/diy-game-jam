@@ -49,6 +49,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Game.gd"
 }, {
+"base": "Node",
+"class": "ImageViewer",
+"language": "GDScript",
+"path": "res://opening/image_viewer.gd"
+}, {
 "base": "Node2D",
 "class": "Level",
 "language": "GDScript",
@@ -78,6 +83,7 @@ _global_script_class_icons={
 "Defender": "",
 "DefenderData": "",
 "Game": "",
+"ImageViewer": "",
 "Level": "",
 "LevelMenu": "",
 "Slot": "",
