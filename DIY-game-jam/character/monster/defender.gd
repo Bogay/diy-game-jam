@@ -36,6 +36,20 @@ func _ready():
 
 
 func _process(_delta: float):
+	update_direction()
+	try_shoot()
+
+
+
+func update_direction():
+	var target = get_target_attacker()
+	if target == null:
+		return
+	var is_left = (target.global_position - global_position).x < 0
+	($AnimatedSprite as AnimatedSprite).flip_h = is_left
+
+
+func try_shoot():
 	if not detected_attackers.empty():
 		if not can_attack:
 			return
@@ -55,7 +69,9 @@ func shoot() -> void:
 	can_attack = 1
 
 
-func get_target_attacker() -> Node:
+func get_target_attacker() -> Attacker:
+	if not len(detected_attackers):
+		return null
 	var id = detected_attackers.keys()[0]
 	return detected_attackers[id]
 
