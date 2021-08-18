@@ -52,7 +52,9 @@ func load_json(path: String) -> JSONParseResult:
 func load_attacker(_attackers: Dictionary) -> Dictionary:
 	var tmp_attackers = {}
 	for key in attackers:
-		var attacker = load(attackers[key])
-		assert(attacker is PackedScene)
+		var attacker = attackers[key]
+		if not attacker is PackedScene:
+			attacker = load(attacker)
+			assert(attacker is PackedScene)
 		tmp_attackers[key] = attacker
 	return tmp_attackers
