@@ -45,9 +45,14 @@ func _ready():
 func _physics_process(delta):
 	if path == null:
 		return
+	var old_pos = global_position
+	# Update offset
 	offset += speed.value() * delta
 	path.offset = offset
 	global_position = path.global_position + path_offset
+	# Check filp
+	var is_left = (global_position - old_pos).x < 0
+	($AnimatedSprite as AnimatedSprite).flip_h = is_left
 
 
 func get_path_offset(radius: float = 1) -> Vector2:
