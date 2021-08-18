@@ -32,13 +32,19 @@ func set_state(new_state):
 		
 
 func _on_selected():
-	spawn_defender()
+	if not spawn_defender():
+		print("Spawn defender error")
+		return
 	sprite.hide()
 
 
-func spawn_defender():
+func spawn_defender() -> bool:
 	var test_defender = load("res://character/monster/test/test.tscn") as PackedScene
-	add_child(test_defender.instance())
+	var defender_ins: Defender = test_defender.instance()
+	if defender_ins.type != allowed_type:
+		return false
+	add_child(defender_ins)
+	return true
 
 
 func _on_input(_viewport, _event, _shape_id):
