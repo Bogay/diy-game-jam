@@ -24,10 +24,12 @@ height = 55.5841
 "attacker",
 ]]
 position = Vector2( 1, 0 )
+z_index = 1
 script = ExtResource( 1 )
 attacker_data = ExtResource( 2 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+position = Vector2( 0, -40 )
 scale = Vector2( 0.1, 0.1 )
 frames = SubResource( 1 )
 animation = "walk"
