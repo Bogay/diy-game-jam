@@ -9,6 +9,7 @@ var level_menu: PackedScene = preload("res://ui/level_menu.tscn")
 var wave_idx = 0
 var attacker_cnt = 0
 
+
 func setup_paths() -> void:
 	if paths.size() == 0:
 		paths = get_tree().get_nodes_in_group('attacker_path')
@@ -26,6 +27,7 @@ func setup_paths() -> void:
 	for path in paths:
 		assert(path is Path2D)
 
+
 # Instantiate level menu and connect signal callback
 func setup_menu():
 	var level_menu_ins: LevelMenu = level_menu.instance()
@@ -36,22 +38,26 @@ func setup_menu():
 func _ready():
 	setup_paths()
 	setup_menu()
-	for wave in waves:
-		wave.setup()
 
 
-func spawn_wave(wave):
-	for _i in range(2):
-		var attacker = wave.attackers["test"].instance()
-		spawn_attacker(attacker)
-		yield(get_tree().create_timer(0.6), "timeout")
+func spawn_wave(wave: Wave):
+	wave.setup()
+	for sub_wave in wave.sub_waves:
+		yield(get_tree().create_timer(sub_wave.time), "timeout")
+		assert(len(sub_wave.groups) <= len(paths))
+		for path_idx in range(len(sub_wave.groups)):
+			var group = sub_wave.groups[path_idx]
+			for id in group:
+				var attacker = wave.attackers[id]
+				for _i in range(group[id]):
+					spawn_attacker(attacker.instance(), path_idx)
 
 
-func spawn_attacker(attacker: Attacker):
+func spawn_attacker(attacker: Attacker, path_idx: int):
 	attacker_cnt += 1
 	assert(attacker.connect("tree_exiting", self, "_on_attacker_exiting") == OK)
 	var follow = PathFollow2D.new()
-	paths[0].add_child(follow)
+	paths[path_idx].add_child(follow)
 	attacker.path = follow
 	add_child(attacker)
 
@@ -63,6 +69,7 @@ func _on_attacker_exiting():
 		emit_signal("level_completed")
 		print("level completed!")
 
+# TODO: handle signal to allow player spawn next wave
 
 func _on_next_wave():
 	if wave_idx >= waves.size():
