@@ -1,14 +1,22 @@
 [gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://opening/image_viewer.gd" type="Script" id=1]
-[ext_resource path="res://opening/sprite/001.png" type="Texture" id=2]
+[ext_resource path="res://opening/output.webm" type="VideoStream" id=3]
 
 [node name="Opening" type="Node2D"]
+
+[node name="VideoPlayer" type="VideoPlayer" parent="."]
+margin_right = 1920.0
+margin_bottom = 1080.0
+stream = ExtResource( 3 )
+autoplay = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="ImageViewer" type="Node" parent="."]
 script = ExtResource( 1 )
 image_dir_path = "res://opening/sprite"
 
 [node name="Sprite" type="Sprite" parent="ImageViewer"]
-texture = ExtResource( 2 )
 centered = false

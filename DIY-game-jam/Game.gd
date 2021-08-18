@@ -9,7 +9,13 @@ var level0 = preload("res://level/level0/level0.tscn")
 func _ready():
 	var menu_ins: StartMenu = change_scene(start_menu)
 	yield(menu_ins, "game_started")
-	var image_viewer: ImageViewer = change_scene(opening).get_node("ImageViewer")
+	# HACK: Opening flow
+	var opening_ins =  change_scene(opening)
+	var video_player: VideoPlayer = opening_ins.get_node("VideoPlayer")
+	yield(video_player, "finished")
+	video_player.hide()
+	var image_viewer: ImageViewer = opening_ins.get_node("ImageViewer")
+	image_viewer.play()
 	yield(image_viewer, "play_finished")
 	change_scene(level0)
 

@@ -14,7 +14,6 @@ func _ready():
 	if not image_dir_path.ends_with("/"):
 		image_dir_path += "/"
 	sprite.set_scale(Vector2(scale, scale))
-	play()
 		
 
 func play():
