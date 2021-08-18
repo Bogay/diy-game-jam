@@ -3,6 +3,7 @@ extends Node2D
 
 export(Resource) var bullet_data = null
 var target: Node2D
+var last_target_pos: Vector2 = Vector2.ZERO
 var direction: Vector2
 
 
@@ -13,11 +14,22 @@ func _ready():
 
 func _process(delta: float):
 	if target == null:
-		return
-	direction += (target.global_position - global_position).normalized()
+		if move_to(last_target_pos, delta):
+			queue_free()
+	else:
+		move_to(target.global_position, delta)
+
+
+func move_to(target_pos: Vector2, delta: float):	
+	direction += (target_pos - global_position).normalized()
 	direction = direction.normalized()
-	global_position += delta * bullet_data.speed * direction
+	var move_vec = delta * bullet_data.speed * direction
+	var collide = false
+	if (target_pos - global_position).length() <= move_vec.length():
+		collide = true
+	global_position += move_vec
 	rotation_degrees = rad2deg(direction.angle())
+	return collide
 
 
 func _on_area_entered(area: Area2D):
@@ -34,4 +46,5 @@ func attack(attack_target: Attacker):
 
 
 func _on_target_exiting():
-	queue_free()
+	last_target_pos = target.global_position
+	target = null
