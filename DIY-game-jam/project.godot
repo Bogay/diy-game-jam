@@ -69,6 +69,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://slot/slot.gd"
 }, {
+"base": "Node2D",
+"class": "StartMenu",
+"language": "GDScript",
+"path": "res://start_menu/start_menu.gd"
+}, {
 "base": "Resource",
 "class": "Wave",
 "language": "GDScript",
@@ -87,6 +92,7 @@ _global_script_class_icons={
 "Level": "",
 "LevelMenu": "",
 "Slot": "",
+"StartMenu": "",
 "Wave": ""
 }
 

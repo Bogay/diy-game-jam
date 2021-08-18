@@ -31,6 +31,7 @@ func play():
 			sprite.texture = image
 			yield(self, "clicked")
 	print("End of image view")
+	emit_signal("play_finished")
 
 
 func _unhandled_input(_event: InputEvent):
