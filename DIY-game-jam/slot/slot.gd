@@ -9,6 +9,7 @@ enum State {
 	OCCUPIED,
 }
 
+export(DefenderData.DefenderType) var allowed_type = DefenderData.DefenderType.REMOTE
 export(NodePath) var area2d_path = @"Area2D"
 var state = State.IDLE setget set_state
 var was_select = false

@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://slot/slot.gd" type="Script" id=1]
+[ext_resource path="res://slot/sprite/slot-light.png" type="Texture" id=2]
+
+[sub_resource type="CapsuleShape2D" id=1]
+radius = 42.478
+height = 40.7486
+
+[node name="Slot" type="Node2D"]
+script = ExtResource( 1 )
+allowed_type = 0
+
+[node name="Sprite" type="Sprite" parent="."]
+texture = ExtResource( 2 )
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+rotation = 1.5708
+shape = SubResource( 1 )
