@@ -1,6 +1,10 @@
 class_name Level
 extends Node2D
 
+
+signal level_completed
+
+
 # Store pathes in this level
 export(Array, NodePath) var paths
 # Array of attackers' waves
@@ -8,6 +12,12 @@ export(Array, Resource) var waves
 var level_menu: PackedScene = preload("res://ui/level_menu.tscn")
 var wave_idx = 0
 var attacker_cnt = 0
+
+
+func _ready():
+	setup_paths()
+	setup_menu()
+	assert(connect("level_completed", self, "go_to_level_select") == OK)
 
 
 func setup_paths() -> void:
@@ -34,10 +44,6 @@ func setup_menu():
 	add_child(level_menu_ins)
 	assert(level_menu_ins.btn_spawn.connect("pressed", self, "_on_next_wave") == OK)
 
-
-func _ready():
-	setup_paths()
-	setup_menu()
 
 
 func spawn_wave(wave: Wave):
@@ -76,3 +82,7 @@ func _on_next_wave():
 		return
 	spawn_wave(waves[wave_idx])
 	wave_idx += 1
+
+
+func go_to_level_select():
+	Game.change_scene("level_select")
