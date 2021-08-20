@@ -3,6 +3,7 @@ extends Node
 var start_menu = preload("res://start_menu/start_menu.tscn")
 var opening = preload("res://opening/opening.tscn")
 var level0 = preload("res://level/level0/level0.tscn")
+var level_select = preload("res://level/select/level_select.tscn")
 var current_scene = null
 
 
@@ -30,5 +31,9 @@ func get_scene(scene: String):
 		if scene == "opening":
 			return opening
 		elif scene == "level_select":
-			return null
+			return level_select
+		elif scene == "level0":
+			return level0
+		elif scene == "level1":
+			return level0
 	return load(scene)

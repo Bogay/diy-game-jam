@@ -62,7 +62,7 @@ _global_script_classes=[ {
 "base": "Node",
 "class": "LevelSelect",
 "language": "GDScript",
-"path": "res://level/level_select.gd"
+"path": "res://level/select/level_select.gd"
 }, {
 "base": "Node2D",
 "class": "Slot",

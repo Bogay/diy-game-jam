@@ -1,0 +1,117 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://level/select/level_select.gd" type="Script" id=1]
+[ext_resource path="res://level/select/setting.png" type="Texture" id=2]
+[ext_resource path="res://ui/ui_font.tres" type="DynamicFont" id=3]
+[ext_resource path="res://font/redkost-comic/Redkost Comic.otf" type="DynamicFontData" id=4]
+
+[sub_resource type="DynamicFont" id=1]
+size = 72
+font_data = ExtResource( 4 )
+
+[node name="LevelSelect" type="Node"]
+script = ExtResource( 1 )
+
+[node name="UIRoot" type="HBoxContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = 64.0
+margin_bottom = -150.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VSplitContainer" type="VSplitContainer" parent="UIRoot"]
+margin_right = 505.0
+margin_bottom = 866.0
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 1.5
+split_offset = 200
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UIRoot/VSplitContainer"]
+margin_right = 505.0
+margin_bottom = 368.0
+
+[node name="BagButton" type="Button" parent="UIRoot/VSplitContainer/VBoxContainer"]
+margin_right = 505.0
+margin_bottom = 182.0
+size_flags_vertical = 3
+custom_fonts/font = SubResource( 1 )
+text = "capture"
+
+[node name="StoryButton" type="Button" parent="UIRoot/VSplitContainer/VBoxContainer"]
+margin_top = 186.0
+margin_right = 505.0
+margin_bottom = 368.0
+size_flags_horizontal = 9
+size_flags_vertical = 3
+custom_fonts/font = ExtResource( 3 )
+text = "story"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MarginContainer" type="MarginContainer" parent="UIRoot/VSplitContainer"]
+margin_top = 380.0
+margin_right = 505.0
+margin_bottom = 866.0
+
+[node name="LevelSelectButtons" type="HBoxContainer" parent="UIRoot"]
+margin_left = 509.0
+margin_right = 1855.0
+margin_bottom = 866.0
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 4.0
+
+[node name="level1" type="MarginContainer" parent="UIRoot/LevelSelectButtons"]
+margin_right = 671.0
+margin_bottom = 866.0
+size_flags_horizontal = 3
+custom_constants/margin_right = 30
+custom_constants/margin_left = 30
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="level1" type="Button" parent="UIRoot/LevelSelectButtons/level1"]
+margin_left = 30.0
+margin_right = 641.0
+margin_bottom = 866.0
+custom_fonts/font = ExtResource( 3 )
+text = "Level1"
+
+[node name="level2" type="MarginContainer" parent="UIRoot/LevelSelectButtons"]
+margin_left = 675.0
+margin_right = 1346.0
+margin_bottom = 866.0
+size_flags_horizontal = 3
+custom_constants/margin_right = 30
+custom_constants/margin_left = 30
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="level2" type="Button" parent="UIRoot/LevelSelectButtons/level2"]
+margin_left = 30.0
+margin_right = 641.0
+margin_bottom = 866.0
+custom_fonts/font = ExtResource( 3 )
+text = "level2"
+
+[node name="AspectRatioContainer" type="AspectRatioContainer" parent="UIRoot"]
+margin_left = 1859.0
+margin_right = 1919.0
+margin_bottom = 866.0
+alignment_vertical = 0
+
+[node name="Settings" type="Button" parent="UIRoot/AspectRatioContainer"]
+margin_right = 60.0
+margin_bottom = 60.0
+size_flags_horizontal = 9
+size_flags_vertical = 9
+icon = ExtResource( 2 )
+
+[connection signal="pressed" from="UIRoot/LevelSelectButtons/level1/level1" to="." method="load_level1"]
+[connection signal="pressed" from="UIRoot/LevelSelectButtons/level2/level2" to="." method="load_level2"]
