@@ -1,5 +1,5 @@
 class_name ImageViewer
-extends Node
+extends CanvasLayer
 
 signal play_finished
 signal clicked
@@ -7,14 +7,15 @@ signal clicked
 
 export(String, DIR) var image_dir_path
 # MAGIC
-export(float) var scale = 0.75
+export(float) var _scale = 0.75
 onready var sprite: Sprite = $Sprite
+
 
 func _ready():
 	if not image_dir_path.ends_with("/"):
 		image_dir_path += "/"
-	sprite.set_scale(Vector2(scale, scale))
-		
+	sprite.set_scale(Vector2(_scale, _scale))
+
 
 func play():
 	var image_dir = Directory.new()
@@ -30,9 +31,13 @@ func play():
 			sprite.texture = image
 			yield(self, "clicked")
 	print("End of image view")
-	emit_signal("play_finished")
+	end()
 
 
 func _unhandled_input(_event: InputEvent):
 	if Input.is_action_pressed('click'):
 		emit_signal("clicked")
+
+
+func end():
+	emit_signal("play_finished")
