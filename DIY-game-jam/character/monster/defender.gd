@@ -24,7 +24,9 @@ onready var animated_sprite: AnimatedSprite = $AnimatedSprite
 func _ready():
 	animated_sprite.frames = defender_data.animation
 	animated_sprite.animation = "idle"
-	(attack_shape.shape as CircleShape2D).radius = attack_distance.value()
+	var shape = CircleShape2D.new()
+	shape.radius = attack_distance.value()
+	attack_shape.shape = shape
 	assert(attack_distance.connect("value_changed", self, "_on_attack_distance_changed") == OK)
 	assert(attack_area.connect("area_entered", self, "_on_area_entered") == OK)
 	assert(attack_area.connect("area_exited", self, "_on_area_exited") == OK)
