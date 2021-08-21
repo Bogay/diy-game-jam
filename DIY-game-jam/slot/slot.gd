@@ -39,11 +39,13 @@ func _on_selected():
 
 
 func spawn_defender() -> bool:
-	var test_defender = load("res://character/monster/test/test.tscn") as PackedScene
-	var defender_ins: Defender = test_defender.instance()
-	if defender_ins.type != allowed_type:
+	var beastman = preload("res://character/monster/beastman/beastman.tres") as DefenderData
+	if beastman.type != allowed_type:
 		return false
+	var test_defender = preload("res://character/monster/test/test.tscn") as PackedScene
+	var defender_ins: Defender = test_defender.instance()
 	add_child(defender_ins)
+	defender_ins.defender_data = beastman
 	return true
 
 

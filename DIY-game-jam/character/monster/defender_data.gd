@@ -9,6 +9,7 @@ enum DefenderType {
 export(DefenderType) var type = DefenderType.REMOTE
 export(Resource) var bullet_data
 export(Resource) var animation
+export(Texture) var preview
 export(int) var max_hp
 export(int) var attack
 export(int) var defense
