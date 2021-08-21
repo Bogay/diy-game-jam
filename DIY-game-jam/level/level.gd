@@ -3,6 +3,7 @@ extends Node2D
 
 
 signal level_completed
+signal wave_changed(wave_idx, max_wave)
 
 
 # Store pathes in this level
@@ -18,6 +19,7 @@ func _ready():
 	setup_paths()
 	setup_menu()
 	assert(connect("level_completed", self, "go_to_level_select") == OK)
+	emit_signal("wave_changed", 1, len(waves))
 
 
 func setup_paths() -> void:
@@ -81,6 +83,7 @@ func spawn_next_wave():
 		return
 	spawn_wave(waves[wave_idx])
 	wave_idx += 1
+	emit_signal("wave_changed", wave_idx, len(waves))
 
 
 func go_to_level_select():
