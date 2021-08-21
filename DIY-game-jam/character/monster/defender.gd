@@ -68,7 +68,8 @@ func shoot() -> void:
 	var target = get_target_attacker()
 	assert(target.connect("tree_exiting", bullet, "_on_target_exiting") == OK)
 	bullet.target = target
-	muzzle.add_child(bullet)
+	add_child(bullet)
+	bullet.global_position = muzzle.global_position
 	play_attack_animation()
 	can_attack = 0
 	yield(get_tree().create_timer(1 / speed.value()), "timeout")
