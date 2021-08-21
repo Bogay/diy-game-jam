@@ -1,6 +1,17 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://ui/level_menu.gd" type="Script" id=1]
+[ext_resource path="res://character/enemy/yusha/sprites/attack/0.png" type="Texture" id=2]
+[ext_resource path="res://font/redkost-comic/Redkost Comic.otf" type="DynamicFontData" id=3]
+[ext_resource path="res://font/Noto_Serif_TC/NotoSerifTC-Regular.otf" type="DynamicFontData" id=4]
+
+[sub_resource type="DynamicFont" id=1]
+size = 24
+font_data = ExtResource( 3 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 24
+font_data = ExtResource( 4 )
 
 [node name="LevelMenu" type="CanvasLayer"]
 script = ExtResource( 1 )
@@ -14,7 +25,7 @@ __meta__ = {
 }
 
 [node name="Panel" type="Panel" parent="ViewportContainer"]
-anchor_left = 0.75
+anchor_left = 0.729
 anchor_right = 1.0
 anchor_bottom = 1.0
 
@@ -29,28 +40,294 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="LevelInfo" type="HBoxContainer" parent="ViewportContainer/Panel/VBoxContainer"]
-margin_right = 420.0
-margin_bottom = 224.0
+[node name="LevelInfo" type="VBoxContainer" parent="ViewportContainer/Panel/VBoxContainer"]
+margin_right = 460.0
+margin_bottom = 126.0
+size_flags_vertical = 3
+
+[node name="PlayerStatus" type="HBoxContainer" parent="ViewportContainer/Panel/VBoxContainer/LevelInfo"]
+margin_right = 460.0
+margin_bottom = 61.0
 size_flags_vertical = 3
 size_flags_stretch_ratio = 2.0
 
-[node name="ButtonSpawn" type="Button" parent="ViewportContainer/Panel/VBoxContainer/LevelInfo"]
-margin_right = 420.0
-margin_bottom = 224.0
+[node name="HP" type="Label" parent="ViewportContainer/Panel/VBoxContainer/LevelInfo/PlayerStatus"]
+margin_top = 17.0
+margin_right = 47.0
+margin_bottom = 43.0
+custom_fonts/font = SubResource( 1 )
+text = "HP:  "
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HPValue" type="Label" parent="ViewportContainer/Panel/VBoxContainer/LevelInfo/PlayerStatus"]
+margin_left = 51.0
+margin_top = 17.0
+margin_right = 116.0
+margin_bottom = 43.0
 size_flags_horizontal = 3
+custom_fonts/font = SubResource( 1 )
+text = "20"
+
+[node name="Mana" type="Label" parent="ViewportContainer/Panel/VBoxContainer/LevelInfo/PlayerStatus"]
+margin_left = 120.0
+margin_top = 17.0
+margin_right = 201.0
+margin_bottom = 43.0
+custom_fonts/font = SubResource( 1 )
+text = "Mana:  "
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ManaValue" type="Label" parent="ViewportContainer/Panel/VBoxContainer/LevelInfo/PlayerStatus"]
+margin_left = 205.0
+margin_top = 17.0
+margin_right = 336.0
+margin_bottom = 43.0
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 2.0
+custom_fonts/font = SubResource( 1 )
+text = "999"
+
+[node name="OpenMenu" type="Button" parent="ViewportContainer/Panel/VBoxContainer/LevelInfo/PlayerStatus"]
+margin_left = 340.0
+margin_right = 460.0
+margin_bottom = 61.0
+rect_min_size = Vector2( 120, 0 )
+custom_fonts/font = SubResource( 1 )
+text = "menu"
+
+[node name="Waves" type="HBoxContainer" parent="ViewportContainer/Panel/VBoxContainer/LevelInfo"]
+margin_top = 65.0
+margin_right = 460.0
+margin_bottom = 126.0
+size_flags_vertical = 3
+size_flags_stretch_ratio = 2.0
+
+[node name="Label2" type="Label" parent="ViewportContainer/Panel/VBoxContainer/LevelInfo/Waves"]
+margin_top = 17.0
+margin_right = 87.0
+margin_bottom = 43.0
+custom_fonts/font = SubResource( 1 )
+text = "Wave:  "
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="ViewportContainer/Panel/VBoxContainer/LevelInfo/Waves"]
+margin_left = 91.0
+margin_top = 17.0
+margin_right = 336.0
+margin_bottom = 43.0
+size_flags_horizontal = 3
+custom_fonts/font = SubResource( 1 )
+text = "20 / 20"
+
+[node name="Spawn" type="Button" parent="ViewportContainer/Panel/VBoxContainer/LevelInfo/Waves"]
+margin_left = 340.0
+margin_right = 460.0
+margin_bottom = 61.0
+rect_min_size = Vector2( 120, 0 )
+custom_fonts/font = SubResource( 1 )
 text = "Spawn"
 
-[node name="DefenderList" type="HBoxContainer" parent="ViewportContainer/Panel/VBoxContainer"]
-margin_top = 228.0
-margin_right = 420.0
-margin_bottom = 566.0
+[node name="DefenderList" type="GridContainer" parent="ViewportContainer/Panel/VBoxContainer"]
+margin_top = 130.0
+margin_right = 460.0
+margin_bottom = 510.0
 size_flags_vertical = 3
 size_flags_stretch_ratio = 3.0
+columns = 4
 
-[node name="DefenderInfo" type="HBoxContainer" parent="ViewportContainer/Panel/VBoxContainer"]
-margin_top = 570.0
-margin_right = 420.0
+[node name="Button" type="Button" parent="ViewportContainer/Panel/VBoxContainer/DefenderList"]
+margin_right = 112.0
+margin_bottom = 188.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Button2" type="Button" parent="ViewportContainer/Panel/VBoxContainer/DefenderList"]
+margin_left = 116.0
+margin_right = 228.0
+margin_bottom = 188.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Button3" type="Button" parent="ViewportContainer/Panel/VBoxContainer/DefenderList"]
+margin_left = 232.0
+margin_right = 344.0
+margin_bottom = 188.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Button4" type="Button" parent="ViewportContainer/Panel/VBoxContainer/DefenderList"]
+margin_left = 348.0
+margin_right = 460.0
+margin_bottom = 188.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Button5" type="Button" parent="ViewportContainer/Panel/VBoxContainer/DefenderList"]
+margin_top = 192.0
+margin_right = 112.0
+margin_bottom = 380.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Button6" type="Button" parent="ViewportContainer/Panel/VBoxContainer/DefenderList"]
+margin_left = 116.0
+margin_top = 192.0
+margin_right = 228.0
+margin_bottom = 380.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Button7" type="Button" parent="ViewportContainer/Panel/VBoxContainer/DefenderList"]
+margin_left = 232.0
+margin_top = 192.0
+margin_right = 344.0
+margin_bottom = 380.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Button8" type="Button" parent="ViewportContainer/Panel/VBoxContainer/DefenderList"]
+margin_left = 348.0
+margin_top = 192.0
+margin_right = 460.0
+margin_bottom = 380.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="DefenderInfo" type="VBoxContainer" parent="ViewportContainer/Panel/VBoxContainer"]
+margin_top = 514.0
+margin_right = 460.0
 margin_bottom = 1020.0
 size_flags_vertical = 3
 size_flags_stretch_ratio = 4.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ViewportContainer/Panel/VBoxContainer/DefenderInfo"]
+margin_right = 460.0
+margin_bottom = 251.0
+size_flags_vertical = 3
+
+[node name="PreviewBG" type="TextureRect" parent="ViewportContainer/Panel/VBoxContainer/DefenderInfo/HBoxContainer"]
+margin_right = 180.0
+margin_bottom = 251.0
+rect_min_size = Vector2( 180, 180 )
+
+[node name="PreviewSprite" type="TextureRect" parent="ViewportContainer/Panel/VBoxContainer/DefenderInfo/HBoxContainer/PreviewBG"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 8.0
+margin_top = 8.0
+margin_right = -8.0
+margin_bottom = -8.0
+texture = ExtResource( 2 )
+expand = true
+stretch_mode = 6
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="StatusList" type="VBoxContainer" parent="ViewportContainer/Panel/VBoxContainer/DefenderInfo/HBoxContainer"]
+margin_left = 184.0
+margin_right = 285.0
+margin_bottom = 251.0
+
+[node name="MarginContainer" type="MarginContainer" parent="ViewportContainer/Panel/VBoxContainer/DefenderInfo/HBoxContainer/StatusList"]
+margin_right = 101.0
+margin_bottom = 47.0
+size_flags_vertical = 3
+
+[node name="VBoxContainer" type="HBoxContainer" parent="ViewportContainer/Panel/VBoxContainer/DefenderInfo/HBoxContainer/StatusList"]
+margin_top = 51.0
+margin_right = 101.0
+margin_bottom = 98.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Name" type="Label" parent="ViewportContainer/Panel/VBoxContainer/DefenderInfo/HBoxContainer/StatusList/VBoxContainer"]
+margin_top = 10.0
+margin_right = 58.0
+margin_bottom = 36.0
+custom_fonts/font = SubResource( 1 )
+text = "ATK: "
+
+[node name="MarginContainer" type="MarginContainer" parent="ViewportContainer/Panel/VBoxContainer/DefenderInfo/HBoxContainer/StatusList/VBoxContainer"]
+margin_left = 62.0
+margin_right = 101.0
+margin_bottom = 47.0
+
+[node name="Label" type="Label" parent="ViewportContainer/Panel/VBoxContainer/DefenderInfo/HBoxContainer/StatusList/VBoxContainer/MarginContainer"]
+margin_top = 10.0
+margin_right = 39.0
+margin_bottom = 36.0
+custom_fonts/font = SubResource( 1 )
+text = "123"
+
+[node name="VBoxContainer3" type="HBoxContainer" parent="ViewportContainer/Panel/VBoxContainer/DefenderInfo/HBoxContainer/StatusList"]
+margin_top = 102.0
+margin_right = 101.0
+margin_bottom = 149.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Name" type="Label" parent="ViewportContainer/Panel/VBoxContainer/DefenderInfo/HBoxContainer/StatusList/VBoxContainer3"]
+margin_top = 10.0
+margin_right = 58.0
+margin_bottom = 36.0
+custom_fonts/font = SubResource( 1 )
+text = "ATK: "
+
+[node name="MarginContainer" type="MarginContainer" parent="ViewportContainer/Panel/VBoxContainer/DefenderInfo/HBoxContainer/StatusList/VBoxContainer3"]
+margin_left = 62.0
+margin_right = 101.0
+margin_bottom = 47.0
+
+[node name="Label" type="Label" parent="ViewportContainer/Panel/VBoxContainer/DefenderInfo/HBoxContainer/StatusList/VBoxContainer3/MarginContainer"]
+margin_top = 10.0
+margin_right = 39.0
+margin_bottom = 36.0
+custom_fonts/font = SubResource( 1 )
+text = "123"
+
+[node name="VBoxContainer2" type="HBoxContainer" parent="ViewportContainer/Panel/VBoxContainer/DefenderInfo/HBoxContainer/StatusList"]
+margin_top = 153.0
+margin_right = 101.0
+margin_bottom = 200.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Name" type="Label" parent="ViewportContainer/Panel/VBoxContainer/DefenderInfo/HBoxContainer/StatusList/VBoxContainer2"]
+margin_top = 10.0
+margin_right = 58.0
+margin_bottom = 36.0
+custom_fonts/font = SubResource( 1 )
+text = "ATK: "
+
+[node name="MarginContainer" type="MarginContainer" parent="ViewportContainer/Panel/VBoxContainer/DefenderInfo/HBoxContainer/StatusList/VBoxContainer2"]
+margin_left = 62.0
+margin_right = 101.0
+margin_bottom = 47.0
+
+[node name="Label" type="Label" parent="ViewportContainer/Panel/VBoxContainer/DefenderInfo/HBoxContainer/StatusList/VBoxContainer2/MarginContainer"]
+margin_top = 10.0
+margin_right = 39.0
+margin_bottom = 36.0
+custom_fonts/font = SubResource( 1 )
+text = "123"
+
+[node name="MarginContainer2" type="MarginContainer" parent="ViewportContainer/Panel/VBoxContainer/DefenderInfo/HBoxContainer/StatusList"]
+margin_top = 204.0
+margin_right = 101.0
+margin_bottom = 251.0
+size_flags_vertical = 3
+
+[node name="Description" type="Label" parent="ViewportContainer/Panel/VBoxContainer/DefenderInfo"]
+margin_top = 255.0
+margin_right = 460.0
+margin_bottom = 506.0
+size_flags_vertical = 3
+custom_fonts/font = SubResource( 2 )
+text = "能力均衡，能施展劍氣攻擊複數敵人。"

@@ -42,8 +42,7 @@ func setup_paths() -> void:
 func setup_menu():
 	var level_menu_ins: LevelMenu = level_menu.instance()
 	add_child(level_menu_ins)
-	assert(level_menu_ins.btn_spawn.connect("pressed", self, "_on_next_wave") == OK)
-
+	level_menu_ins.level = self
 
 
 func spawn_wave(wave: Wave):
@@ -77,7 +76,7 @@ func _on_attacker_exiting():
 
 # TODO: handle signal to allow player spawn next wave
 
-func _on_next_wave():
+func spawn_next_wave():
 	if wave_idx >= waves.size():
 		return
 	spawn_wave(waves[wave_idx])
