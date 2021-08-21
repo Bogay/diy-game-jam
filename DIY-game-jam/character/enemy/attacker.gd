@@ -71,7 +71,6 @@ func take_damage(damage: int):
 	var dmg_decrease = def_value / (def_value + 100)
 	damage *= (1 - dmg_decrease)
 	hp -= damage
-	print("HP: ", hp)
 	if hp <= 0:
 		die()
 
