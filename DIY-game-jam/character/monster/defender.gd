@@ -1,7 +1,7 @@
 class_name Defender
 extends Node2D
 
-export(Resource) var defender_data = null
+export(Resource) var defender_data = null setget set_defender_data
 var type = DefenderData.DefenderType.REMOTE
 var max_hp: Buffable
 var hp: int
@@ -20,8 +20,31 @@ onready var attack_area: Area2D = $AttackArea
 onready var attack_shape: CollisionShape2D = $AttackArea/CollisionShape2D
 onready var animated_sprite: AnimatedSprite = $AnimatedSprite
 
+
 func _ready():
-	assert(defender_data is DefenderData)
+	animated_sprite.frames = defender_data.animation
+	animated_sprite.animation = "idle"
+	(attack_shape.shape as CircleShape2D).radius = attack_distance.value()
+	assert(attack_distance.connect("value_changed", self, "_on_attack_distance_changed") == OK)
+	assert(attack_area.connect("area_entered", self, "_on_area_entered") == OK)
+	assert(attack_area.connect("area_exited", self, "_on_area_exited") == OK)
+	original_muzzle_x = muzzle.position.x
+	add_to_group("defender")
+	Player.selected_character = self
+
+
+func _process(_delta: float):
+	# FIXME: Use a general API to process defender behavior
+	update_direction()
+	if type == DefenderData.DefenderType.REMOTE:
+		try_shoot()
+	else:
+		refresh_captures()
+
+
+func set_defender_data(new_data: DefenderData):
+	print("Set defender data")
+	defender_data = new_data
 	type = defender_data.type
 	max_hp = Buffable.new(defender_data.max_hp)
 	hp = max_hp.value()
@@ -31,18 +54,6 @@ func _ready():
 	magic_defense = Buffable.new(defender_data.magic_defense)
 	speed = Buffable.new(defender_data.speed)
 	attack_distance = Buffable.new(defender_data.attack_distance)
-	(attack_shape.shape as CircleShape2D).radius = attack_distance.value()
-	assert(attack_distance.connect("value_changed", self, "_on_attack_distance_changed") == OK)
-	assert(attack_area.connect("area_entered", self, "_on_area_entered") == OK)
-	assert(attack_area.connect("area_exited", self, "_on_area_exited") == OK)
-	animated_sprite.animation = "idle"
-	original_muzzle_x = muzzle.position.x
-	add_to_group("defender")
-
-
-func _process(_delta: float):
-	update_direction()
-	try_shoot()
 
 
 func update_direction():
@@ -93,6 +104,16 @@ func get_target_attacker() -> Attacker:
 	return detected_attackers[id]
 
 
+func refresh_captures():
+	var cnt = 0
+	for id in detected_attackers:
+		var attacker = detected_attackers[id]
+		if cnt > attack.value():
+			attacker.capture = false
+		else:
+			attacker.capture = true
+			cnt += 1
+
 func _on_attack_distance_changed(dis):
 	(attack_shape.shape as CircleShape2D).radius = dis
 
@@ -107,8 +128,8 @@ func _on_area_entered(area: Area2D):
 func enqueue_attacker(attacker: Attacker):
 	var attacker_id = attacker.get_instance_id()
 	assert(not attacker_id in detected_attackers)
-	# FIX: I can't find a way to get the exited node id,
-	#   so I need to scan the dictionary to remove attacker.
+	# FIXME: I can't find a way to get the exited node id,
+	#   so I need to scan whole the dictionary to remove attacker.
 	assert(attacker.connect("tree_exited", self, "refresh_attackers") == OK)
 	detected_attackers[attacker_id] = attacker
 	print("Got you: ", attacker.name)

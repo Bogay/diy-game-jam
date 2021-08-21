@@ -14,6 +14,7 @@ var speed: Buffable
 var offset = 0
 var path: PathFollow2D = null
 var path_offset: Vector2 = Vector2.ZERO
+var capture = false
 onready var attack_area: Area2D = $AttackArea
 onready var detect_area: Area2D = $DetectArea
 onready var attack_shape: CollisionShape2D = $AttackArea/CollisionShape2D
@@ -31,8 +32,8 @@ func _ready():
 	speed = Buffable.new(attacker_data.speed)
 	# Setup collision
 	attack_distance = Buffable.new(attacker_data.attack_distance)
-	detect_distance = Buffable.new(attacker_data.detect_distance)
 	(attack_shape.shape as CircleShape2D).radius = attack_distance.value()
+	detect_distance = Buffable.new(attacker_data.detect_distance)
 	(detect_shape.shape as CircleShape2D).radius = detect_distance.value()
 	# FIXME: It's not a good idea to hard-code the radius value
 	path_offset = get_path_offset(15)
@@ -44,6 +45,9 @@ func _ready():
 
 func _physics_process(delta):
 	if path == null:
+		return
+	# Captured attackers can not move
+	if capture == true:
 		return
 	var old_pos = global_position
 	# Update offset

@@ -7,6 +7,8 @@ enum DefenderType {
 }
 
 export(DefenderType) var type = DefenderType.REMOTE
+export(Resource) var bullet_data
+export(Resource) var animation
 export(int) var max_hp
 export(int) var attack
 export(int) var defense
@@ -17,4 +19,5 @@ export(int) var attack_distance
 export(float) var speed
 
 func _ready():
-	pass
+	assert(bullet_data is BulletData)
+	assert(animation is SpriteFrames)
