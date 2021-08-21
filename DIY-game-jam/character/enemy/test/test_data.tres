@@ -1,12 +1,14 @@
-[gd_resource type="Resource" load_steps=2 format=2]
+[gd_resource type="Resource" load_steps=3 format=2]
 
 [ext_resource path="res://character/enemy/attacker_data.gd" type="Script" id=1]
+[ext_resource path="res://character/enemy/yusha/sprites/attack/0.png" type="Texture" id=2]
 
 [resource]
 script = ExtResource( 1 )
-max_hp = 120
+preview = ExtResource( 2 )
+max_hp = 150
 attack = 0
-defense = 0
+defense = 80
 magic_attack = 0
 magic_defense = 0
 attack_distance = 50

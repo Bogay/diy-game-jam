@@ -1,30 +1,7 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://character/monster/defender.gd" type="Script" id=1]
-[ext_resource path="res://character/monster/tentacle_shooter/sprites/attack/0.png" type="Texture" id=2]
-[ext_resource path="res://character/monster/test/test.tres" type="Resource" id=3]
-[ext_resource path="res://character/monster/tentacle_shooter/sprites/attack/1.png" type="Texture" id=4]
-[ext_resource path="res://character/monster/tentacle_shooter/sprites/attack/2.png" type="Texture" id=5]
-[ext_resource path="res://character/monster/tentacle_shooter/sprites/attack/3.png" type="Texture" id=6]
-[ext_resource path="res://character/monster/tentacle_shooter/sprites/idle/1.png" type="Texture" id=7]
-[ext_resource path="res://character/monster/tentacle_shooter/sprites/idle/2.png" type="Texture" id=8]
-[ext_resource path="res://character/monster/tentacle_shooter/sprites/idle/3.png" type="Texture" id=9]
-[ext_resource path="res://character/monster/tentacle_shooter/sprites/idle/4.png" type="Texture" id=10]
-
-[sub_resource type="SpriteFrames" id=1]
-animations = [ {
-"frames": [ ExtResource( 7 ), ExtResource( 8 ), ExtResource( 9 ), ExtResource( 10 ) ],
-"loop": true,
-"name": "idle",
-"speed": 4.0
-}, {
-"frames": [ ExtResource( 2 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ) ],
-"loop": false,
-"name": "attack",
-"speed": 8.0
-} ]
-
-[sub_resource type="CircleShape2D" id=2]
+[ext_resource path="res://character/monster/beastman/beastman.tres" type="Resource" id=3]
 
 [node name="Defender" type="Node2D"]
 script = ExtResource( 1 )
@@ -33,15 +10,12 @@ defender_data = ExtResource( 3 )
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 position = Vector2( 0, -45.3059 )
 scale = Vector2( 0.1, 0.1 )
-frames = SubResource( 1 )
-animation = "attack"
-frame = 3
+animation = "idle"
 playing = true
 
 [node name="AttackArea" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AttackArea"]
-shape = SubResource( 2 )
 
 [node name="Muzzle" type="Node2D" parent="."]
 position = Vector2( 39.6427, -96.275 )

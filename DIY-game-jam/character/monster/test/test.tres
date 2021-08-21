@@ -6,7 +6,7 @@
 script = ExtResource( 1 )
 type = 1
 max_hp = 0
-attack = 0
+attack = 10
 defense = 0
 magic_attack = 0
 magic_defense = 0

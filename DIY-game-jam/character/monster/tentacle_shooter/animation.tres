@@ -1,0 +1,23 @@
+[gd_resource type="SpriteFrames" load_steps=9 format=2]
+
+[ext_resource path="res://character/monster/tentacle_shooter/sprites/idle/4.png" type="Texture" id=1]
+[ext_resource path="res://character/monster/tentacle_shooter/sprites/idle/3.png" type="Texture" id=2]
+[ext_resource path="res://character/monster/tentacle_shooter/sprites/attack/1.png" type="Texture" id=3]
+[ext_resource path="res://character/monster/tentacle_shooter/sprites/attack/3.png" type="Texture" id=4]
+[ext_resource path="res://character/monster/tentacle_shooter/sprites/idle/1.png" type="Texture" id=5]
+[ext_resource path="res://character/monster/tentacle_shooter/sprites/attack/2.png" type="Texture" id=6]
+[ext_resource path="res://character/monster/tentacle_shooter/sprites/idle/2.png" type="Texture" id=7]
+[ext_resource path="res://character/monster/tentacle_shooter/sprites/attack/0.png" type="Texture" id=8]
+
+[resource]
+animations = [ {
+"frames": [ ExtResource( 5 ), ExtResource( 7 ), ExtResource( 2 ), ExtResource( 1 ) ],
+"loop": true,
+"name": "idle",
+"speed": 4.0
+}, {
+"frames": [ ExtResource( 8 ), ExtResource( 3 ), ExtResource( 6 ), ExtResource( 4 ) ],
+"loop": false,
+"name": "attack",
+"speed": 8.0
+} ]
