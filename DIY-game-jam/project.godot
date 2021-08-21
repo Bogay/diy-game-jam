@@ -34,6 +34,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://battle/bullet_data.gd"
 }, {
+"base": "GridContainer",
+"class": "CharacterInfo",
+"language": "GDScript",
+"path": "res://ui/character_info/character_info.gd"
+}, {
 "base": "Node2D",
 "class": "Defender",
 "language": "GDScript",
@@ -57,7 +62,7 @@ _global_script_classes=[ {
 "base": "CanvasLayer",
 "class": "LevelMenu",
 "language": "GDScript",
-"path": "res://ui/level_menu.gd"
+"path": "res://ui/level_menu/level_menu.gd"
 }, {
 "base": "Node",
 "class": "LevelSelect",
@@ -74,6 +79,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://start_menu/start_menu.gd"
 }, {
+"base": "MarginContainer",
+"class": "StatusLabel",
+"language": "GDScript",
+"path": "res://ui/character_info/status_label.gd"
+}, {
 "base": "Resource",
 "class": "Wave",
 "language": "GDScript",
@@ -85,6 +95,7 @@ _global_script_class_icons={
 "Buffable": "",
 "Bullet": "",
 "BulletData": "",
+"CharacterInfo": "",
 "Defender": "",
 "DefenderData": "",
 "ImageViewer": "",
@@ -93,6 +104,7 @@ _global_script_class_icons={
 "LevelSelect": "",
 "Slot": "",
 "StartMenu": "",
+"StatusLabel": "",
 "Wave": ""
 }
 
@@ -128,7 +140,3 @@ click={
 [physics]
 
 common/enable_pause_aware_picking=true
-
-[rendering]
-
-environment/default_environment="res://default_env.tres"

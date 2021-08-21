@@ -9,7 +9,7 @@ signal level_completed
 export(Array, NodePath) var paths
 # Array of attackers' waves
 export(Array, Resource) var waves
-var level_menu: PackedScene = preload("res://ui/level_menu.tscn")
+var level_menu: PackedScene = preload("res://ui/level_menu/level_menu.tscn")
 var wave_idx = 0
 var attacker_cnt = 0
 
