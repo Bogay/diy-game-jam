@@ -1,8 +1,8 @@
 [gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://character/enemy/attacker.gd" type="Script" id=1]
-[ext_resource path="res://character/enemy/human_soldier/human_soldier.tres" type="Resource" id=2]
-[ext_resource path="res://character/enemy/human_soldier/animation.tres" type="SpriteFrames" id=3]
+[ext_resource path="res://character/enemy/beastman/animation.tres" type="SpriteFrames" id=2]
+[ext_resource path="res://character/enemy/beastman/beastman.tres" type="Resource" id=10]
 
 [sub_resource type="CircleShape2D" id=2]
 
@@ -18,13 +18,13 @@ height = 55.5841
 position = Vector2( 1, 0 )
 z_index = 1
 script = ExtResource( 1 )
-attacker_data = ExtResource( 2 )
+attacker_data = ExtResource( 10 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 position = Vector2( 0, -40 )
 scale = Vector2( 0.1, 0.1 )
-frames = ExtResource( 3 )
-animation = "walk"
+frames = ExtResource( 2 )
+animation = "attack"
 frame = 2
 playing = true
 
