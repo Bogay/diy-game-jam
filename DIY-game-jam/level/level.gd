@@ -25,7 +25,6 @@ func _ready():
 	setup_paths()
 	setup_menu()
 	assert(connect("level_completed", self, "_on_level_completed") == OK)
-	assert(connect("level_completed", self, "go_to_level_select") == OK)
 	assert(Player.connect("player_died", self, "go_to_level_select") == OK)
 	emit_signal("wave_changed", 1, len(waves))
 
@@ -92,10 +91,14 @@ func _on_attacker_exiting():
 
 func _on_level_completed():
 	var save: GameSave = GameSaveManager.current_save
-	if not level_name in save.stories:
-		save.stories.append(level_name)
 	if next_level_name != "" and not next_level_name in save.levels:
 		save.levels.append(next_level_name)
+	if not level_name in save.stories:
+		save.stories.append(level_name)
+		# Play story at first unlock
+		Game.change_scene("%s_win" % level_name, "level_select")
+	else:
+		Game.change_scene("level_select")
 	print("Level [%s] completed!" % level_name)
 
 
@@ -116,7 +119,3 @@ func progress() -> float:
 	if current_wave == null:
 		return 1.0
 	return float(sub_wave_idx) / len(current_wave.sub_waves)
-
-
-func go_to_level_select():
-	Game.change_scene("level_select")
