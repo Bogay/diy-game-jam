@@ -142,8 +142,8 @@ func enqueue_attacker(attacker: Attacker):
 
 
 func _on_area_exited(area: Area2D):
-	var attacker = area.get_parent() as Attacker
-	if attacker == null or area.name != "DamageArea":
+	var attacker = Attacker.is_damage_area(area)
+	if not attacker is Attacker:
 		return
 	dequeue_attacker(attacker)
 
