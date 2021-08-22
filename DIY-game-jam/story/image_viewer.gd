@@ -2,6 +2,7 @@ class_name ImageViewer
 extends CanvasLayer
 
 signal play_finished
+signal scene_finished
 signal clicked
 
 
@@ -15,6 +16,9 @@ func _ready():
 	if not image_dir_path.ends_with("/"):
 		image_dir_path += "/"
 	sprite.set_scale(Vector2(_scale, _scale))
+	# HACK
+	if get_parent().name != "Opening":
+		play()
 
 
 func play():
@@ -44,3 +48,4 @@ func _unhandled_input(_event: InputEvent):
 
 func end():
 	emit_signal("play_finished")
+	emit_signal("scene_finished")

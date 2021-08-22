@@ -67,7 +67,7 @@ _global_script_classes=[ {
 "base": "CanvasLayer",
 "class": "ImageViewer",
 "language": "GDScript",
-"path": "res://story/opening/image_viewer.gd"
+"path": "res://story/image_viewer.gd"
 }, {
 "base": "Node2D",
 "class": "Level",
@@ -99,6 +99,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://ui/character_info/status_label.gd"
 }, {
+"base": "Node",
+"class": "StorySelect",
+"language": "GDScript",
+"path": "res://story/select/story_select.gd"
+}, {
 "base": "Resource",
 "class": "Wave",
 "language": "GDScript",
@@ -123,6 +128,7 @@ _global_script_class_icons={
 "Slot": "",
 "StartMenu": "",
 "StatusLabel": "",
+"StorySelect": "",
 "Wave": ""
 }
 

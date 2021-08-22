@@ -10,4 +10,4 @@ func _ready():
 
 func game_start():
 	print("Are you ready?")
-	Game.change_scene("opening")
+	Game.change_scene("opening", "level_select")
