@@ -1,18 +1,72 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://ui/ui_font.tres" type="DynamicFont" id=1]
 [ext_resource path="res://start_menu/start_menu.gd" type="Script" id=2]
+[ext_resource path="res://start_menu/_background.jpg" type="Texture" id=3]
+[ext_resource path="res://font/Noto_Serif_TC/NotoSerifTC-Bold.otf" type="DynamicFontData" id=4]
+
+[sub_resource type="DynamicFont" id=1]
+size = 128
+font_data = ExtResource( 4 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 96
+font_data = ExtResource( 4 )
 
 [node name="StartMenu" type="Node2D"]
 script = ExtResource( 2 )
 
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( -34.56, -49.4641 )
+scale = Vector2( 1.43469, 1.43469 )
+texture = ExtResource( 3 )
+centered = false
+
+[node name="ColorRect" type="ColorRect" parent="."]
+margin_left = -136.092
+margin_top = -136.141
+margin_right = 2137.91
+margin_bottom = 1255.86
+color = Color( 0.45098, 0.486275, 0.415686, 0.427451 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="Start" type="Button" parent="."]
-margin_left = 775.082
-margin_top = 572.621
-margin_right = 1156.08
-margin_bottom = 717.621
+margin_left = 794.956
+margin_top = 749.727
+margin_right = 1175.95
+margin_bottom = 894.727
 custom_fonts/font = ExtResource( 1 )
 text = "Start!"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="."]
+margin_left = 663.65
+margin_top = 147.126
+margin_right = 1284.65
+margin_bottom = 360.126
+custom_fonts/font = SubResource( 1 )
+custom_colors/font_color = Color( 0.776471, 0.921569, 0.309804, 1 )
+text = "觸手之森"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label2" type="Label" parent="."]
+margin_left = 312.184
+margin_top = 335.146
+margin_right = 1660.18
+margin_bottom = 531.146
+custom_fonts/font = SubResource( 2 )
+custom_colors/font_color = Color( 0.776471, 0.921569, 0.309804, 1 )
+text = "Tentacle in Shubs Jungle"
+align = 1
+valign = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
