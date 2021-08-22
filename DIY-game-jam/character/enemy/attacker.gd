@@ -92,5 +92,6 @@ func take_damage(damage: int):
 
 
 func die():
-	print("I am die QAQ")
+	print(name, ": I am die QAQ")
+	Player.mana += attacker_data.drop_mana
 	queue_free()

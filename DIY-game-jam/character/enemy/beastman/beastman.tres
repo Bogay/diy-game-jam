@@ -17,3 +17,4 @@ magic_defense = 0
 attack_distance = 0
 detect_distance = 0
 speed = 9.0
+drop_mana = 1

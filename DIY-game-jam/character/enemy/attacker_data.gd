@@ -13,6 +13,7 @@ export(int) var magic_defense
 export(int) var attack_distance
 export(int) var detect_distance
 export(float) var speed
+export(int) var drop_mana = 1
 
 
 func _ready():

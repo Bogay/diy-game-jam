@@ -46,6 +46,10 @@ func spawn_defender() -> bool:
 	if selection.type != allowed_type:
 		print("Selected defedner is not allowed to spawn at this slot")
 		return false
+	if selection.cost > Player.mana:
+		print("Not enough mana (req: %d, own: %d)" % [selection.cost, Player.mana])
+		return false
+	Player.mana -= selection.cost
 	var defender_ins: Defender = selection.instance()
 	add_child(defender_ins)
 	Player.selected_character = defender_ins

@@ -138,21 +138,25 @@ size_flags_stretch_ratio = 3.0
 columns = 4
 
 [node name="DefenderPreview" parent="ViewportContainer/Panel/VBoxContainer/DefenderList" instance=ExtResource( 3 )]
+margin_top = 0.0
 margin_right = 112.0
 margin_bottom = 188.0
 
 [node name="DefenderPreview2" parent="ViewportContainer/Panel/VBoxContainer/DefenderList" instance=ExtResource( 3 )]
 margin_left = 116.0
+margin_top = 0.0
 margin_right = 228.0
 margin_bottom = 188.0
 
 [node name="DefenderPreview3" parent="ViewportContainer/Panel/VBoxContainer/DefenderList" instance=ExtResource( 3 )]
 margin_left = 232.0
+margin_top = 0.0
 margin_right = 344.0
 margin_bottom = 188.0
 
 [node name="DefenderPreview4" parent="ViewportContainer/Panel/VBoxContainer/DefenderList" instance=ExtResource( 3 )]
 margin_left = 348.0
+margin_top = 0.0
 margin_right = 460.0
 margin_bottom = 188.0
 

@@ -6,6 +6,7 @@ var level setget set_level
 onready var btn_spawn: Button = $ViewportContainer/Panel/VBoxContainer/LevelInfo/Waves/Spawn
 onready var wave_label: Label = $ViewportContainer/Panel/VBoxContainer/LevelInfo/Waves/Label
 onready var hp_label: Label = $ViewportContainer/Panel/VBoxContainer/LevelInfo/PlayerStatus/HPValue
+onready var mana_label: Label = $ViewportContainer/Panel/VBoxContainer/LevelInfo/PlayerStatus/ManaValue
 
 
 func set_level(curr_level):
@@ -13,6 +14,7 @@ func set_level(curr_level):
 	setup_spawn_buttons()
 	register_event_listener()
 	setup_hp_label()
+	setup_mana_label()
 
 
 func setup_spawn_buttons():
@@ -57,3 +59,12 @@ func _on_attacker_reached(_attacker):
 
 func update_hp_label(hp: int):
 	hp_label.text = String(hp)
+	
+
+func setup_mana_label():
+	update_mana_label(Player.mana)
+	assert(Player.connect("mana_changed", self, "update_mana_label") == OK)
+
+
+func update_mana_label(mana: int):
+	mana_label.text = String(mana)

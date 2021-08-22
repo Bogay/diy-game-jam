@@ -19,3 +19,4 @@ magic_attack = 0
 magic_defense = 0
 attack_distance = 250
 speed = 1.0
+cost = 3

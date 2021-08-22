@@ -1,25 +1,61 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://ui/level_menu/defender_preview.gd" type="Script" id=1]
-[ext_resource path="res://ui/sprite/frame.png" type="Texture" id=2]
+[ext_resource path="res://font/redkost-comic/Redkost Comic.otf" type="DynamicFontData" id=3]
+
+[sub_resource type="StreamTexture" id=3]
+flags = 4
+load_path = "res://.import/frame.png-1fc205522f65b200d74b0c0064c99b0b.stex"
 
 [sub_resource type="StyleBoxTexture" id=1]
-texture = ExtResource( 2 )
+texture = SubResource( 3 )
 region_rect = Rect2( 0, 0, 300, 300 )
 margin_left = 50.0
 margin_right = 50.0
 margin_top = 50.0
 margin_bottom = 50.0
-modulate_color = Color( 0.756863, 0.756863, 0.756863, 1 )
+modulate_color = Color( 0.741176, 0.741176, 0.741176, 1 )
+
+[sub_resource type="StyleBoxTexture" id=6]
+texture = SubResource( 3 )
+region_rect = Rect2( 0, 0, 300, 300 )
+margin_left = 50.0
+margin_right = 50.0
+margin_top = 50.0
+margin_bottom = 50.0
+modulate_color = Color( 0.811765, 0.811765, 0.811765, 1 )
+
+[sub_resource type="StyleBoxTexture" id=4]
+texture = SubResource( 3 )
+region_rect = Rect2( 0, 0, 300, 300 )
+margin_left = 50.0
+margin_right = 50.0
+margin_top = 50.0
+margin_bottom = 50.0
+modulate_color = Color( 0.501961, 0.501961, 0.501961, 1 )
+
+[sub_resource type="StyleBoxTexture" id=5]
+texture = SubResource( 3 )
+region_rect = Rect2( 0, 0, 300, 300 )
+margin_left = 50.0
+margin_right = 50.0
+margin_top = 50.0
+margin_bottom = 50.0
+
+[sub_resource type="DynamicFont" id=2]
+size = 32
+font_data = ExtResource( 3 )
 
 [node name="DefenderPreview" type="Button"]
-margin_right = 12.0
-margin_bottom = 20.0
+margin_top = -0.33371
+margin_right = 100.0
+margin_bottom = 113.666
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_styles/hover = SubResource( 1 )
-custom_styles/pressed = SubResource( 1 )
-custom_styles/normal = SubResource( 1 )
+custom_styles/pressed = SubResource( 6 )
+custom_styles/disabled = SubResource( 4 )
+custom_styles/normal = SubResource( 5 )
 script = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -34,6 +70,20 @@ margin_right = -16.0
 margin_bottom = -16.0
 expand = true
 stretch_mode = 6
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="."]
+anchor_top = 1.0
+anchor_bottom = 1.0
+margin_left = 18.0
+margin_top = -50.0
+margin_right = 80.0
+margin_bottom = -16.0
+custom_fonts/font = SubResource( 2 )
+text = "0"
+valign = 2
 __meta__ = {
 "_edit_use_anchors_": false
 }

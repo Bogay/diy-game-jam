@@ -19,6 +19,8 @@ export(int) var magic_defense
 export(int) var attack_distance
 # Attack speed
 export(float) var speed
+export(int) var cost = 1
+
 
 # TODO: Resource don't have `_ready` method
 func _ready():

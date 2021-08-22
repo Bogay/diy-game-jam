@@ -3,6 +3,7 @@ extends Button
 
 export(Resource) var defender_data = null setget set_defender
 onready var sprite: TextureRect = $Sprite
+onready var cost: Label = $Label
 
 
 # Called when the node enters the scene tree for the first time.
@@ -14,9 +15,14 @@ func _ready():
 func set_defender(new_defender: DefenderData):
 	defender_data = new_defender
 	if defender_data != null:
+		disabled = false
 		sprite.texture = defender_data.get("preview")
-	# Disable if no defender binded
-	disabled = defender_data == null
+		cost.text = String(defender_data.cost)
+		cost.show()
+	else:
+		disabled = true
+		sprite.texture = null
+		cost.hide()
 
 
 func set_selection():

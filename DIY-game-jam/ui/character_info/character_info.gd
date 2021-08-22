@@ -17,6 +17,7 @@ func _ready():
 	self.character = null
 	assert(Player.connect("selection_changed", self, "set_character") == OK)
 
+
 func set_character(new_character):
 	print("Set character: ", new_character)
 	character = new_character
