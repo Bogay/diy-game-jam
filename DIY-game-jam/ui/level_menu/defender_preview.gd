@@ -13,7 +13,10 @@ func _ready():
 
 func set_defender(new_defender: DefenderData):
 	defender_data = new_defender
-	sprite.texture = defender_data.preview
+	if defender_data != null:
+		sprite.texture = defender_data.get("preview")
+	# Disable if no defender binded
+	disabled = defender_data == null
 
 
 func set_selection():

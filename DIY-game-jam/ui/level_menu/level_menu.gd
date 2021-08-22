@@ -17,16 +17,17 @@ func set_level(curr_level):
 
 func setup_spawn_buttons():
 	# Just for test
-	var tentacle_shooter: DefenderData = load("res://character/monster/tentacle_shooter/tentacle_shooter.tres")
-	var beastman: DefenderData = load("res://character/monster/beastman/beastman.tres")
 	var previews = get_tree().get_nodes_in_group("defender_preview")
-	for i in range(len(previews)):
-		var preview: DefenderPreview = previews[i]
-		assert(preview != null)
-		if i % 2:
-			preview.defender_data = tentacle_shooter
-		else:
-			preview.defender_data = beastman
+	for preview in previews:
+		(preview as DefenderPreview).defender_data = null
+	var defenders = GameSaveManager.current_save.defenders
+	assert(len(defenders) <= len(previews))
+	var preview_id = 0
+	for id in defenders:
+		var defender: DefenderData = GameSaveManager.defenders[id]
+		var preview: DefenderPreview = previews[preview_id]
+		preview.defender_data = defender
+		preview_id += 1
 
 
 func register_event_listener():
