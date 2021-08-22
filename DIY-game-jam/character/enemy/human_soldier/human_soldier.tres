@@ -6,7 +6,7 @@
 
 [resource]
 script = ExtResource( 1 )
-attacker_scene = "res://character/enemy/test/test_data.tscn"
+attacker_scene = "res://character/enemy/test/test.tscn"
 preview = ExtResource( 2 )
 animation = ExtResource( 3 )
 max_hp = 150
