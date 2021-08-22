@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://story/select/story_select.gd" type="Script" id=1]
-[ext_resource path="res://level/select/setting.png" type="Texture" id=2]
+[ext_resource path="res://ui/sprite/back.png" type="Texture" id=2]
 [ext_resource path="res://ui/ui_font.tres" type="DynamicFont" id=3]
 [ext_resource path="res://level/select/background.jpg" type="Texture" id=5]
 
@@ -35,26 +35,26 @@ __meta__ = {
 }
 
 [node name="AspectRatioContainer" type="AspectRatioContainer" parent="UIRoot"]
-margin_right = 60.0
+margin_right = 108.0
 margin_bottom = 842.0
 alignment_vertical = 0
 
 [node name="Settings" type="Button" parent="UIRoot/AspectRatioContainer"]
-margin_right = 60.0
-margin_bottom = 60.0
+margin_right = 108.0
+margin_bottom = 108.0
 size_flags_horizontal = 9
 size_flags_vertical = 9
 icon = ExtResource( 2 )
 
 [node name="StorySelectButtons" type="HBoxContainer" parent="UIRoot"]
-margin_left = 64.0
+margin_left = 112.0
 margin_right = 1843.0
 margin_bottom = 842.0
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 4.0
 
 [node name="opening" type="MarginContainer" parent="UIRoot/StorySelectButtons"]
-margin_right = 590.0
+margin_right = 574.0
 margin_bottom = 842.0
 size_flags_horizontal = 3
 custom_constants/margin_right = 30
@@ -65,14 +65,14 @@ __meta__ = {
 
 [node name="button" type="Button" parent="UIRoot/StorySelectButtons/opening"]
 margin_left = 30.0
-margin_right = 560.0
+margin_right = 544.0
 margin_bottom = 842.0
 custom_fonts/font = ExtResource( 3 )
 text = "opening"
 
 [node name="level1" type="MarginContainer" parent="UIRoot/StorySelectButtons"]
-margin_left = 594.0
-margin_right = 1184.0
+margin_left = 578.0
+margin_right = 1152.0
 margin_bottom = 842.0
 size_flags_horizontal = 3
 custom_constants/margin_right = 30
@@ -83,14 +83,14 @@ __meta__ = {
 
 [node name="button" type="Button" parent="UIRoot/StorySelectButtons/level1"]
 margin_left = 30.0
-margin_right = 560.0
+margin_right = 544.0
 margin_bottom = 842.0
 custom_fonts/font = ExtResource( 3 )
 text = "Level1"
 
 [node name="level2" type="MarginContainer" parent="UIRoot/StorySelectButtons"]
-margin_left = 1188.0
-margin_right = 1779.0
+margin_left = 1156.0
+margin_right = 1731.0
 margin_bottom = 842.0
 size_flags_horizontal = 3
 custom_constants/margin_right = 30
@@ -101,7 +101,7 @@ __meta__ = {
 
 [node name="button" type="Button" parent="UIRoot/StorySelectButtons/level2"]
 margin_left = 30.0
-margin_right = 561.0
+margin_right = 545.0
 margin_bottom = 842.0
 custom_fonts/font = ExtResource( 3 )
 text = "level2"
