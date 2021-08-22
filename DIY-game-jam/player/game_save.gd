@@ -14,6 +14,5 @@ func _init():
 	defenders = {
 		"tentacle_shooter": 1,
 	}
-	stories = {
-		"opening": 1,
-	}
+	stories = ["opening"]
+	levels = ["level1"]

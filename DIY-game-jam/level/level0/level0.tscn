@@ -35,12 +35,14 @@ height = 79.4937
 [node name="Level" type="Node2D"]
 script = ExtResource( 5 )
 waves = [ ExtResource( 6 ), ExtResource( 4 ) ]
+level_name = "level1"
+next_level_name = "level2"
 
 [node name="Background" type="Sprite" parent="."]
 position = Vector2( 960, 540 )
 texture = ExtResource( 1 )
 
-[node name="Slots" type="Node" parent="."]
+[node name="Slots" type="YSort" parent="."]
 
 [node name="Remotes" type="Node" parent="Slots"]
 
@@ -147,3 +149,5 @@ shape = SubResource( 5 )
 __meta__ = {
 "_edit_lock_": true
 }
+
+[node name="Attackers" type="YSort" parent="."]

@@ -11,16 +11,20 @@ signal next_wave_availability_changed(is_avaliable)
 export(Array, NodePath) var paths
 # Array of attackers' waves
 export(Array, Resource) var waves
+export(String) var level_name
+export(String) var next_level_name
 var level_menu: PackedScene = preload("res://ui/level_menu/level_menu.tscn")
 var current_wave: Wave = null
 var wave_idx = 0
 var sub_wave_idx = 0
 var attacker_cnt = 0
+onready var attackers = $Attackers
 
 
 func _ready():
 	setup_paths()
 	setup_menu()
+	assert(connect("level_completed", self, "_on_level_completed") == OK)
 	assert(connect("level_completed", self, "go_to_level_select") == OK)
 	assert(Player.connect("player_died", self, "go_to_level_select") == OK)
 	emit_signal("wave_changed", 1, len(waves))
@@ -66,7 +70,7 @@ func spawn_wave(wave: Wave):
 				for _i in range(group[id]):
 					spawn_attacker(attacker.instance(), path_idx)
 		sub_wave_idx += 1
-		if progress() >= 0.5:
+		if wave_idx < len(waves) and progress() >= 0.5:
 			emit_signal("next_wave_availability_changed", true)
 
 
@@ -76,7 +80,7 @@ func spawn_attacker(attacker: Attacker, path_idx: int):
 	var follow = PathFollow2D.new()
 	paths[path_idx].add_child(follow)
 	attacker.path = follow
-	add_child(attacker)
+	attackers.add_child(attacker)
 
 
 func _on_attacker_exiting():
@@ -84,9 +88,16 @@ func _on_attacker_exiting():
 	assert(attacker_cnt >= 0)
 	if attacker_cnt == 0 and wave_idx >= waves.size():
 		emit_signal("level_completed")
-		print("level completed!")
 
-# TODO: handle signal to allow player spawn next wave
+
+func _on_level_completed():
+	var save: GameSave = GameSaveManager.current_save
+	if not level_name in save.stories:
+		save.stories.append(level_name)
+	if next_level_name != "" and not next_level_name in save.levels:
+		save.levels.append(next_level_name)
+	print("Level [%s] completed!" % level_name)
+
 
 func spawn_next_wave():
 	if wave_idx >= waves.size():
