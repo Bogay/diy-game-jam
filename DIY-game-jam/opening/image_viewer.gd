@@ -25,7 +25,10 @@ func play():
 		var image_name = image_dir.get_next()
 		if image_name == "":
 			break
-		if image_name.ends_with(".png"):
+		# Use .import to make it work at exported application
+		# See https://github.com/godotengine/godot/issues/14562 for more detail
+		if image_name.ends_with(".import"):
+			image_name = image_name.replace(".import", "")
 			print(image_name)
 			var image = load(image_dir_path + image_name)
 			sprite.texture = image
