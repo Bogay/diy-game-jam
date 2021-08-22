@@ -17,4 +17,4 @@ magic_attack = 0
 magic_defense = 0
 attack_distance = 20
 speed = 0.0
-cost = 1
+cost = 4

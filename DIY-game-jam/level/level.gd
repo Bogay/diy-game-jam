@@ -18,7 +18,7 @@ var current_wave: Wave = null
 var wave_idx = 0
 var sub_wave_idx = 0
 var attacker_cnt = 0
-onready var attackers = $Attackers
+onready var attackers = $Entities/Attackers
 
 
 func _ready():
@@ -103,6 +103,10 @@ func _on_level_completed():
 		Game.change_scene("%s_win" % level_name, "level_select")
 	else:
 		Game.change_scene("level_select")
+	# HACK: Add beastman into players defender
+	var beastman = "beastman"
+	if not beastman in save.defenders:
+		save.defenders[beastman] = 1
 	print("Level [%s] completed!" % level_name)
 
 

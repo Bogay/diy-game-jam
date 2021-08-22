@@ -1,0 +1,155 @@
+[gd_scene load_steps=14 format=2]
+
+[ext_resource path="res://level/level0/background.jpg" type="Texture" id=1]
+[ext_resource path="res://slot/scene/slot.tscn" type="PackedScene" id=2]
+[ext_resource path="res://slot/scene/slot-melee.tscn" type="PackedScene" id=3]
+[ext_resource path="res://level/level0/waves/wave1.tres" type="Resource" id=4]
+[ext_resource path="res://level/level.gd" type="Script" id=5]
+[ext_resource path="res://level/level0/waves/wave0.tres" type="Resource" id=6]
+[ext_resource path="res://level/end.gd" type="Script" id=7]
+[ext_resource path="res://level/level0/waves/wave2.tres" type="Resource" id=8]
+
+[sub_resource type="CapsuleShape2D" id=1]
+radius = 28.6085
+height = 79.4937
+
+[sub_resource type="Curve2D" id=2]
+_data = {
+"points": PoolVector2Array( 0, 0, 0, 0, -63.0817, 336.504, 0, 0, 0, 0, 62.101, 254.288, 0, 0, 0, 0, 176.054, 178.61, 0, 0, 0, 0, 244.643, 120.887, 0, 0, 0, 0, 316.53, 55.534, 0, 0, 0, 0, 317.939, -17.4664 )
+}
+
+[sub_resource type="Curve2D" id=3]
+_data = {
+"points": PoolVector2Array( 0, 0, 0, 0, 480.554, 458.65, 0, 0, 0, 0, 438.753, 402.796, 28.6042, 13.1244, -28.6042, -13.1244, 372.232, 353.579, 43.239, 9.84331, -43.239, -9.84331, 279.767, 327.987, 0, 0, 0, 0, 79.5371, 291.895, 15.9652, 12.4682, -15.9652, -12.4682, 21.6634, 278.114, 2.66086, 28.2175, -2.66086, -28.2175, -0.542198, 215.541, -46.565, 19.0304, 46.565, -19.0304, 72.6325, 133.971, 0, 0, 0, 0, 199.941, 110.778, -13.3043, 5.90599, 13.3043, -5.90599, 249.832, 105.528, 0, 0, 0, 0, 309.482, 54.8387, 0, 0, 0, 0, 274.948, -18.1617 )
+}
+
+[sub_resource type="Curve2D" id=4]
+_data = {
+"points": PoolVector2Array( 0, 0, 0, 0, 137.622, 439.148, 0, 0, 0, 0, 249.624, 310.246, 15.6802, 34.6194, -15.6802, -34.6194, 275.011, 227.012, 0, 0, 0, 0, 186.903, 181.344, 0, 0, 0, 0, 320.758, 57.6197, 0, 0, 0, 0, 334.854, -16.076 )
+}
+
+[sub_resource type="Curve2D" id=5]
+_data = {
+"points": PoolVector2Array( 0, 0, 0, 0, 484.827, 456.826, 5.22675, 24.3072, -5.22675, -24.3072, 440.027, 364.753, 12.6935, 35.356, -12.6935, -35.356, 420.613, 239.534, 35.0939, 29.4633, -35.0939, -29.4633, 352.665, 141.568, 0, 0, 0, 0, 263.811, 113.578, 0, 0, 0, 0, 327.101, 59.0102, 0, 0, 0, 0, 359.521, -9.12353 )
+}
+
+[node name="Level" type="Node2D"]
+script = ExtResource( 5 )
+waves = [ ExtResource( 6 ), ExtResource( 4 ), ExtResource( 8 ) ]
+level_name = "level2"
+
+[node name="Background" type="Sprite" parent="."]
+position = Vector2( 960, 540 )
+texture = ExtResource( 1 )
+
+[node name="End" type="Area2D" parent="."]
+position = Vector2( 869.517, 173.398 )
+script = ExtResource( 7 )
+distance = 60
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="End"]
+rotation = 1.5708
+shape = SubResource( 1 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Path" type="Node" parent="."]
+
+[node name="Path1" type="Path2D" parent="Path" groups=[
+"attacker_path",
+]]
+position = Vector2( 89.5884, -46.1295 )
+scale = Vector2( 2.67853, 2.71524 )
+curve = SubResource( 2 )
+
+[node name="Path2" type="Path2D" parent="Path" groups=[
+"attacker_path",
+]]
+position = Vector2( 89.5884, -46.1295 )
+scale = Vector2( 2.67853, 2.71524 )
+curve = SubResource( 3 )
+
+[node name="Path3" type="Path2D" parent="Path" groups=[
+"attacker_path",
+]]
+position = Vector2( 89.5884, -46.1295 )
+scale = Vector2( 2.67853, 2.71524 )
+curve = SubResource( 4 )
+
+[node name="Path4" type="Path2D" parent="Path" groups=[
+"attacker_path",
+]]
+position = Vector2( 89.5884, -46.1295 )
+scale = Vector2( 2.67853, 2.71524 )
+curve = SubResource( 5 )
+
+[node name="Entities" type="YSort" parent="."]
+
+[node name="Slots" type="YSort" parent="Entities"]
+
+[node name="Remotes" type="Node" parent="Entities/Slots"]
+
+[node name="Slot" parent="Entities/Slots/Remotes" instance=ExtResource( 2 )]
+position = Vector2( 609.018, 551.318 )
+
+[node name="Slot2" parent="Entities/Slots/Remotes" instance=ExtResource( 2 )]
+position = Vector2( 389.815, 668.698 )
+
+[node name="Slot3" parent="Entities/Slots/Remotes" instance=ExtResource( 2 )]
+position = Vector2( 664.172, 718.195 )
+
+[node name="Slot4" parent="Entities/Slots/Remotes" instance=ExtResource( 2 )]
+position = Vector2( 833.878, 368.884 )
+
+[node name="Slot5" parent="Entities/Slots/Remotes" instance=ExtResource( 2 )]
+position = Vector2( 927.216, 756.379 )
+
+[node name="Slot6" parent="Entities/Slots/Remotes" instance=ExtResource( 2 )]
+position = Vector2( 1113.89, 794.563 )
+
+[node name="Slot7" parent="Entities/Slots/Remotes" instance=ExtResource( 2 )]
+position = Vector2( 997.927, 532.933 )
+
+[node name="Slot8" parent="Entities/Slots/Remotes" instance=ExtResource( 2 )]
+position = Vector2( 229.972, 524.024 )
+
+[node name="Slot9" parent="Entities/Slots/Remotes" instance=ExtResource( 2 )]
+position = Vector2( 427.752, 385.044 )
+
+[node name="Slot10" parent="Entities/Slots/Remotes" instance=ExtResource( 2 )]
+position = Vector2( 176.518, 844.748 )
+
+[node name="Slot11" parent="Entities/Slots/Remotes" instance=ExtResource( 2 )]
+position = Vector2( 481.206, 903.547 )
+
+[node name="Slot12" parent="Entities/Slots/Remotes" instance=ExtResource( 2 )]
+position = Vector2( 1169.06, 269.511 )
+
+[node name="Melee" type="Node" parent="Entities/Slots"]
+
+[node name="Slot" parent="Entities/Slots/Melee" instance=ExtResource( 3 )]
+position = Vector2( 427.427, 530.465 )
+
+[node name="Slot2" parent="Entities/Slots/Melee" instance=ExtResource( 3 )]
+position = Vector2( 663.687, 366.248 )
+
+[node name="Slot3" parent="Entities/Slots/Melee" instance=ExtResource( 3 )]
+position = Vector2( 1128.67, 445.925 )
+
+[node name="Slot4" parent="Entities/Slots/Melee" instance=ExtResource( 3 )]
+position = Vector2( 1240.45, 706.361 )
+
+[node name="Slot5" parent="Entities/Slots/Melee" instance=ExtResource( 3 )]
+position = Vector2( 739.797, 831.228 )
+
+[node name="Slot6" parent="Entities/Slots/Melee" instance=ExtResource( 3 )]
+position = Vector2( 815.906, 576.738 )
+
+[node name="Slot7" parent="Entities/Slots/Melee" instance=ExtResource( 3 )]
+position = Vector2( 191.572, 378.14 )
+
+[node name="Slot8" parent="Entities/Slots/Melee" instance=ExtResource( 3 )]
+position = Vector2( 529.307, 259.219 )
+
+[node name="Attackers" type="YSort" parent="Entities"]
