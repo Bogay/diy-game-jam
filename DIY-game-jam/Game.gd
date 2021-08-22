@@ -1,7 +1,7 @@
 extends Node
 
 var start_menu = preload("res://start_menu/start_menu.tscn")
-var opening = preload("res://opening/opening.tscn")
+var opening = preload("res://story/opening/opening.tscn")
 var level0 = preload("res://level/level0/level0.tscn")
 var level_select = preload("res://level/select/level_select.tscn")
 var current_scene = null

@@ -67,7 +67,7 @@ _global_script_classes=[ {
 "base": "CanvasLayer",
 "class": "ImageViewer",
 "language": "GDScript",
-"path": "res://opening/image_viewer.gd"
+"path": "res://story/opening/image_viewer.gd"
 }, {
 "base": "Node2D",
 "class": "Level",
