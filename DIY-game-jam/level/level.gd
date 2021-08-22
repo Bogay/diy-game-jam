@@ -85,8 +85,12 @@ func spawn_attacker(attacker: Attacker, path_idx: int):
 func _on_attacker_exiting():
 	attacker_cnt -= 1
 	assert(attacker_cnt >= 0)
-	if attacker_cnt == 0 and wave_idx >= waves.size():
+	if attacker_cnt > 0:
+		return
+	if wave_idx >= waves.size():
 		emit_signal("level_completed")
+	else:
+		spawn_next_wave()
 
 
 func _on_level_completed():
