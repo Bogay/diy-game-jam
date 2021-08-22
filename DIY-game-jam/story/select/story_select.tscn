@@ -39,7 +39,7 @@ margin_right = 108.0
 margin_bottom = 842.0
 alignment_vertical = 0
 
-[node name="Settings" type="Button" parent="UIRoot/AspectRatioContainer"]
+[node name="Back" type="Button" parent="UIRoot/AspectRatioContainer"]
 margin_right = 108.0
 margin_bottom = 108.0
 size_flags_horizontal = 9
