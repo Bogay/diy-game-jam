@@ -36,6 +36,9 @@ func _on_area_entered(area: Area2D):
 	var attacker = Attacker.is_damage_area(area)
 	if not attacker is Attacker:
 		return
+	if target != null and attacker != target:
+		print("You are not my target, ", attacker.name)
+		return
 	attack(attacker)
 
 
