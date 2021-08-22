@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://ui/ui_font.tres" type="DynamicFont" id=1]
 [ext_resource path="res://start_menu/start_menu.gd" type="Script" id=2]
 [ext_resource path="res://start_menu/_background.jpg" type="Texture" id=3]
 [ext_resource path="res://font/Noto_Serif_TC/NotoSerifTC-Bold.otf" type="DynamicFontData" id=4]
+[ext_resource path="res://start_menu/adult-alert-full-screen.png" type="Texture" id=7]
 
 [sub_resource type="DynamicFont" id=1]
 size = 128
@@ -12,6 +13,34 @@ font_data = ExtResource( 4 )
 [sub_resource type="DynamicFont" id=2]
 size = 96
 font_data = ExtResource( 4 )
+
+[sub_resource type="Animation" id=4]
+resource_name = "FadeOut"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1.8, 3 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:mouse_filter")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 0, 2 ]
+}
 
 [node name="StartMenu" type="Node2D"]
 script = ExtResource( 2 )
@@ -70,3 +99,21 @@ valign = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="ColorRect2" type="TextureRect" parent="."]
+margin_left = -33.0
+margin_top = -38.0
+margin_right = 1950.0
+margin_bottom = 1131.0
+mouse_filter = 0
+input_pass_on_modal_close_click = false
+texture = ExtResource( 7 )
+expand = true
+stretch_mode = 7
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="ColorRect2"]
+autoplay = "FadeOut"
+anims/FadeOut = SubResource( 4 )
