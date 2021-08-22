@@ -68,6 +68,7 @@ margin_left = 30.0
 margin_right = 544.0
 margin_bottom = 842.0
 custom_fonts/font = ExtResource( 3 )
+disabled = true
 text = "opening"
 
 [node name="level1" type="MarginContainer" parent="UIRoot/StorySelectButtons"]
@@ -86,6 +87,7 @@ margin_left = 30.0
 margin_right = 544.0
 margin_bottom = 842.0
 custom_fonts/font = ExtResource( 3 )
+disabled = true
 text = "Level1"
 
 [node name="level2" type="MarginContainer" parent="UIRoot/StorySelectButtons"]
@@ -104,6 +106,7 @@ margin_left = 30.0
 margin_right = 545.0
 margin_bottom = 842.0
 custom_fonts/font = ExtResource( 3 )
+disabled = true
 text = "level2"
 
 [connection signal="pressed" from="UIRoot/StorySelectButtons/opening/button" to="." method="load_level1"]

@@ -9,9 +9,16 @@ onready var back_btn: BaseButton = $UIRoot/AspectRatioContainer/Back
 
 
 func _ready():
-	assert(opening_btn.connect("pressed", self, "go_opening") == OK)
-	assert(level1_btn.connect("pressed", self, "go_level1") == OK)
-	assert(level2_btn.connect("pressed", self, "go_level2") == OK)
+	var save: GameSave = GameSaveManager.current_save
+	if "opening" in save.stories:
+		opening_btn.disabled = false
+		assert(opening_btn.connect("pressed", self, "go_opening") == OK)
+	if "level1" in save.stories:
+		level1_btn.disabled = false
+		assert(level1_btn.connect("pressed", self, "go_level1") == OK)
+	if "level2" in save.stories:
+		level2_btn.disabled = false
+		assert(level2_btn.connect("pressed", self, "go_level2") == OK)
 	assert(back_btn.connect("pressed", self, "go_back") == OK)
 
 
