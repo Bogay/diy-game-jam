@@ -10,12 +10,14 @@ export(String, DIR) var image_dir_path
 # MAGIC
 export(float) var _scale = 0.75
 onready var sprite: Sprite = $Sprite
+onready var skip_btn: BaseButton = $TextureButton
 
 
 func _ready():
 	if not image_dir_path.ends_with("/"):
 		image_dir_path += "/"
 	sprite.set_scale(Vector2(_scale, _scale))
+	assert(skip_btn.connect("pressed", self, "end") == OK)
 	# HACK
 	if get_parent().name != "Opening":
 		play()
