@@ -10,6 +10,7 @@ var attackers = []
 
 func _ready():
 	assert(self.connect("area_entered", self, "_on_area_entered") == OK)
+	add_to_group("end")
 
 
 func _process(_delta):
@@ -19,6 +20,7 @@ func _process(_delta):
 		if diff.length() <= distance:
 			emit_signal("attacker_reached", attacker)
 			attacker.queue_free()
+			Player.hp -= 1
 
 
 func _on_area_entered(area: Area2D):

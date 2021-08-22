@@ -22,6 +22,7 @@ func _ready():
 	setup_paths()
 	setup_menu()
 	assert(connect("level_completed", self, "go_to_level_select") == OK)
+	assert(Player.connect("player_died", self, "go_to_level_select") == OK)
 	emit_signal("wave_changed", 1, len(waves))
 
 
