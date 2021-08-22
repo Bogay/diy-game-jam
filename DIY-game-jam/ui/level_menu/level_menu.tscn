@@ -93,6 +93,7 @@ margin_right = 460.0
 margin_bottom = 61.0
 rect_min_size = Vector2( 120, 0 )
 custom_fonts/font = SubResource( 1 )
+disabled = true
 text = "menu"
 
 [node name="Waves" type="HBoxContainer" parent="ViewportContainer/Panel/VBoxContainer/LevelInfo"]

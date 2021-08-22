@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://level/select/level_select.gd" type="Script" id=1]
-[ext_resource path="res://ui/sprite/setting.png" type="Texture" id=2]
+[ext_resource path="res://ui/sprite/cross.png" type="Texture" id=2]
 [ext_resource path="res://ui/ui_font.tres" type="DynamicFont" id=3]
 [ext_resource path="res://font/redkost-comic/Redkost Comic.otf" type="DynamicFontData" id=4]
 [ext_resource path="res://level/select/background.jpg" type="Texture" id=5]
@@ -55,6 +55,7 @@ margin_right = 471.0
 margin_bottom = 182.0
 size_flags_vertical = 3
 custom_fonts/font = SubResource( 1 )
+disabled = true
 text = "capture"
 
 [node name="StoryButton" type="Button" parent="UIRoot/VSplitContainer/VBoxContainer"]
@@ -130,3 +131,7 @@ margin_bottom = 108.0
 size_flags_horizontal = 9
 size_flags_vertical = 9
 icon = ExtResource( 2 )
+
+[node name="PopupMenu" type="PopupMenu" parent="."]
+margin_right = 20.0
+margin_bottom = 20.0
