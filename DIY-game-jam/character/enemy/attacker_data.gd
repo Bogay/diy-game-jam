@@ -1,7 +1,8 @@
+class_name AttackerData
 extends Resource
 
-class_name AttackerData
 
+export(String, FILE) var attacker_scene
 export(Texture) var preview
 export(Resource) var animation
 export(int) var max_hp
@@ -15,4 +16,10 @@ export(float) var speed
 
 
 func _ready():
-    assert(animation is SpriteFrames)
+	assert(animation is SpriteFrames)
+
+
+func instance():
+	var ins = (load(attacker_scene) as PackedScene).instance()
+	ins.attacker_data = self
+	return ins

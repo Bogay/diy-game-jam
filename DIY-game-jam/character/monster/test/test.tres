@@ -4,6 +4,7 @@
 
 [resource]
 script = ExtResource( 1 )
+defender_scene = ""
 type = 1
 max_hp = 0
 attack = 10

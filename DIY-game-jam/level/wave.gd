@@ -28,7 +28,6 @@ class SubWave:
 
 func setup():
 	sub_waves = load_wave(wave_json_path)
-	attackers = load_attacker(attackers)
 
 
 func load_wave(path: String) -> Array:
@@ -49,13 +48,3 @@ func load_json(path: String) -> JSONParseResult:
 	f.close()
 	return JSON.parse(ret)
 
-
-func load_attacker(_attackers: Dictionary) -> Dictionary:
-	var tmp_attackers = {}
-	for key in attackers:
-		var attacker = attackers[key]
-		if not attacker is PackedScene:
-			attacker = load(attacker)
-			assert(attacker is PackedScene)
-		tmp_attackers[key] = attacker
-	return tmp_attackers

@@ -46,9 +46,7 @@ func spawn_defender() -> bool:
 	if selection.type != allowed_type:
 		print("Selected defedner is not allowed to spawn at this slot")
 		return false
-	var test_defender = preload("res://character/monster/test/test.tscn") as PackedScene
-	var defender_ins: Defender = test_defender.instance()
-	defender_ins.defender_data = selection
+	var defender_ins: Defender = selection.instance()
 	add_child(defender_ins)
 	Player.selected_character = defender_ins
 	return true

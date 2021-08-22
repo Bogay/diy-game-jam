@@ -6,6 +6,7 @@
 
 [resource]
 script = ExtResource( 1 )
+defender_scene = "res://character/monster/test/test.tscn"
 type = 0
 animation = ExtResource( 2 )
 preview = ExtResource( 3 )

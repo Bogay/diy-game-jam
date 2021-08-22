@@ -33,8 +33,8 @@ func move_to(target_pos: Vector2, delta: float):
 
 
 func _on_area_entered(area: Area2D):
-	var attacker = area.get_parent() as Attacker
-	if attacker == null or area.name != "DamageArea":
+	var attacker = Attacker.is_damage_area(area)
+	if not attacker is Attacker:
 		return
 	attack(attacker)
 

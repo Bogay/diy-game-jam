@@ -15,15 +15,15 @@ var offset = 0
 var path: PathFollow2D = null
 var path_offset: Vector2 = Vector2.ZERO
 var capture = false
-onready var attack_area: Area2D = $AttackArea
-onready var detect_area: Area2D = $DetectArea
-onready var attack_shape: CollisionShape2D = $AttackArea/CollisionShape2D
-onready var detect_shape: CollisionShape2D = $DetectArea/CollisionShape2D
-onready var animated_sprite: AnimatedSprite = $AnimatedSprite
+onready var attack_area: Area2D = $Attacker/AttackArea
+onready var detect_area: Area2D = $Attacker/DetectArea
+onready var attack_shape: CollisionShape2D = $Attacker/AttackArea/CollisionShape2D
+onready var detect_shape: CollisionShape2D = $Attacker/DetectArea/CollisionShape2D
+onready var animated_sprite: AnimatedSprite = $Attacker/AnimatedSprite
 
 
 func _ready():
-	assert(attacker_data is AttackerData)
+	# assert(attacker_data is AttackerData)
 	max_hp = Buffable.new(attacker_data.max_hp)
 	hp = max_hp.value()
 	attack = Buffable.new(attacker_data.attack)
@@ -59,7 +59,7 @@ func _physics_process(delta):
 	global_position = path.global_position + path_offset
 	# Check filp
 	var is_left = (global_position - old_pos).x < 0
-	($AnimatedSprite as AnimatedSprite).flip_h = is_left
+	animated_sprite.flip_h = is_left
 
 
 func get_path_offset(radius: float = 1) -> Vector2:
@@ -67,6 +67,19 @@ func get_path_offset(radius: float = 1) -> Vector2:
 	rng.randomize()
 	var angle = rng.randf_range(0, 2 * PI)
 	return Vector2(cos(angle), sin(angle)) * radius
+
+
+# FIXME: Maybe let `Attacker` extends `Aera2D` is better
+static func is_damage_area(area: Area2D):
+	if area.name != "DamageArea":
+		return false
+	var attacker = area.get_parent()
+	if attacker == null:
+		return false
+	attacker = attacker.get_parent() as Attacker
+	if attacker == null:
+		return false
+	return attacker
 
 
 func take_damage(damage: int):

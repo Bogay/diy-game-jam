@@ -6,6 +6,7 @@ enum DefenderType {
 	REMOTE,
 }
 
+export(String, FILE) var defender_scene
 export(DefenderType) var type = DefenderType.REMOTE
 export(Resource) var bullet_data
 export(Resource) var animation
@@ -19,6 +20,13 @@ export(int) var attack_distance
 # Attack speed
 export(float) var speed
 
+# TODO: Resource don't have `_ready` method
 func _ready():
 	assert(bullet_data is BulletData)
 	assert(animation is SpriteFrames)
+
+
+func instance():
+	var ins = (load(defender_scene) as PackedScene).instance()
+	ins.defender_data = self
+	return ins

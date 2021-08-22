@@ -23,6 +23,8 @@ onready var animated_sprite: AnimatedSprite = $AnimatedSprite
 
 
 func _ready():
+	assert(defender_data != null)
+	assert(defender_data is DefenderData)
 	animated_sprite.frames = defender_data.animation
 	animated_sprite.animation = "idle"
 	var shape = CircleShape2D.new()
@@ -100,7 +102,7 @@ func attack_animation_callback():
 	animated_sprite.animation = "idle"
 
 
-func get_target_attacker() -> Attacker:
+func get_target_attacker():
 	if not len(detected_attackers):
 		return null
 	var id = detected_attackers.keys()[0]
@@ -123,8 +125,8 @@ func _on_attack_distance_changed(dis):
 
 
 func _on_area_entered(area: Area2D):
-	var attacker = area.get_parent() as Attacker
-	if attacker == null or area.name != "DamageArea":
+	var attacker = Attacker.is_damage_area(area)
+	if not attacker is Attacker:
 		return
 	enqueue_attacker(attacker)
 
