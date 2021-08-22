@@ -1,0 +1,18 @@
+[gd_resource type="Resource" load_steps=4 format=2]
+
+[ext_resource path="res://character/enemy/attacker_data.gd" type="Script" id=1]
+[ext_resource path="res://character/enemy/human_soldier/sprite/walk/1.png" type="Texture" id=2]
+[ext_resource path="res://character/enemy/human_soldier/animation.tres" type="SpriteFrames" id=3]
+
+[resource]
+script = ExtResource( 1 )
+preview = ExtResource( 2 )
+animation = ExtResource( 3 )
+max_hp = 150
+attack = 0
+defense = 30
+magic_attack = 0
+magic_defense = 0
+attack_distance = 50
+detect_distance = 200
+speed = 12.0

@@ -19,6 +19,7 @@ onready var attack_area: Area2D = $AttackArea
 onready var detect_area: Area2D = $DetectArea
 onready var attack_shape: CollisionShape2D = $AttackArea/CollisionShape2D
 onready var detect_shape: CollisionShape2D = $DetectArea/CollisionShape2D
+onready var animated_sprite: AnimatedSprite = $AnimatedSprite
 
 
 func _ready():
@@ -30,6 +31,8 @@ func _ready():
 	magic_attack = Buffable.new(attacker_data.magic_attack)
 	magic_defense = Buffable.new(attacker_data.magic_defense)
 	speed = Buffable.new(attacker_data.speed)
+	animated_sprite.frames = attacker_data.animation
+	animated_sprite.animation = "walk"
 	# Setup collision
 	attack_distance = Buffable.new(attacker_data.attack_distance)
 	(attack_shape.shape as CircleShape2D).radius = attack_distance.value()
@@ -39,7 +42,7 @@ func _ready():
 	path_offset = get_path_offset(15)
 	print("Path offset: ", path_offset)
 	# TODO: Make this a static variable or mathod.
-	# 	Anyway, give it a consitent way to judge whether it is a attacker
+	# 	Anyway, give it a consitent way to check whether it is a attacker
 	add_to_group("attacker")
 
 

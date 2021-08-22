@@ -1,16 +1,8 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://character/enemy/attacker.gd" type="Script" id=1]
-[ext_resource path="res://character/enemy/test/test_data.tres" type="Resource" id=2]
-[ext_resource path="res://character/enemy/yusha/sprites/attack/0.png" type="Texture" id=4]
-
-[sub_resource type="SpriteFrames" id=1]
-animations = [ {
-"frames": [ ExtResource( 4 ) ],
-"loop": true,
-"name": "walk",
-"speed": 5.0
-} ]
+[ext_resource path="res://character/enemy/human_soldier/human_soldier.tres" type="Resource" id=2]
+[ext_resource path="res://character/enemy/human_soldier/animation.tres" type="SpriteFrames" id=3]
 
 [sub_resource type="CircleShape2D" id=2]
 
@@ -31,8 +23,10 @@ attacker_data = ExtResource( 2 )
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 position = Vector2( 0, -40 )
 scale = Vector2( 0.1, 0.1 )
-frames = SubResource( 1 )
+frames = ExtResource( 3 )
 animation = "walk"
+frame = 2
+playing = true
 
 [node name="AttackArea" type="Area2D" parent="."]
 
