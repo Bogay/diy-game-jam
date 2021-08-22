@@ -4,6 +4,7 @@ extends Node2D
 
 signal level_completed
 signal wave_changed(wave_idx, max_wave)
+signal next_wave_availability_changed(is_avaliable)
 
 
 # Store pathes in this level
@@ -11,7 +12,9 @@ export(Array, NodePath) var paths
 # Array of attackers' waves
 export(Array, Resource) var waves
 var level_menu: PackedScene = preload("res://ui/level_menu/level_menu.tscn")
+var current_wave: Wave = null
 var wave_idx = 0
+var sub_wave_idx = 0
 var attacker_cnt = 0
 
 
@@ -49,6 +52,9 @@ func setup_menu():
 
 func spawn_wave(wave: Wave):
 	wave.setup()
+	current_wave = wave
+	sub_wave_idx = 0
+	emit_signal("next_wave_availability_changed", false)
 	for sub_wave in wave.sub_waves:
 		yield(get_tree().create_timer(sub_wave.time), "timeout")
 		assert(len(sub_wave.groups) <= len(paths))
@@ -58,6 +64,9 @@ func spawn_wave(wave: Wave):
 				var attacker = wave.attackers[id]
 				for _i in range(group[id]):
 					spawn_attacker(attacker.instance(), path_idx)
+		sub_wave_idx += 1
+		if progress() >= 0.5:
+			emit_signal("next_wave_availability_changed", true)
 
 
 func spawn_attacker(attacker: Attacker, path_idx: int):
@@ -80,10 +89,21 @@ func _on_attacker_exiting():
 
 func spawn_next_wave():
 	if wave_idx >= waves.size():
+		print("Last wave has beed spawned")
+		return
+	# Check progress
+	if progress() < 0.5:
+		print("Progress not enough to spawn next wave: ", progress())
 		return
 	spawn_wave(waves[wave_idx])
 	wave_idx += 1
 	emit_signal("wave_changed", wave_idx, len(waves))
+
+
+func progress() -> float:
+	if current_wave == null:
+		return 1.0
+	return float(sub_wave_idx) / len(current_wave.sub_waves)
 
 
 func go_to_level_select():

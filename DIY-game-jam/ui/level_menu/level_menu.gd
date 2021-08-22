@@ -31,7 +31,12 @@ func setup_spawn_buttons():
 func register_event_listener():
 	assert(btn_spawn.connect("pressed", level, "spawn_next_wave") == OK)
 	assert(level.connect("wave_changed", self, "update_wave_label") == OK)
+	assert(level.connect("next_wave_availability_changed", self, "_on_next_wave_availability_changed") == OK)
 
 
 func update_wave_label(curr_idx: int, wave_cnt: int):
 	wave_label.text = "%d / %d" % [curr_idx, wave_cnt]
+
+
+func _on_next_wave_availability_changed(is_avaliable: bool):
+	btn_spawn.disabled = not is_avaliable

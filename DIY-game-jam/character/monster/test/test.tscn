@@ -10,10 +10,10 @@ defender_data = ExtResource( 3 )
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 position = Vector2( 0, -45.3059 )
 scale = Vector2( 0.1, 0.1 )
-animation = "idle"
 playing = true
 
 [node name="AttackArea" type="Area2D" parent="."]
+input_pickable = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AttackArea"]
 

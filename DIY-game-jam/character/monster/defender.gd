@@ -1,6 +1,7 @@
 class_name Defender
 extends Node2D
 
+
 export(Resource) var defender_data = null setget set_defender_data
 var type = DefenderData.DefenderType.REMOTE
 var max_hp: Buffable
@@ -115,6 +116,7 @@ func refresh_captures():
 		else:
 			attacker.capture = true
 			cnt += 1
+
 
 func _on_attack_distance_changed(dis):
 	(attack_shape.shape as CircleShape2D).radius = dis

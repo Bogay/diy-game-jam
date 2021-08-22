@@ -1,6 +1,7 @@
 class_name Wave
 extends Resource
 
+
 # Dict[str, str]
 # Key is the id for attacher
 # Value is the resource path
