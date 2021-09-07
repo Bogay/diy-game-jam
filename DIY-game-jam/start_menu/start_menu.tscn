@@ -14,7 +14,7 @@ font_data = ExtResource( 4 )
 size = 96
 font_data = ExtResource( 4 )
 
-[sub_resource type="Animation" id=4]
+[sub_resource type="Animation" id=3]
 resource_name = "FadeOut"
 length = 3.0
 tracks/0/type = "value"
@@ -93,7 +93,7 @@ margin_right = 1660.18
 margin_bottom = 531.146
 custom_fonts/font = SubResource( 2 )
 custom_colors/font_color = Color( 0.776471, 0.921569, 0.309804, 1 )
-text = "Tentacle in Shubs Jungle"
+text = "Tentacle in Shub's Jungle"
 align = 1
 valign = 1
 __meta__ = {
@@ -116,4 +116,4 @@ __meta__ = {
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="ColorRect2"]
 autoplay = "FadeOut"
-anims/FadeOut = SubResource( 4 )
+anims/FadeOut = SubResource( 3 )

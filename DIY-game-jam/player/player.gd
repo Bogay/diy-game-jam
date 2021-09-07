@@ -14,6 +14,7 @@ var mana: int = init_mana setget set_mana
 func reset():
 	self.selected_character = null
 	self.hp = max_hp
+	self.mana = init_mana
 
 
 func change_selection(new_character):

@@ -22,6 +22,7 @@ onready var attackers = $Entities/Attackers
 
 
 func _ready():
+	Player.reset()
 	setup_paths()
 	setup_menu()
 	assert(connect("level_completed", self, "_on_level_completed") == OK)
@@ -107,6 +108,7 @@ func _on_level_completed():
 	var beastman = "beastman"
 	if not beastman in save.defenders:
 		save.defenders[beastman] = 1
+	GameSaveManager.save()
 	print("Level [%s] completed!" % level_name)
 
 

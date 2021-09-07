@@ -23,3 +23,7 @@ func _ready():
 		assert(ResourceSaver.save(save_path, current_save) == OK)
 	else:
 		current_save = load(save_path)
+
+
+func save():
+	assert(ResourceSaver.save(save_path, current_save) == OK)
