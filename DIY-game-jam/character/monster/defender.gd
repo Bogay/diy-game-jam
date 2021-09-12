@@ -1,6 +1,13 @@
 class_name Defender
 extends Node2D
 
+enum State {
+	IDLE,
+	HOVERD,
+	SELECTED,
+	PRESSED,
+	OCCUPIED,
+}
 
 export(Resource) var defender_data = null setget set_defender_data
 var type = DefenderData.DefenderType.REMOTE
@@ -21,6 +28,7 @@ onready var attack_area: Area2D = $AttackArea
 onready var attack_shape: CollisionShape2D = $AttackArea/CollisionShape2D
 onready var animated_sprite: AnimatedSprite = $AnimatedSprite
 
+var mouse_state: Array = [State.IDLE]
 
 func _ready():
 	assert(defender_data != null)
@@ -163,3 +171,21 @@ func refresh_attackers():
 			will_remove.append(id)
 	for id in will_remove:
 		detected_attackers.erase(id)
+
+
+func _input(event):
+	if mouse_state.has(State.HOVERD) and event is InputEventMouseButton:
+		if event.button_index == BUTTON_LEFT and event.is_action_pressed("click"):
+			mouse_state += [State.PRESSED]
+		if mouse_state.find(State.PRESSED) and event.button_index == BUTTON_LEFT and event.is_action_released("click"):
+			Player.selected_character = defender_data
+			mouse_state += [State.SELECTED]
+
+
+func _on_Area2D_mouse_entered():
+	if mouse_state.has(State.IDLE):
+		mouse_state = [State.HOVERD]
+
+
+func _on_Area2D_mouse_exited():
+	mouse_state = [State.IDLE]

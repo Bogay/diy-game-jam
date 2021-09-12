@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/1.png-c3a0b4cfbe149511be87c3eb6531e2a3.stex"
+path="res://.import/1.png-bff4e74d6e9aa83dc024cde047225a0f.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://character/monster/tentacle_shooter/sprites/Idle/1.png"
-dest_files=[ "res://.import/1.png-c3a0b4cfbe149511be87c3eb6531e2a3.stex" ]
+source_file="res://character/monster/tentacle_shooter/sprites/idle/1.png"
+dest_files=[ "res://.import/1.png-bff4e74d6e9aa83dc024cde047225a0f.stex" ]
 
 [params]
 

@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/0.png-456b55447e9229799812f6d848ad6911.stex"
+path="res://.import/lifebar_fill.png-48ab49458e6654ed52fe0c7651a14bb2.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://character/monster/tentacle_shooter/sprites/idle/0.png"
-dest_files=[ "res://.import/0.png-456b55447e9229799812f6d848ad6911.stex" ]
+source_file="res://character/enemy/test/lifebar/lifebar_fill.png"
+dest_files=[ "res://.import/lifebar_fill.png-48ab49458e6654ed52fe0c7651a14bb2.stex" ]
 
 [params]
 
