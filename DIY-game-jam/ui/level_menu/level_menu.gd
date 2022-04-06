@@ -7,7 +7,10 @@ onready var btn_spawn: Button = $ViewportContainer/Panel/VBoxContainer/LevelInfo
 onready var wave_label: Label = $ViewportContainer/Panel/VBoxContainer/LevelInfo/Waves/Label
 onready var hp_label: Label = $ViewportContainer/Panel/VBoxContainer/LevelInfo/PlayerStatus/HPValue
 onready var mana_label: Label = $ViewportContainer/Panel/VBoxContainer/LevelInfo/PlayerStatus/ManaValue
+onready var speed_btn: Button = $ViewportContainer/Panel/VBoxContainer/SpeedMode/SpeedBtn
 
+var speed_arr = [0.5, 1, 1.5, 2]
+var speed_arr_idx = 1
 
 func set_level(curr_level):
 	level = curr_level
@@ -68,3 +71,9 @@ func setup_mana_label():
 
 func update_mana_label(mana: int):
 	mana_label.text = String(mana)
+
+func speed_btn_onPressed():
+	speed_arr_idx += 1
+	speed_arr_idx %= 4
+	Player.speed_mode = speed_arr[speed_arr_idx]
+	speed_btn.text = "Speed : " + str(Player.speed_mode*100) + "%"

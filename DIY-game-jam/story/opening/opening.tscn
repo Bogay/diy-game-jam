@@ -13,9 +13,6 @@ margin_right = 1920.0
 margin_bottom = 1080.0
 stream = ExtResource( 3 )
 autoplay = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="ImageViewer" type="CanvasLayer" parent="."]
 layer = -1
@@ -34,6 +31,3 @@ margin_bottom = 650.243
 texture_normal = ExtResource( 4 )
 expand = true
 stretch_mode = 5
-__meta__ = {
-"_edit_use_anchors_": false
-}

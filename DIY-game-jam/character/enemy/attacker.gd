@@ -79,7 +79,7 @@ func _physics_process(delta):
 		return
 	var old_pos = global_position
 	# Update offset
-	offset += speed.value() * delta
+	offset += speed.value() * delta * Player.speed_mode
 	path.offset = offset
 	global_position = path.global_position + path_offset
 	# Check filp

@@ -11,9 +11,7 @@
 radius = 16.7317
 height = 55.5841
 
-[node name="AttackerRoot" type="Node2D" groups=[
-"attacker",
-]]
+[node name="AttackerRoot" type="Node2D" groups=["attacker"]]
 position = Vector2( 1, 0 )
 z_index = 1
 script = ExtResource( 1 )

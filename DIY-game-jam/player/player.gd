@@ -6,9 +6,11 @@ signal player_died
 
 export(int) var max_hp = 20
 export(int) var init_mana = 15
+export(float) var init_speed_mode = 2
 var selected_character = null setget change_selection
 var hp: int = max_hp setget set_hp
 var mana: int = init_mana setget set_mana
+var speed_mode: float = init_speed_mode setget set_speed_mode
 
 
 func reset():
@@ -33,3 +35,6 @@ func set_mana(new_mana: int):
 	mana = new_mana
 	print("Player mana: ", mana)
 	emit_signal("mana_changed", mana)
+
+func set_speed_mode(new_mode: float):
+	speed_mode = new_mode

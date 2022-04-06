@@ -77,8 +77,8 @@ margin_left = 663.65
 margin_top = 147.126
 margin_right = 1284.65
 margin_bottom = 360.126
-custom_fonts/font = SubResource( 1 )
 custom_colors/font_color = Color( 0.776471, 0.921569, 0.309804, 1 )
+custom_fonts/font = SubResource( 1 )
 text = "觸手之森"
 align = 1
 valign = 1
@@ -91,8 +91,8 @@ margin_left = 312.184
 margin_top = 335.146
 margin_right = 1660.18
 margin_bottom = 531.146
-custom_fonts/font = SubResource( 2 )
 custom_colors/font_color = Color( 0.776471, 0.921569, 0.309804, 1 )
+custom_fonts/font = SubResource( 2 )
 text = "Tentacle in Shubs Jungle"
 align = 1
 valign = 1
@@ -110,9 +110,6 @@ input_pass_on_modal_close_click = false
 texture = ExtResource( 7 )
 expand = true
 stretch_mode = 7
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="ColorRect2"]
 autoplay = "FadeOut"

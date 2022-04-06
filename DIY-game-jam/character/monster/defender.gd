@@ -96,12 +96,13 @@ func shoot() -> void:
 	bullet.global_position = muzzle.global_position
 	play_attack_animation()
 	can_attack = 0
-	yield(get_tree().create_timer(1 / speed.value()), "timeout")
+	yield(get_tree().create_timer(1 / (speed.value() * Player.speed_mode) ), "timeout")
 	can_attack = 1
 
 
 func play_attack_animation():
 	animated_sprite.animation = "attack"
+	animated_sprite.speed_scale = Player.speed_mode
 	assert(animated_sprite.connect("animation_finished", self, "attack_animation_callback") == OK)
 	
 
