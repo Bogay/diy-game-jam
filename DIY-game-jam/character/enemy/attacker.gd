@@ -61,30 +61,34 @@ func _ready():
 	# 	Anyway, give it a consitent way to check whether it is a attacker
 	add_to_group("attacker")
 	
-	# Only for testing (check whether is boss)
-	if hp == 900: isBoss = true
 	# Init life bar
 	bar.hide()
 	life_bar_texture.max_value = max_hp.value()
 	update_health(max_hp.value())
 
 func _process(_delta):
+	if Player.isPause:
+		animated_sprite.stop()
+	else:
+		animated_sprite.play()
+		animated_sprite.speed_scale = Player.speed_mode
 	life_bar_texture.value = round(animated_hp)
 
 func _physics_process(delta):
-	if path == null:
-		return
-	# Captured attackers can not move
-	if capture == true:
-		return
-	var old_pos = global_position
-	# Update offset
-	offset += speed.value() * delta * Player.speed_mode
-	path.offset = offset
-	global_position = path.global_position + path_offset
-	# Check filp
-	var is_left = (global_position - old_pos).x < 0
-	animated_sprite.flip_h = is_left
+	if not Player.isPause:
+		if path == null:
+			return
+		# Captured attackers can not move
+		if capture == true:
+			return
+		var old_pos = global_position
+		# Update offset
+		offset += speed.value() * delta * Player.speed_mode
+		path.offset = offset
+		global_position = path.global_position + path_offset
+		# Check filp
+		var is_left = (global_position - old_pos).x < 0
+		animated_sprite.flip_h = is_left
 
 func get_path_offset(radius: float = 1) -> Vector2:
 	var rng = RandomNumberGenerator.new()
@@ -131,6 +135,8 @@ func die():
 #	tween.interpolate_property(self, "modulate", start_color, end_color, 0.3)
 	queue_free()
 
+func set_boss():
+	isBoss = true
 
 func update_health(new_value):
 	tween.interpolate_property(self, "animated_hp", animated_hp, new_value, 0.3, Tween.TRANS_LINEAR, Tween.EASE_IN)
