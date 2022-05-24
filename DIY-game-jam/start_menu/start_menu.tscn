@@ -68,9 +68,6 @@ margin_right = 1175.95
 margin_bottom = 894.727
 custom_fonts/font = ExtResource( 1 )
 text = "Start!"
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Label" type="Label" parent="."]
 margin_left = 663.65
@@ -82,9 +79,6 @@ custom_fonts/font = SubResource( 1 )
 text = "觸手之森"
 align = 1
 valign = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Label2" type="Label" parent="."]
 margin_left = 312.184

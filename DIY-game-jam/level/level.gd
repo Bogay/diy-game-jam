@@ -56,10 +56,12 @@ func setup_menu():
 
 
 func spawn_wave(wave: Wave):
+	print("waves size: ", waves.size())
 	wave.setup()
 	current_wave = wave
 	sub_wave_idx = 0
 	emit_signal("next_wave_availability_changed", false)
+	var cur_wave_idx = wave_idx
 	for sub_wave in wave.sub_waves:
 		yield(get_tree().create_timer(sub_wave.time), "timeout")
 		assert(len(sub_wave.groups) <= len(paths))
@@ -68,18 +70,23 @@ func spawn_wave(wave: Wave):
 			for id in group:
 				var attacker = wave.attackers[id]
 				for _i in range(group[id]):
-					spawn_attacker(attacker.instance(), path_idx)
+					# if the attacker is the last enemy, set the isBoss attribute
+					if cur_wave_idx == waves.size()-1:
+						spawn_attacker(attacker.instance(), path_idx, true)
+					else: 
+						spawn_attacker(attacker.instance(), path_idx, false)
 		sub_wave_idx += 1
 		if wave_idx < len(waves) and progress() >= 0.5:
 			emit_signal("next_wave_availability_changed", true)
 
 
-func spawn_attacker(attacker: Attacker, path_idx: int):
+func spawn_attacker(attacker: Attacker, path_idx: int, isBoss: bool):
 	attacker_cnt += 1
 	assert(attacker.connect("tree_exiting", self, "_on_attacker_exiting") == OK)
 	var follow = PathFollow2D.new()
 	paths[path_idx].add_child(follow)
 	attacker.path = follow
+	attacker.isBoss = isBoss
 	attackers.add_child(attacker)
 
 
@@ -98,12 +105,13 @@ func _on_level_completed():
 	var save: GameSave = GameSaveManager.current_save
 	if next_level_name != "" and not next_level_name in save.levels:
 		save.levels.append(next_level_name)
-	if not level_name in save.stories:
-		save.stories.append(level_name)
-		# Play story at first unlock
-		Game.change_scene("%s_win" % level_name, "level_select")
-	else:
-		Game.change_scene("level_select")
+#	if not level_name in save.stories:
+#		save.stories.append(level_name)
+#		# Play story at first unlock
+#		Game.change_scene("%s_win" % level_name, "level_select")
+#	else:
+#		Game.change_scene("level_select")
+	Game.change_scene("level_select")
 	# HACK: Add beastman into players defender
 	GameSaveManager.save()
 	print("Level [%s] completed!" % level_name)

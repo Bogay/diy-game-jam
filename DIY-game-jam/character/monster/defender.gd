@@ -52,16 +52,21 @@ func _ready():
 
 func _process(_delta: float):
 	# FIXME: Use a general API to process defender behavior
-	update_direction()
-	if type == DefenderData.DefenderType.REMOTE:
-		try_shoot()
-	elif type == DefenderData.DefenderType.MELEE:
-		bomb()
-	elif type == DefenderData.DefenderType.AREA:
-		area_attack()
+	if Player.isPause:
+		animated_sprite.stop()
 	else:
-		refresh_defenders()
-		support()
+		animated_sprite.play()
+		animated_sprite.speed_scale = Player.speed_mode
+		update_direction()
+		if type == DefenderData.DefenderType.REMOTE:
+			try_shoot()
+		elif type == DefenderData.DefenderType.MELEE:
+			bomb()
+		elif type == DefenderData.DefenderType.AREA:
+			area_attack()
+		else:
+			refresh_defenders()
+			support()
 
 
 func set_defender_data(new_data: DefenderData):
@@ -90,7 +95,7 @@ func update_direction():
 
 func try_shoot():
 	if not detected_attackers.empty():
-		if not can_attack:
+		if not can_attack or Player.isPause:
 			return
 		shoot()
 
@@ -115,6 +120,8 @@ func play_attack_animation():
 	animated_sprite.animation = "attack"
 	animated_sprite.speed_scale = Player.speed_mode
 	#assert(animated_sprite.connect("animation_finished", self, "attack_animation_callback") == OK)
+	animated_sprite.connect("animation_finished", self, "attack_animation_callback")
+
 	
 
 func attack_animation_callback():
