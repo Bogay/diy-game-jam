@@ -56,30 +56,22 @@ __meta__ = {
 
 [node name="Path" type="Node" parent="."]
 
-[node name="Path1" type="Path2D" parent="Path" groups=[
-"attacker_path",
-]]
+[node name="Path1" type="Path2D" parent="Path" groups=["attacker_path"]]
 position = Vector2( 89.5884, -46.1295 )
 scale = Vector2( 2.67853, 2.71524 )
 curve = SubResource( 2 )
 
-[node name="Path2" type="Path2D" parent="Path" groups=[
-"attacker_path",
-]]
+[node name="Path2" type="Path2D" parent="Path" groups=["attacker_path"]]
 position = Vector2( 89.5884, -46.1295 )
 scale = Vector2( 2.67853, 2.71524 )
 curve = SubResource( 3 )
 
-[node name="Path3" type="Path2D" parent="Path" groups=[
-"attacker_path",
-]]
+[node name="Path3" type="Path2D" parent="Path" groups=["attacker_path"]]
 position = Vector2( 89.5884, -46.1295 )
 scale = Vector2( 2.67853, 2.71524 )
 curve = SubResource( 4 )
 
-[node name="Path4" type="Path2D" parent="Path" groups=[
-"attacker_path",
-]]
+[node name="Path4" type="Path2D" parent="Path" groups=["attacker_path"]]
 position = Vector2( 89.5884, -46.1295 )
 scale = Vector2( 2.67853, 2.71524 )
 curve = SubResource( 5 )

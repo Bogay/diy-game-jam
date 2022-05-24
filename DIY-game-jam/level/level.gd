@@ -105,9 +105,6 @@ func _on_level_completed():
 	else:
 		Game.change_scene("level_select")
 	# HACK: Add beastman into players defender
-	var beastman = "beastman"
-	if not beastman in save.defenders:
-		save.defenders[beastman] = 1
 	GameSaveManager.save()
 	print("Level [%s] completed!" % level_name)
 

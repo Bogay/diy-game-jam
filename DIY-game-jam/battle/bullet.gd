@@ -5,12 +5,12 @@ export(Resource) var bullet_data = null
 var target: Node2D
 var last_target_pos: Vector2 = Vector2.ZERO
 var direction: Vector2
+var attack_buf: float=1.0
 
 
 func _ready():
 	assert(bullet_data is BulletData)
 	assert(($DamageArea as Area2D).connect("area_entered", self, "_on_area_entered") == OK)
-
 
 func _process(delta: float):
 	if target == null:
@@ -19,11 +19,13 @@ func _process(delta: float):
 	else:
 		move_to(target.global_position, delta)
 
+func set_animation(value):
+	$AnimatedSprite.animation = value
 
 func move_to(target_pos: Vector2, delta: float):	
 	direction += (target_pos - global_position).normalized()
 	direction = direction.normalized()
-	var move_vec = delta * bullet_data.speed * direction
+	var move_vec = delta * bullet_data.speed * direction * Player.speed_mode
 	var collide = false
 	if (target_pos - global_position).length() <= move_vec.length():
 		collide = true
@@ -43,7 +45,7 @@ func _on_area_entered(area: Area2D):
 
 
 func attack(attack_target: Attacker):
-	attack_target.take_damage(bullet_data.attack)
+	attack_target.take_damage(bullet_data.attack + attack_buf)
 	# TODO: play dead VFX
 	queue_free()
 
