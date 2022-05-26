@@ -1,20 +1,21 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://font/redkost-comic/Redkost Comic.otf" type="DynamicFontData" id=1]
 [ext_resource path="res://ui/character_info/character_info.tscn" type="PackedScene" id=2]
 [ext_resource path="res://ui/level_menu/defender_preview.tscn" type="PackedScene" id=3]
 [ext_resource path="res://ui/level_menu/level_menu.gd" type="Script" id=4]
+[ext_resource path="res://ui/level_menu/result_ui/result_ui.tscn" type="PackedScene" id=5]
 
 [sub_resource type="DynamicFont" id=1]
 size = 24
 font_data = ExtResource( 1 )
 
-[sub_resource type="StyleBoxFlat" id=2]
-bg_color = Color( 0.6, 0.6, 0.6, 0.282353 )
-
 [sub_resource type="DynamicFont" id=3]
 size = 64
 font_data = ExtResource( 1 )
+
+[sub_resource type="StyleBoxFlat" id=2]
+bg_color = Color( 0.6, 0.6, 0.6, 0.282353 )
 
 [node name="LevelMenu" type="CanvasLayer"]
 script = ExtResource( 4 )
@@ -211,6 +212,20 @@ __meta__ = {
 "_editor_description_": ""
 }
 
+[node name="waveText" type="Label" parent="ViewportContainer"]
+visible = false
+anchor_left = 0.25
+anchor_top = 0.444
+anchor_right = 0.737
+anchor_bottom = 0.503
+margin_top = 0.47995
+margin_right = 57.96
+margin_bottom = 4.75995
+custom_fonts/font = SubResource( 3 )
+text = "0 wave of enemies is comming!"
+
+[node name="Tween" type="Tween" parent="ViewportContainer/waveText"]
+
 [node name="SettingPanel" type="Panel" parent="ViewportContainer"]
 visible = false
 anchor_left = 0.3
@@ -281,19 +296,12 @@ size_flags_horizontal = 3
 custom_fonts/font = SubResource( 1 )
 text = "Back to Menu"
 
-[node name="waveText" type="Label" parent="ViewportContainer"]
+[node name="result" parent="ViewportContainer" instance=ExtResource( 5 )]
 visible = false
-anchor_left = 0.25
-anchor_top = 0.444
-anchor_right = 0.737
-anchor_bottom = 0.503
-margin_top = 0.47995
-margin_right = 57.96
-margin_bottom = 4.75995
-custom_fonts/font = SubResource( 3 )
-text = "0 wave of enemies is comming!"
-
-[node name="Tween" type="Tween" parent="ViewportContainer/waveText"]
+anchor_right = 48.0
+anchor_bottom = 27.0
+margin_right = -90240.0
+margin_bottom = -28080.0
 
 [connection signal="pressed" from="ViewportContainer/Panel/VBoxContainer/LevelInfo/PlayerStatus/OpenMenu" to="." method="_on_OpenMenu_pressed"]
 [connection signal="pressed" from="ViewportContainer/Panel/VBoxContainer/SpeedMode/SpeedBtn" to="." method="speed_btn_onPressed"]

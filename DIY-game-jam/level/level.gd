@@ -3,6 +3,7 @@ extends Node2D
 
 
 signal level_completed
+signal show_result_signal
 signal wave_changed(wave_idx, max_wave)
 signal next_wave_availability_changed(is_avaliable)
 
@@ -111,7 +112,8 @@ func _on_level_completed():
 #		Game.change_scene("%s_win" % level_name, "level_select")
 #	else:
 #		Game.change_scene("level_select")
-	Game.change_scene("level_select")
+	
+	emit_signal("show_result_signal")
 	# HACK: Add beastman into players defender
 	var beastman = "beastman"
 	if not beastman in save.defenders:

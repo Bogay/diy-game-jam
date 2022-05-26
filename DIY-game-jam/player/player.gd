@@ -3,6 +3,7 @@ extends Node
 signal selection_changed(character)
 signal mana_changed(new_mana)
 signal player_died
+signal show_result_signal
 
 export(int) var max_hp = 20
 export(int) var init_mana = 15
@@ -29,6 +30,8 @@ func set_hp(new_hp: int):
 	hp = new_hp
 	print("Player HP: ", hp)
 	if hp <= 0:
+		hp = 0
+		emit_signal("show_result_signal")
 		emit_signal("player_died")
 
 
