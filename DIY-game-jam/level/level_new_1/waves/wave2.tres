@@ -14,4 +14,4 @@ attackers = {
 "human-soldier": ExtResource( 4 ),
 "yusha": ExtResource( 2 )
 }
-wave_json_path = "res://level/level1/waves/wave2.json"
+wave_json_path = "res://level/level_new_1/waves/wave2.json"
