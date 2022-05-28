@@ -1,0 +1,94 @@
+[gd_scene load_steps=11 format=2]
+
+[ext_resource path="res://slot/scene/slot-melee.tscn" type="PackedScene" id=1]
+[ext_resource path="res://slot/scene/slot.tscn" type="PackedScene" id=2]
+[ext_resource path="res://level/level.gd" type="Script" id=3]
+[ext_resource path="res://level/level1/waves/wave1.tres" type="Resource" id=4]
+[ext_resource path="res://level/level1/waves/wave2.tres" type="Resource" id=5]
+[ext_resource path="res://level/end.gd" type="Script" id=6]
+[ext_resource path="res://level/level1/waves/wave0.tres" type="Resource" id=7]
+
+[sub_resource type="StreamTexture" id=6]
+flags = 4
+load_path = "res://.import/background.jpg-f5c3c8846ef995cc1fa0080dd045ea7b.stex"
+
+[sub_resource type="CapsuleShape2D" id=1]
+radius = 28.6085
+height = 79.4937
+
+[sub_resource type="Curve2D" id=7]
+_data = {
+"points": PoolVector2Array( 0, 0, 0, 0, 103.942, 426.161, 0, 0, 0, 0, 74.8215, 362.078, 0, 0, 0, 0, 19.194, 294.681, 0, 0, 0, 0, 0.900345, 246.803, 0, 0, 0, 0, 56.5279, 205.186, 0, 0, 0, 0, 109.542, 225.074, 0, 0, 0, 0, 149.489, 280.686, 0, 0, 0, 0, 200.263, 296.891, 0, 0, 0, 0, 251.038, 260.062, 0, 0, 0, 0, 240.584, 190.086, 0, 0, 0, 0, 190.557, 107.221, 0, 0, 0, 0, 227.144, 65.2353, 0, 0, 0, 0, 372.373, 127.108, 0, 0, 0, 0, 424.64, 118.269, 0, 0, 0, 0, 440.694, 74.4426, 0, 0, 0, 0, 447.787, -13.9474 )
+}
+
+[node name="Level" type="Node2D"]
+script = ExtResource( 3 )
+waves = [ ExtResource( 7 ), ExtResource( 4 ), ExtResource( 5 ) ]
+level_name = "level2"
+
+[node name="Background" type="Sprite" parent="."]
+position = Vector2( 1101, 649 )
+texture = SubResource( 6 )
+offset = Vector2( -141, -109 )
+
+[node name="End" type="Area2D" parent="."]
+position = Vector2( 1274, 32 )
+script = ExtResource( 6 )
+distance = 60
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="End"]
+rotation = 1.5708
+shape = SubResource( 1 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Path" type="Node" parent="."]
+
+[node name="Path1" type="Path2D" parent="Path" groups=["attacker_path"]]
+position = Vector2( 89.5884, -46.1295 )
+scale = Vector2( 2.67853, 2.71524 )
+curve = SubResource( 7 )
+
+[node name="Entities" type="YSort" parent="."]
+
+[node name="Slots" type="YSort" parent="Entities"]
+
+[node name="Remotes" type="Node" parent="Entities/Slots"]
+
+[node name="Slot" parent="Entities/Slots/Remotes" instance=ExtResource( 2 )]
+position = Vector2( 150, 381 )
+
+[node name="Slot2" parent="Entities/Slots/Remotes" instance=ExtResource( 2 )]
+position = Vector2( 274, 693 )
+
+[node name="Slot3" parent="Entities/Slots/Remotes" instance=ExtResource( 2 )]
+position = Vector2( 784, 310 )
+
+[node name="Slot4" parent="Entities/Slots/Remotes" instance=ExtResource( 2 )]
+position = Vector2( 760, 870 )
+
+[node name="Slot5" parent="Entities/Slots/Remotes" instance=ExtResource( 2 )]
+position = Vector2( 1115, 159 )
+
+[node name="Slot6" parent="Entities/Slots/Remotes" instance=ExtResource( 2 )]
+position = Vector2( 490, 118 )
+
+[node name="Slot7" parent="Entities/Slots/Remotes" instance=ExtResource( 2 )]
+position = Vector2( 1185, 456 )
+
+[node name="Slot8" parent="Entities/Slots/Remotes" instance=ExtResource( 2 )]
+position = Vector2( 590, 564 )
+
+[node name="Melee" type="Node" parent="Entities/Slots"]
+
+[node name="Slot" parent="Entities/Slots/Melee" instance=ExtResource( 1 )]
+position = Vector2( 771, 545 )
+
+[node name="Slot2" parent="Entities/Slots/Melee" instance=ExtResource( 1 )]
+position = Vector2( 970, 255 )
+
+[node name="Slot3" parent="Entities/Slots/Melee" instance=ExtResource( 1 )]
+position = Vector2( 179, 842 )
+
+[node name="Attackers" type="YSort" parent="Entities"]
