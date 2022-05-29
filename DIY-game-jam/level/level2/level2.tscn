@@ -1,16 +1,16 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://slot/scene/slot-melee.tscn" type="PackedScene" id=1]
 [ext_resource path="res://slot/scene/slot.tscn" type="PackedScene" id=2]
 [ext_resource path="res://level/level.gd" type="Script" id=3]
-[ext_resource path="res://level/level0/waves/wave1.tres" type="Resource" id=4]
-[ext_resource path="res://level/level0/waves/wave0.tres" type="Resource" id=5]
+[ext_resource path="res://level/level2/waves/wave1.tres" type="Resource" id=4]
+[ext_resource path="res://level/level2/waves/wave0.tres" type="Resource" id=5]
 [ext_resource path="res://level/end.gd" type="Script" id=6]
-[ext_resource path="res://level/level0/waves/wave2.tres" type="Resource" id=8]
+[ext_resource path="res://level/level2/waves/wave2.tres" type="Resource" id=7]
 
 [sub_resource type="StreamTexture" id=6]
 flags = 4
-load_path = "res://.import/background.jpg-f5c3c8846ef995cc1fa0080dd045ea7b.stex"
+load_path = "res://.import/background.jpg-1a8d182cf1269cd53b7a27a8c9561262.stex"
 
 [sub_resource type="CapsuleShape2D" id=1]
 radius = 28.6085
@@ -18,12 +18,17 @@ height = 79.4937
 
 [sub_resource type="Curve2D" id=7]
 _data = {
-"points": PoolVector2Array( 0, 0, 0, 0, 103.942, 426.161, 5.33375, 19.8773, -5.33375, -19.8773, 83.4083, 379.02, -10.6675, 27.4774, 10.6675, -27.4774, 0.900345, 246.803, -15.4086, 2.33851, 15.4086, -2.33851, 56.9012, 205.923, -11.2601, -10.5233, 11.2601, 10.5233, 110.662, 225.074, -15.4086, -6.43089, 15.4086, 6.43089, 149.489, 280.686, -24.2982, 1.16925, 24.2982, -1.16925, 200.263, 296.891, -6.51903, 23.3851, 6.51903, -23.3851, 251.038, 260.062, 14.2233, 16.3695, -14.2233, -16.3695, 240.584, 190.086, -10.0749, 39.7546, 10.0749, -39.7546, 190.557, 107.221, -10.0749, 1.75388, 10.0749, -1.75388, 227.144, 65.2353, 0, 0, 0, 0, 274.931, 77.7572, -23.1129, -3.50776, 23.1129, 3.50776, 372.373, 127.108, -16.0013, 14.6157, 16.0013, -14.6157, 424.64, 118.269, 0, 0, 0, 0, 440.694, 74.4426, 0, 0, 0, 0, 443.681, -13.9474 )
+"points": PoolVector2Array( 0, 0, 0, 0, -52.1138, 424.688, 0, 0, 0, 0, 109.915, 270.005, -9.70682, 36.0926, 9.70682, -36.0926, 197.277, 153.625, 0, 0, 0, 0, 215.197, -9.89618 )
+}
+
+[sub_resource type="Curve2D" id=8]
+_data = {
+"points": PoolVector2Array( 0, 0, 0, 0, 1396, 608, 0, 0, 0, 0, 1038, 532, 83.7726, 57.0913, -83.7726, -57.0913, 705, 389, 0, 0, 0, 0, 635, 259, 0, 0, 0, 0, 668, -68 )
 }
 
 [node name="Level" type="Node2D"]
 script = ExtResource( 3 )
-waves = [ ExtResource( 5 ), ExtResource( 4 ), ExtResource( 8 ) ]
+waves = [ ExtResource( 5 ), ExtResource( 4 ), ExtResource( 7 ) ]
 level_name = "level1"
 next_level_name = "level2"
 
@@ -33,7 +38,7 @@ texture = SubResource( 6 )
 offset = Vector2( -141, -109 )
 
 [node name="End" type="Area2D" parent="."]
-position = Vector2( 1274, 32 )
+position = Vector2( 664, 38 )
 script = ExtResource( 6 )
 distance = 60
 
@@ -51,6 +56,9 @@ position = Vector2( 89.5884, -46.1295 )
 scale = Vector2( 2.67853, 2.71524 )
 curve = SubResource( 7 )
 
+[node name="Path2" type="Path2D" parent="Path" groups=["attacker_path"]]
+curve = SubResource( 8 )
+
 [node name="Entities" type="YSort" parent="."]
 
 [node name="Slots" type="YSort" parent="Entities"]
@@ -58,23 +66,38 @@ curve = SubResource( 7 )
 [node name="Remotes" type="Node" parent="Entities/Slots"]
 
 [node name="Slot" parent="Entities/Slots/Remotes" instance=ExtResource( 2 )]
-position = Vector2( 601, 579 )
+position = Vector2( 83, 768 )
 
 [node name="Slot2" parent="Entities/Slots/Remotes" instance=ExtResource( 2 )]
-position = Vector2( 274, 693 )
+position = Vector2( 358, 496 )
 
 [node name="Slot3" parent="Entities/Slots/Remotes" instance=ExtResource( 2 )]
-position = Vector2( 784, 310 )
+position = Vector2( 686, 542 )
 
 [node name="Slot4" parent="Entities/Slots/Remotes" instance=ExtResource( 2 )]
-position = Vector2( 1122, 164 )
+position = Vector2( 847, 312 )
+
+[node name="Slot5" parent="Entities/Slots/Remotes" instance=ExtResource( 2 )]
+position = Vector2( 1246, 430 )
+
+[node name="Slot6" parent="Entities/Slots/Remotes" instance=ExtResource( 2 )]
+position = Vector2( 490, 118 )
+
+[node name="Slot7" parent="Entities/Slots/Remotes" instance=ExtResource( 2 )]
+position = Vector2( 1287, 709 )
+
+[node name="Slot8" parent="Entities/Slots/Remotes" instance=ExtResource( 2 )]
+position = Vector2( 348, 977 )
 
 [node name="Melee" type="Node" parent="Entities/Slots"]
 
 [node name="Slot" parent="Entities/Slots/Melee" instance=ExtResource( 1 )]
-position = Vector2( 229, 864 )
+position = Vector2( 638, 280 )
 
 [node name="Slot2" parent="Entities/Slots/Melee" instance=ExtResource( 1 )]
-position = Vector2( 970, 255 )
+position = Vector2( 1027, 522 )
+
+[node name="Slot3" parent="Entities/Slots/Melee" instance=ExtResource( 1 )]
+position = Vector2( 349, 723 )
 
 [node name="Attackers" type="YSort" parent="Entities"]
