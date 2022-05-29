@@ -141,9 +141,11 @@ func bomb():
 		var attacker = detected_attackers[id]
 		attacker.capture = true
 	if detected_attackers.size() >= 3:
-		for id in detected_attackers:
-			if defender_name=="cherry":
-				detected_attackers[id].take_damage(attack.value() + attack_buf)
+		if defender_name=="cherry":
+			play_attack_animation()
+			yield(get_tree().create_timer(1 / (Player.speed_mode ) ), "timeout")
+			for id in detected_attackers:
+				detected_attackers[id].take_damage(attack.value())
 				var attacker = detected_attackers[id]
 				attacker.capture = false
 		queue_free()

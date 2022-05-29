@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/1.png-80a0c43779e790188e5a9add97d4d933.stex"
+path="res://.import/1.png-5aef88eca9e0445ccac09116470da40e.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://character/monster/a/sprites/attack/1.png"
-dest_files=[ "res://.import/1.png-80a0c43779e790188e5a9add97d4d933.stex" ]
+source_file="res://character/monster/cherry/sprite/attack/1.png"
+dest_files=[ "res://.import/1.png-5aef88eca9e0445ccac09116470da40e.stex" ]
 
 [params]
 
