@@ -21,7 +21,8 @@ _data = {
 [node name="Level" type="Node2D"]
 script = ExtResource( 5 )
 waves = [ ExtResource( 8 ), ExtResource( 4 ), ExtResource( 6 ) ]
-level_name = "level2"
+level_name = "level4"
+next_level_name = "level5"
 
 [node name="Background" type="Sprite" parent="."]
 position = Vector2( 960, 540 )

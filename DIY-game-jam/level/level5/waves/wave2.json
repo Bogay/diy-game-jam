@@ -1,0 +1,68 @@
+[
+    {
+        "time": 0.1,
+        "groups": [
+            {
+                "beastman": 1
+            },
+            {
+                "elf": 1
+            }
+        ]
+    },
+    {
+        "time": 3,
+        "groups": [
+            {
+                "beastman": 1
+            },
+            {
+                "elf": 1
+            }
+        ]
+    },
+    {
+        "time": 6,
+        "groups": [
+            {
+                "human-soldier": 2
+            },
+            {
+                "elf": 1
+            }
+        ]
+    },
+    {
+        "time": 9,
+        "groups": [
+            {
+                "beastman": 2
+            },
+            {
+                "elf": 1
+            }
+        ]
+    },
+    {
+        "time": 12,
+        "groups": [
+            {
+                "human-soldier": 2
+            },
+            {
+                "elf": 1
+            }
+        ]
+    },
+    {
+        "time": 15,
+        "groups": [
+            {
+                "yusha": 1
+            },
+            {
+                "elf": 1
+            }
+        ]
+    }
+]

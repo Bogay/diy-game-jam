@@ -1,0 +1,57 @@
+[
+    {
+        "time": 0.1,
+        "groups": [
+            {
+                "elf": 1
+            },
+            {
+                "elf": 1
+            }
+        ]
+    },
+    {
+        "time": 3,
+        "groups": [
+            {
+                "elf": 1
+            },
+            {
+                "elf": 1
+            }
+        ]
+    },
+    {
+        "time": 6,
+        "groups": [
+            {
+                "elf": 1
+            },
+            {
+                "elf": 1
+            }
+        ]
+    },
+    {
+        "time": 9,
+        "groups": [
+            {
+                "human-soldier": 2
+            },
+            {
+                "elf": 1
+            }
+        ]
+    },
+    {
+        "time": 12,
+        "groups": [
+            {
+                "elf": 1
+            },
+            {
+                "elf": 1
+            }
+        ]
+    }
+]
