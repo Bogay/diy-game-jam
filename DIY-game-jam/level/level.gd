@@ -115,9 +115,6 @@ func _on_level_completed():
 	
 	emit_signal("show_result_signal")
 	# HACK: Add beastman into players defender
-	var beastman = "beastman"
-	if not beastman in save.defenders:
-		save.defenders[beastman] = 1
 	GameSaveManager.save()
 	print("Level [%s] completed!" % level_name)
 

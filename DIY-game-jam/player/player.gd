@@ -42,6 +42,8 @@ func set_mana(new_mana: int):
 
 func set_speed_mode(new_mode: float):
 	speed_mode = new_mode
+
 	
 func set_pause(pause_state: bool):
 	isPause = pause_state
+

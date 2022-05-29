@@ -9,7 +9,7 @@ enum State {
 	OCCUPIED,
 }
 
-export(DefenderData.DefenderType) var allowed_type = DefenderData.DefenderType.REMOTE
+export(DefenderData.DefenderType) var not_allowed_type = DefenderData.DefenderType.MELEE
 export(NodePath) var area2d_path = @"Area2D"
 var state = State.IDLE setget set_state
 var was_select = false
@@ -43,7 +43,10 @@ func spawn_defender() -> bool:
 	if not selection is DefenderData:
 		print("Selection is not defedner data, can not spawn")
 		return false
-	if selection.type != allowed_type:
+	if selection.type == not_allowed_type and self.get_parent().name == "Remotes":
+		print("Selected defedner is not allowed to spawn at this slot")
+		return false
+	if selection.type != not_allowed_type and self.get_parent().name == "Melee":
 		print("Selected defedner is not allowed to spawn at this slot")
 		return false
 	if selection.cost > Player.mana:
