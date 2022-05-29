@@ -1,0 +1,15 @@
+[gd_resource type="Resource" load_steps=5 format=2]
+
+[ext_resource path="res://level/wave.gd" type="Script" id=1]
+[ext_resource path="res://character/enemy/beastman/beastman.tres" type="Resource" id=3]
+[ext_resource path="res://character/enemy/human_soldier/human_soldier.tres" type="Resource" id=4]
+[ext_resource path="res://character/enemy/elf/elf.tres" type="Resource" id=5]
+
+[resource]
+script = ExtResource( 1 )
+attackers = {
+"beastman": ExtResource( 3 ),
+"elf": ExtResource( 5 ),
+"human-soldier": ExtResource( 4 )
+}
+wave_json_path = "res://level/level6/waves/wave1.json"
