@@ -54,6 +54,8 @@ func _on_area_entered(area: Area2D):
 
 func attack(attack_target: Attacker):
 	attack_target.take_damage(bullet_data.attack + attack_buf)
+	if self.animated_sprite.animation == "fire_flower" and target != null:
+		target.burned(bullet_data.attack/5)
 	# TODO: play dead VFX
 	queue_free()
 

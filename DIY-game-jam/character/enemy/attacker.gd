@@ -21,6 +21,7 @@ var attack_distance: Buffable
 var detect_distance: Buffable
 var speed: Buffable
 var speed_buf: float = 1.0
+var burned: int = 0
 var offset = 0
 var path: PathFollow2D = null
 var path_offset: Vector2 = Vector2.ZERO
@@ -166,3 +167,14 @@ func _on_DamageArea_mouse_exited():
 
 func buff(s:float):
 	speed_buf = s
+	
+func burned(att:float):
+	if burned == 0:
+		burned = 1
+		self.animated_sprite.animation = "burned"
+		for i in range(5):
+			self.take_damage(att)
+			yield(get_tree().create_timer(1 / (2 * Player.speed_mode) ), "timeout")
+		self.animated_sprite.animation ="walk"
+		burned = 0
+	

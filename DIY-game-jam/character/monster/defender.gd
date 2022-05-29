@@ -15,7 +15,7 @@ var defender_name: String
 var max_hp: Buffable
 var hp: int
 var attack: Buffable
-var attack_buf: float = 1.0
+var attack_buf: float = 0.0
 var defense: Buffable
 var magic_attack: Buffable
 var magic_defense: Buffable
@@ -63,7 +63,7 @@ func _process(_delta: float):
 		elif type == DefenderData.DefenderType.MELEE:
 			bomb()
 		elif type == DefenderData.DefenderType.AREA:
-			area_attack()
+			try_area_attack()
 		else:
 			refresh_defenders()
 			support()
@@ -98,6 +98,12 @@ func try_shoot():
 		if not can_attack or Player.isPause:
 			return
 		shoot()
+		
+func try_area_attack():
+	if not detected_attackers.empty():
+		if not can_attack or Player.isPause:
+			return
+		area_attack()
 
 
 func shoot() -> void:
@@ -227,20 +233,19 @@ func support():
 				elif defender_name=="lily":
 					sup_defenders[id].buff(speed.value() ,attack_buf)
 
-
 func area_attack():
 	if not detected_attackers.empty():
 		if not can_attack:
 			return
 		for id in detected_attackers:
-			if defender_name=="stonegarlic":
-				detected_attackers[id].take_damage(attack.value() + attack_buf)
-			elif defender_name=="salix":
-				detected_attackers[id].buff(0.5)
-		if defender_name=="stonegarlic":
 			can_attack = 0
-			yield(get_tree().create_timer(1 / (speed.value() * Player.speed_mode * speed_buf) ), "timeout")
-			can_attack = 1
+			if defender_name=="stonegarlic":
+				detected_attackers[id].burned(attack.value() + attack_buf)
+			elif defender_name=="salix":
+				detected_attackers[id].buff(1/speed.value())
+		yield(get_tree().create_timer(1 / (speed.value() * Player.speed_mode) ), "timeout")
+		can_attack = 1
+				
 func _on_Area2D_mouse_entered():
 	if mouse_state.has(State.IDLE):
 		mouse_state = [State.HOVERD]
