@@ -3,5 +3,6 @@
 [ext_resource path="res://font/redkost-comic/Redkost Comic.otf" type="DynamicFontData" id=1]
 
 [resource]
-size = 72
+size = 128
+outline_color = Color( 1, 0, 0, 1 )
 font_data = ExtResource( 1 )

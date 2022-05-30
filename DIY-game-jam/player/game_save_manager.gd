@@ -4,10 +4,12 @@ extends Node
 const save_path = "user://game_save.tres"
 const tentacle_shooter = preload("res://character/monster/tentacle_shooter/tentacle_shooter.tres")
 const beastman = preload("res://character/monster/beastman/beastman.tres")
+const a = preload("res://character/monster/a/a.tres")
 # FIXME: Find a better place to define these IDs
 const defenders = {
 	"tentacle_shooter": tentacle_shooter,
 	"beastman": beastman,
+	"a": a,
 }
 const stories = [
 	"opening",

@@ -12,22 +12,19 @@ font_data = ExtResource( 2 )
 [node name="CharacterInfo" type="GridContainer"]
 margin_top = 514.0
 margin_right = 460.0
-margin_bottom = 1020.0
+margin_bottom = 914.0
 size_flags_vertical = 3
 size_flags_stretch_ratio = 4.0
 script = ExtResource( 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
 margin_right = 386.0
-margin_bottom = 251.0
+margin_bottom = 198.0
 size_flags_vertical = 3
 
 [node name="PreviewBG" type="TextureRect" parent="HBoxContainer"]
 margin_right = 180.0
-margin_bottom = 251.0
+margin_bottom = 198.0
 rect_min_size = Vector2( 180, 180 )
 
 [node name="PreviewSprite" type="TextureRect" parent="HBoxContainer/PreviewBG"]
@@ -40,25 +37,22 @@ margin_bottom = -8.0
 texture = ExtResource( 3 )
 expand = true
 stretch_mode = 6
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="StatusList" type="VBoxContainer" parent="HBoxContainer"]
 margin_left = 184.0
 margin_right = 386.0
-margin_bottom = 251.0
+margin_bottom = 198.0
 size_flags_horizontal = 3
 
 [node name="MarginContainer" type="MarginContainer" parent="HBoxContainer/StatusList"]
 margin_right = 202.0
-margin_bottom = 60.0
+margin_bottom = 34.0
 size_flags_vertical = 3
 
 [node name="GridContainer" type="GridContainer" parent="HBoxContainer/StatusList"]
-margin_top = 64.0
+margin_top = 38.0
 margin_right = 202.0
-margin_bottom = 186.0
+margin_bottom = 160.0
 columns = 2
 
 [node name="Status" parent="HBoxContainer/StatusList/GridContainer" instance=ExtResource( 4 )]
@@ -91,14 +85,14 @@ margin_right = 202.0
 margin_bottom = 122.0
 
 [node name="MarginContainer2" type="MarginContainer" parent="HBoxContainer/StatusList"]
-margin_top = 190.0
+margin_top = 164.0
 margin_right = 202.0
-margin_bottom = 251.0
+margin_bottom = 198.0
 size_flags_vertical = 3
 
 [node name="Description" type="Label" parent="."]
-margin_top = 255.0
+margin_top = 202.0
 margin_right = 386.0
-margin_bottom = 506.0
+margin_bottom = 400.0
 size_flags_vertical = 3
 custom_fonts/font = SubResource( 1 )

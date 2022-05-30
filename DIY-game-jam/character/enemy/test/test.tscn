@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://character/enemy/attacker.gd" type="Script" id=1]
+[ext_resource path="res://character/enemy/test/lifebar/LifeBar.tscn" type="PackedScene" id=2]
 
 [sub_resource type="CircleShape2D" id=1]
 
@@ -10,9 +11,7 @@
 radius = 16.7317
 height = 55.5841
 
-[node name="AttackerRoot" type="Node2D" groups=[
-"attacker",
-]]
+[node name="AttackerRoot" type="Node2D" groups=["attacker"]]
 position = Vector2( 1, 0 )
 z_index = 1
 script = ExtResource( 1 )
@@ -25,13 +24,11 @@ scale = Vector2( 0.1, 0.1 )
 playing = true
 
 [node name="AttackArea" type="Area2D" parent="Attacker"]
-visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Attacker/AttackArea"]
 shape = SubResource( 1 )
 
 [node name="DetectArea" type="Area2D" parent="Attacker"]
-visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Attacker/DetectArea"]
 shape = SubResource( 2 )
@@ -41,3 +38,14 @@ shape = SubResource( 2 )
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Attacker/DamageArea"]
 position = Vector2( 0, -27.8442 )
 shape = SubResource( 3 )
+
+[node name="LifeBar" parent="Attacker" instance=ExtResource( 2 )]
+margin_left = -59.0
+margin_top = 15.0
+margin_right = 741.0
+margin_bottom = 521.0
+
+[node name="Tween" type="Tween" parent="Attacker"]
+
+[connection signal="mouse_entered" from="Attacker/DamageArea" to="." method="_on_DamageArea_mouse_entered"]
+[connection signal="mouse_exited" from="Attacker/DamageArea" to="." method="_on_DamageArea_mouse_exited"]

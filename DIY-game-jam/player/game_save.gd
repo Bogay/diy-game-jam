@@ -13,6 +13,7 @@ func _init():
 	# We have a lv. 1 tentacle initially
 	defenders = {
 		"tentacle_shooter": 1,
+		"a": 1,
 	}
 	stories = ["opening"]
 	levels = ["level1"]

@@ -2,7 +2,7 @@ class_name CharacterInfo
 extends GridContainer
 
 const status = {
-	"hp": "hp",
+	"max_hp": "max_hp",
 	"dex": "speed",
 	"atk": "attack",
 	"rng": "attack_distance",

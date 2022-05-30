@@ -23,7 +23,7 @@ func _process(delta: float):
 func move_to(target_pos: Vector2, delta: float):	
 	direction += (target_pos - global_position).normalized()
 	direction = direction.normalized()
-	var move_vec = delta * bullet_data.speed * direction
+	var move_vec = delta * bullet_data.speed * direction * Player.speed_mode
 	var collide = false
 	if (target_pos - global_position).length() <= move_vec.length():
 		collide = true
