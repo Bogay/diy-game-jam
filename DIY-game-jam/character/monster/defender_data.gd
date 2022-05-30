@@ -4,10 +4,13 @@ class_name DefenderData
 enum DefenderType {
 	MELEE,
 	REMOTE,
+	SUP,
+	AREA,
 }
 
 export(String, FILE) var defender_scene
 export(DefenderType) var type = DefenderType.REMOTE
+export(String) var defender_name
 export(Resource) var bullet_data
 export(Resource) var animation
 export(Texture) var preview

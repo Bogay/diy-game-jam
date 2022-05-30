@@ -1,0 +1,23 @@
+[gd_resource type="Resource" load_steps=5 format=2]
+
+[ext_resource path="res://character/monster/lily/bullet/data.tres" type="Resource" id=1]
+[ext_resource path="res://character/monster/defender_data.gd" type="Script" id=2]
+[ext_resource path="res://character/monster/lily/animation.tres" type="SpriteFrames" id=3]
+[ext_resource path="res://character/monster/lily/sprites/Idle/0.png" type="Texture" id=4]
+
+[resource]
+script = ExtResource( 2 )
+defender_scene = "res://character/monster/test/test.tscn"
+type = 2
+defender_name = "lily"
+bullet_data = ExtResource( 1 )
+animation = ExtResource( 3 )
+preview = ExtResource( 4 )
+max_hp = 0
+attack = 0
+defense = 0
+magic_attack = 0
+magic_defense = 0
+attack_distance = 300
+speed = 1.5
+cost = 3

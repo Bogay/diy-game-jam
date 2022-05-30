@@ -1,0 +1,17 @@
+[gd_resource type="SpriteFrames" load_steps=8 format=2]
+
+[ext_resource path="res://character/monster/salix/sprites/Idle/4.png" type="Texture" id=1]
+[ext_resource path="res://character/monster/salix/sprites/Idle/6.png" type="Texture" id=2]
+[ext_resource path="res://character/monster/salix/sprites/Idle/0.png" type="Texture" id=5]
+[ext_resource path="res://character/monster/salix/sprites/Idle/3.png" type="Texture" id=7]
+[ext_resource path="res://character/monster/salix/sprites/Idle/2.png" type="Texture" id=9]
+[ext_resource path="res://character/monster/salix/sprites/Idle/1.png" type="Texture" id=10]
+[ext_resource path="res://character/monster/salix/sprites/Idle/5.png" type="Texture" id=11]
+
+[resource]
+animations = [ {
+"frames": [ ExtResource( 5 ), ExtResource( 10 ), ExtResource( 9 ), ExtResource( 7 ), ExtResource( 1 ), ExtResource( 11 ), ExtResource( 2 ), ExtResource( 11 ), ExtResource( 1 ), ExtResource( 7 ), ExtResource( 9 ), ExtResource( 10 ), ExtResource( 5 ) ],
+"loop": true,
+"name": "idle",
+"speed": 12.0
+} ]

@@ -20,6 +20,8 @@ var magic_defense: Buffable
 var attack_distance: Buffable
 var detect_distance: Buffable
 var speed: Buffable
+var speed_buf: float = 1.0
+var burned: int = 0
 var offset = 0
 var path: PathFollow2D = null
 var path_offset: Vector2 = Vector2.ZERO
@@ -57,34 +59,40 @@ func _ready():
 	# FIXME: It's not a good idea to hard-code the radius value
 	path_offset = get_path_offset(15)
 	print("Path offset: ", path_offset)
+	
 	# TODO: Make this a static variable or mathod.
 	# 	Anyway, give it a consitent way to check whether it is a attacker
 	add_to_group("attacker")
 	
-	# Only for testing (check whether is boss)
-	if hp == 900: isBoss = true
 	# Init life bar
 	bar.hide()
 	life_bar_texture.max_value = max_hp.value()
 	update_health(max_hp.value())
 
 func _process(_delta):
+	if Player.isPause:
+		animated_sprite.stop()
+	else:
+		animated_sprite.play()
+		animated_sprite.speed_scale = Player.speed_mode
 	life_bar_texture.value = round(animated_hp)
 
 func _physics_process(delta):
-	if path == null:
-		return
-	# Captured attackers can not move
-	if capture == true:
-		return
-	var old_pos = global_position
-	# Update offset
-	offset += speed.value() * delta * Player.speed_mode
-	path.offset = offset
-	global_position = path.global_position + path_offset
-	# Check filp
-	var is_left = (global_position - old_pos).x < 0
-	animated_sprite.flip_h = is_left
+	if not Player.isPause:
+		if path == null:
+			return
+		# Captured attackers can not move
+		if capture == true:
+			return
+		var old_pos = global_position
+		# Update offset
+		offset += speed.value() * delta * Player.speed_mode * speed_buf
+		path.offset = offset
+		global_position = path.global_position + path_offset
+		# Check filp
+		var is_left = (global_position - old_pos).x < 0
+		animated_sprite.flip_h = is_left
+
 
 func get_path_offset(radius: float = 1) -> Vector2:
 	var rng = RandomNumberGenerator.new()
@@ -131,6 +139,8 @@ func die():
 #	tween.interpolate_property(self, "modulate", start_color, end_color, 0.3)
 	queue_free()
 
+func set_boss():
+	isBoss = true
 
 func update_health(new_value):
 	tween.interpolate_property(self, "animated_hp", animated_hp, new_value, 0.3, Tween.TRANS_LINEAR, Tween.EASE_IN)
@@ -154,3 +164,17 @@ func _on_DamageArea_mouse_entered():
 
 func _on_DamageArea_mouse_exited():
 	mouse_state = [State.IDLE]
+
+func buff(s:float):
+	speed_buf = s
+	
+func burned(att:float):
+	if burned == 0:
+		burned = 1
+		self.animated_sprite.animation = "burned"
+		for i in range(5):
+			self.take_damage(att)
+			yield(get_tree().create_timer(1 / (2 * Player.speed_mode) ), "timeout")
+		self.animated_sprite.animation ="walk"
+		burned = 0
+	
