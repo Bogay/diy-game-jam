@@ -144,5 +144,5 @@ func check_save_boss(racial):
 	var save: GameSave = GameSaveManager.current_save
 	if not racial in save.boss:
 		emit_signal("show_boss", racial)
-#		save.boss.append(racial)
+		save.boss.append(racial)
 	

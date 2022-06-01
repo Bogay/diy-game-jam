@@ -31,6 +31,7 @@ var capture = false
 var showHP = false
 var isBoss = false
 var usingSkill = false
+var burned = false
 onready var attack_area: Area2D = $Attacker/AttackArea
 onready var detect_area: Area2D = $Attacker/DetectArea
 onready var attack_shape: CollisionShape2D = $Attacker/AttackArea/CollisionShape2D
@@ -188,11 +189,6 @@ func _on_DamageArea_mouse_exited():
 func buff(s:float):
 	speed_buff = s
 	
-func on_fire():
-	fire_sign.show()
-	yield(get_tree().create_timer(1.0/Player.speed_mode), "timeout")
-	fire_sign.hide()
-	
 func on_buff_sign():
 	if speed_buff > speed_nerf:
 		nerf_sign.hide()
@@ -228,3 +224,14 @@ func _on_animation_finished():
 	if usingSkill:
 		usingSkill = false
 		animated_sprite.animation = "walk"
+	
+func burned(att:float):
+	if not burned:
+		burned = true
+		fire_sign.show()
+		for i in range(5):
+			self.take_damage(att)
+			yield(get_tree().create_timer(1 / (2 * Player.speed_mode) ), "timeout")
+		fire_sign.hide()
+		burned = false
+	

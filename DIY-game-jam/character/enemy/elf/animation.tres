@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 [gd_resource type="SpriteFrames" load_steps=11 format=2]
 
 [ext_resource path="res://character/enemy/knight/sprites/skill/0.png" type="Texture" id=1]
@@ -10,6 +11,18 @@
 [ext_resource path="res://character/enemy/knight/sprites/skill/4.png" type="Texture" id=8]
 [ext_resource path="res://character/enemy/knight/sprites/skill/3.png" type="Texture" id=9]
 [ext_resource path="res://character/enemy/knight/sprites/skill/5.png" type="Texture" id=10]
+=======
+[gd_resource type="SpriteFrames" load_steps=9 format=2]
+
+[ext_resource path="res://character/enemy/elf/sprite/burn/1.png" type="Texture" id=1]
+[ext_resource path="res://character/enemy/elf/sprite/burn/2.png" type="Texture" id=2]
+[ext_resource path="res://character/enemy/elf/sprite/walk/2.png" type="Texture" id=3]
+[ext_resource path="res://character/enemy/elf/sprite/burn/3.png" type="Texture" id=4]
+[ext_resource path="res://character/enemy/elf/sprite/walk/1.png" type="Texture" id=5]
+[ext_resource path="res://character/enemy/elf/sprite/walk/4.png" type="Texture" id=6]
+[ext_resource path="res://character/enemy/elf/sprite/walk/3.png" type="Texture" id=7]
+[ext_resource path="res://character/enemy/elf/sprite/burn/4.png" type="Texture" id=8]
+>>>>>>> 5c8896d23ebc8678a21c776624f41e59a5e09d17
 
 [resource]
 animations = [ {
@@ -22,4 +35,9 @@ animations = [ {
 "loop": true,
 "name": "walk",
 "speed": 4.0
+}, {
+"frames": [ ExtResource( 1 ), ExtResource( 2 ), ExtResource( 4 ), ExtResource( 8 ) ],
+"loop": true,
+"name": "burned",
+"speed": 5.0
 } ]
