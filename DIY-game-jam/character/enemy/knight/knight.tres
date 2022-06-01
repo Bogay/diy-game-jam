@@ -7,6 +7,7 @@
 script = ExtResource( 1 )
 attacker_scene = "res://character/enemy/test/test.tscn"
 animation = ExtResource( 3 )
+racial = "knight"
 max_hp = 5000
 attack = 0
 defense = 40
@@ -14,5 +15,5 @@ magic_attack = 0
 magic_defense = 0
 attack_distance = 50
 detect_distance = 200
-speed = 5.0
+speed = 1.8
 drop_mana = 1

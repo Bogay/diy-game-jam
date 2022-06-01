@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/3.png-9cc0c27d461488ba3d62599f9a15c9df.stex"
+path="res://.import/1.png-7c5e7af77348ab25301f02747549ac90.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://character/monster/cherry/sprite/attacker/3.png"
-dest_files=[ "res://.import/3.png-9cc0c27d461488ba3d62599f9a15c9df.stex" ]
+source_file="res://character/enemy/knight/sprites/skill/1.png"
+dest_files=[ "res://.import/1.png-7c5e7af77348ab25301f02747549ac90.stex" ]
 
 [params]
 

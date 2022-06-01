@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/3.png-0eaf04d921dd34b13a0ccb4dcce5ae26.stex"
+path="res://.import/0.png-5e30001943acc7e15179fc6ee714712f.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://character/enemy/yusha/sprites/walk/3.png"
-dest_files=[ "res://.import/3.png-0eaf04d921dd34b13a0ccb4dcce5ae26.stex" ]
+source_file="res://character/monster/cherry/sprite/attack/0.png"
+dest_files=[ "res://.import/0.png-5e30001943acc7e15179fc6ee714712f.stex" ]
 
 [params]
 

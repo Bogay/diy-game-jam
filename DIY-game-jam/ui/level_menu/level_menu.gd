@@ -14,6 +14,7 @@ onready var bgPanel: Panel = $ViewportContainer/SettingPanel/bgPanel
 onready var waveText: Label = $ViewportContainer/waveText
 onready var tween = $ViewportContainer/waveText/Tween
 onready var result = $ViewportContainer/result
+onready var bossPanel = $ViewportContainer/bossPanel
 
 var speed_arr = [0.5, 1, 1.5, 2]
 var speed_arr_idx = 1
@@ -47,6 +48,7 @@ func register_event_listener():
 	assert(level.connect("next_wave_availability_changed", self, "_on_next_wave_availability_changed") == OK)
 	assert(level.connect("show_result_signal", self, "show_result") == OK)
 	assert(Player.connect("show_result_signal", self, "show_result") == OK)
+	assert(level.connect("show_boss", self, "show_boss_ui") == OK)
 
 func update_wave_label(curr_idx: int, wave_cnt: int):
 	wave_label.text = "%d / %d" % [curr_idx, wave_cnt]
@@ -101,16 +103,22 @@ func speed_btn_onPressed():
 
 func _on_OpenMenu_pressed():
 	setting_panel.show()
-	Player.isPause = true
+	Player.atkPause = true
+	Player.defPause = true
 
 func _on_continue_pressed():
 	setting_panel.hide()
-	Player.isPause = false
+	Player.atkPause = false
+	Player.defPause = false
 
 
 func _on_menu_pressed():
 	Game.change_scene("opening", "level_select")
-	Player.isPause = false
+	Player.atkPause = false
+	Player.defPause = false
 
 func show_result():
 	result.show()
+	
+func show_boss_ui(racial):
+	bossPanel.show_boss(racial)

@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/0.png-b3fd8fcf7ea900380bccf3902928ad67.stex"
+path="res://.import/2.png-81e33a54a5ab54648cf48b01b75d5ebf.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://character/enemy/yusha/sprites/walk/0.png"
-dest_files=[ "res://.import/0.png-b3fd8fcf7ea900380bccf3902928ad67.stex" ]
+source_file="res://character/enemy/knight/sprites/skill/2.png"
+dest_files=[ "res://.import/2.png-81e33a54a5ab54648cf48b01b75d5ebf.stex" ]
 
 [params]
 

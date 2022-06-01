@@ -8,7 +8,9 @@
             {
                 "human-soldier": 1
             },
-            {},
+            {
+                "knight": 1
+            },
             {}
         ]
     },

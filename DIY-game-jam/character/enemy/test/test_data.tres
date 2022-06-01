@@ -9,6 +9,7 @@ script = ExtResource( 1 )
 attacker_scene = "res://character/enemy/test/test.tscn"
 preview = ExtResource( 2 )
 animation = ExtResource( 3 )
+racial = ""
 max_hp = 150
 attack = 0
 defense = 80

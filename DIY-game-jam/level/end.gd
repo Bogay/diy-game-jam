@@ -18,9 +18,9 @@ func _process(_delta):
 	for attacker in attackers:
 		var diff = attacker.global_position - global_position
 		if diff.length() <= distance:
+			Player.hp -= 1
 			emit_signal("attacker_reached", attacker)
 			attacker.queue_free()
-			Player.hp -= 1
 
 
 func _on_area_entered(area: Area2D):

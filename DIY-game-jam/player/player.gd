@@ -11,7 +11,8 @@ export(float) var init_speed_mode = 1
 var selected_character = null setget change_selection
 var hp: int = max_hp setget set_hp
 var mana: int = init_mana setget set_mana
-var isPause: bool = false setget set_pause
+var atkPause: bool = false setget set_atkpause
+var defPause: bool = false setget set_defpause
 var speed_mode: float = init_speed_mode setget set_speed_mode
 
 
@@ -44,6 +45,10 @@ func set_speed_mode(new_mode: float):
 	speed_mode = new_mode
 
 	
-func set_pause(pause_state: bool):
-	isPause = pause_state
+func set_atkpause(pause_state: bool):
+	atkPause = pause_state
+
+
+func set_defpause(pause_state: bool):
+	defPause = pause_state
 

@@ -52,7 +52,7 @@ func _ready():
 
 func _process(_delta: float):
 	# FIXME: Use a general API to process defender behavior
-	if Player.isPause:
+	if Player.defPause:
 		animated_sprite.stop()
 	else:
 		animated_sprite.play()
@@ -95,7 +95,7 @@ func update_direction():
 
 func try_shoot():
 	if not detected_attackers.empty():
-		if not can_attack or Player.isPause:
+		if not can_attack or Player.defPause:
 			return
 		shoot()
 
@@ -141,9 +141,11 @@ func bomb():
 		var attacker = detected_attackers[id]
 		attacker.capture = true
 	if detected_attackers.size() >= 3:
-		for id in detected_attackers:
-			if defender_name=="cherry":
-				detected_attackers[id].take_damage(attack.value() + attack_buf)
+		if defender_name=="cherry":
+			play_attack_animation()
+			yield(get_tree().create_timer(1 / (Player.speed_mode ) ), "timeout")
+			for id in detected_attackers:
+				detected_attackers[id].take_damage(attack.value())
 				var attacker = detected_attackers[id]
 				attacker.capture = false
 		queue_free()
@@ -233,6 +235,7 @@ func area_attack():
 		for id in detected_attackers:
 			if defender_name=="stonegarlic":
 				detected_attackers[id].take_damage(attack.value() + attack_buf)
+				detected_attackers[id].on_fire()
 			elif defender_name=="salix":
 				detected_attackers[id].buff(0.5)
 		if defender_name=="stonegarlic":

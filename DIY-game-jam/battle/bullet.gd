@@ -14,7 +14,7 @@ func _ready():
 	assert(($DamageArea as Area2D).connect("area_entered", self, "_on_area_entered") == OK)
 
 func _process(delta: float):
-	if Player.isPause:
+	if Player.defPause:
 		animated_sprite.stop()
 	else:
 		animated_sprite.play()
@@ -29,7 +29,7 @@ func set_animation(value):
 	$AnimatedSprite.animation = value
 
 func move_to(target_pos: Vector2, delta: float):
-	if not Player.isPause:
+	if not Player.defPause:
 		direction += (target_pos - global_position).normalized()
 		direction = direction.normalized()
 		var move_vec = delta * bullet_data.speed * direction * Player.speed_mode
