@@ -2,8 +2,8 @@ class_name LevelSelect
 extends Node
 
 onready var story_btn: BaseButton = $UIRoot/VSplitContainer/VBoxContainer/StoryButton
-onready var level1_btn: BaseButton = $UIRoot/LevelSelectButtons/level1/level1
-onready var level2_btn: BaseButton = $UIRoot/LevelSelectButtons/level2/level2
+onready var level1_btn: BaseButton = $UIRoot/VBoxContainer/LevelSelectButtons/level1/level1
+onready var level2_btn: BaseButton = $UIRoot/VBoxContainer/LevelSelectButtons/level2/level2
 onready var option_btn: BaseButton = $UIRoot/AspectRatioContainer/Settings
 
 func _ready():
