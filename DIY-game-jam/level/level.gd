@@ -3,8 +3,10 @@ extends Node2D
 
 
 signal level_completed
+signal show_result_signal
 signal wave_changed(wave_idx, max_wave)
 signal next_wave_availability_changed(is_avaliable)
+signal show_boss(racial)
 
 
 # Store pathes in this level
@@ -71,6 +73,7 @@ func spawn_wave(wave: Wave):
 				var attacker = wave.attackers[id]
 				for _i in range(group[id]):
 					# if the attacker is the last enemy, set the isBoss attribute
+					check_save_boss(id)
 					if cur_wave_idx == waves.size()-1:
 						spawn_attacker(attacker.instance(), path_idx, true)
 					else: 
@@ -111,7 +114,8 @@ func _on_level_completed():
 #		Game.change_scene("%s_win" % level_name, "level_select")
 #	else:
 #		Game.change_scene("level_select")
-	Game.change_scene("level_select")
+	
+	emit_signal("show_result_signal")
 	# HACK: Add beastman into players defender
 	GameSaveManager.save()
 	print("Level [%s] completed!" % level_name)
@@ -134,3 +138,11 @@ func progress() -> float:
 	if current_wave == null:
 		return 1.0
 	return float(sub_wave_idx) / len(current_wave.sub_waves)
+
+
+func check_save_boss(racial):
+	var save: GameSave = GameSaveManager.current_save
+	if not racial in save.boss:
+		emit_signal("show_boss", racial)
+		save.boss.append(racial)
+	

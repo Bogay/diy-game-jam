@@ -5,6 +5,7 @@ extends Resource
 export(String, FILE) var attacker_scene
 export(Texture) var preview
 export(Resource) var animation
+export(String) var racial
 export(int) var max_hp
 export(int) var attack
 export(int) var defense

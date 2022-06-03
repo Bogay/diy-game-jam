@@ -4,6 +4,7 @@ extends Resource
 
 export(Dictionary) var defenders = {}
 export(Array, String) var levels = []
+export(Array, String) var boss = []
 export(Array, String) var stories = []
 export(Dictionary) var captures = {}
 
@@ -23,3 +24,4 @@ func _init():
 	}
 	stories = ["opening"]
 	levels = ["level1"]
+	boss = ["beastman", "human-soldier", "elf", "yusha"]

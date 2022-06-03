@@ -1,7 +1,10 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://character/enemy/attacker.gd" type="Script" id=1]
 [ext_resource path="res://character/enemy/test/lifebar/LifeBar.tscn" type="PackedScene" id=2]
+[ext_resource path="res://character/enemy/test/fire.png" type="Texture" id=3]
+[ext_resource path="res://character/enemy/test/buff.png" type="Texture" id=4]
+[ext_resource path="res://character/enemy/test/nerf.png" type="Texture" id=5]
 
 [sub_resource type="CircleShape2D" id=1]
 
@@ -47,5 +50,33 @@ margin_bottom = 521.0
 
 [node name="Tween" type="Tween" parent="Attacker"]
 
+[node name="fireSign" type="TextureRect" parent="Attacker"]
+visible = false
+margin_left = -34.0
+margin_top = -24.0
+margin_right = 33.0
+margin_bottom = 16.0
+texture = ExtResource( 3 )
+expand = true
+
+[node name="buffSign" type="TextureRect" parent="Attacker"]
+visible = false
+margin_left = -27.0
+margin_top = -77.0
+margin_right = 26.0
+margin_bottom = -40.0
+texture = ExtResource( 4 )
+expand = true
+
+[node name="nerfSign" type="TextureRect" parent="Attacker"]
+visible = false
+margin_left = -26.0
+margin_top = -54.0
+margin_right = 25.0
+margin_bottom = -19.0
+texture = ExtResource( 5 )
+expand = true
+
+[connection signal="animation_finished" from="Attacker/AnimatedSprite" to="." method="_on_animation_finished"]
 [connection signal="mouse_entered" from="Attacker/DamageArea" to="." method="_on_DamageArea_mouse_entered"]
 [connection signal="mouse_exited" from="Attacker/DamageArea" to="." method="_on_DamageArea_mouse_exited"]

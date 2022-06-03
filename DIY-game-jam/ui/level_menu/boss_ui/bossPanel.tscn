@@ -1,0 +1,68 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://font/redkost-comic/Redkost Comic.otf" type="DynamicFontData" id=1]
+[ext_resource path="res://ui/level_menu/boss_ui/boss_img/vs.png" type="Texture" id=2]
+[ext_resource path="res://ui/level_menu/boss_ui/bossPanel.gd" type="Script" id=3]
+
+[sub_resource type="DynamicFont" id=1]
+size = 64
+font_data = ExtResource( 1 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 96
+font_data = ExtResource( 1 )
+
+[node name="bossPanel" type="Control"]
+visible = false
+anchor_left = 0.3
+anchor_top = 0.35
+anchor_right = 0.7
+anchor_bottom = 0.65
+margin_left = -576.0
+margin_top = -378.0
+margin_right = 576.0
+margin_bottom = 378.0
+script = ExtResource( 3 )
+
+[node name="bgPanel" type="TextureRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -5.0
+margin_right = -5.0
+texture = ExtResource( 2 )
+expand = true
+
+[node name="bossInfo" type="Label" parent="."]
+anchor_left = 0.246
+anchor_top = 0.833
+anchor_right = 0.754
+anchor_bottom = 0.896
+margin_left = -0.320007
+margin_top = 21.3599
+margin_right = 0.319946
+margin_bottom = 21.3199
+custom_fonts/font = SubResource( 1 )
+align = 1
+
+[node name="bossTitle" type="Label" parent="."]
+anchor_left = 0.222
+anchor_top = 0.023
+anchor_right = 0.778
+anchor_bottom = 0.148
+margin_left = -0.240021
+margin_top = -13.84
+margin_right = 0.239868
+margin_bottom = -13.84
+custom_fonts/font = SubResource( 2 )
+align = 1
+
+[node name="bossImg" type="TextureRect" parent="."]
+anchor_left = 0.312
+anchor_top = 0.167
+anchor_right = 0.687
+anchor_bottom = 0.833
+margin_left = 0.959961
+margin_top = 19.64
+margin_right = 0.959961
+margin_bottom = 20.3599
+expand = true

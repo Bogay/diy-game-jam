@@ -57,9 +57,6 @@ margin_top = -136.141
 margin_right = 2137.91
 margin_bottom = 1255.86
 color = Color( 0.45098, 0.486275, 0.415686, 0.427451 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Start" type="Button" parent="."]
 margin_left = 794.956

@@ -3,7 +3,7 @@
 [ext_resource path="res://character/monster/cactus/bullet/data.tres" type="Resource" id=1]
 [ext_resource path="res://character/monster/defender_data.gd" type="Script" id=2]
 [ext_resource path="res://character/monster/cactus/animation.tres" type="SpriteFrames" id=3]
-[ext_resource path="res://character/monster/cactus/sprites/Idle/0.png" type="Texture" id=4]
+[ext_resource path="res://character/monster/cactus/sprites/idle/0.png" type="Texture" id=4]
 
 [resource]
 script = ExtResource( 2 )

@@ -27,16 +27,16 @@ func set_state(new_state):
 	state = new_state
 	# TODO: process event
 	if state == State.SELECTED:
-		_on_selected()
-		state = State.OCCUPIED
+		if _on_selected():
+			state = State.OCCUPIED
 		
 
 func _on_selected():
 	if not spawn_defender():
 		print("Spawn defender error")
-		return
+		return false
 	sprite.hide()
-
+	return true
 
 func spawn_defender() -> bool:
 	var selection = Player.selected_character
@@ -55,7 +55,7 @@ func spawn_defender() -> bool:
 	Player.mana -= selection.cost
 	var defender_ins: Defender = selection.instance()
 	add_child(defender_ins)
-	Player.selected_character = defender_ins
+	Player.selected_character = selection
 	return true
 
 

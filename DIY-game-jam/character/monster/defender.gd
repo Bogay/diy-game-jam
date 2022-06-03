@@ -52,7 +52,7 @@ func _ready():
 
 func _process(_delta: float):
 	# FIXME: Use a general API to process defender behavior
-	if Player.isPause:
+	if Player.defPause:
 		animated_sprite.stop()
 	else:
 		animated_sprite.play()
@@ -95,13 +95,13 @@ func update_direction():
 
 func try_shoot():
 	if not detected_attackers.empty():
-		if not can_attack or Player.isPause:
+		if not can_attack or Player.defPause:
 			return
 		shoot()
 		
 func try_area_attack():
 	if not detected_attackers.empty():
-		if not can_attack or Player.isPause:
+		if not can_attack or Player.defPause:
 			return
 		area_attack()
 

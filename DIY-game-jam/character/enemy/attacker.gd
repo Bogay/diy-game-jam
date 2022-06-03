@@ -10,6 +10,7 @@ enum State {
 }
 
 export(Resource) var attacker_data = null
+var racial: String
 var max_hp: Buffable
 var hp: int
 var animated_hp: float = 0
@@ -20,14 +21,17 @@ var magic_defense: Buffable
 var attack_distance: Buffable
 var detect_distance: Buffable
 var speed: Buffable
-var speed_buf: float = 1.0
-var burned: int = 0
+var speed_buff: float = 1.0
+var speed_nerf: float = 1.0
 var offset = 0
+var skillCD = 0
 var path: PathFollow2D = null
 var path_offset: Vector2 = Vector2.ZERO
 var capture = false
 var showHP = false
 var isBoss = false
+var usingSkill = false
+var burned = false
 onready var attack_area: Area2D = $Attacker/AttackArea
 onready var detect_area: Area2D = $Attacker/DetectArea
 onready var attack_shape: CollisionShape2D = $Attacker/AttackArea/CollisionShape2D
@@ -37,11 +41,15 @@ onready var tween = $Attacker/Tween
 onready var bar: Control = $Attacker/LifeBar
 onready var life_bar_texture: TextureProgress = $Attacker/LifeBar/LifeBar/TextureProgress
 onready var boss_sign: VBoxContainer = $Attacker/LifeBar/Boss_sign
+onready var fire_sign = $Attacker/fireSign
+onready var buff_sign = $Attacker/buffSign
+onready var nerf_sign = $Attacker/nerfSign
 
 var mouse_state: Array = [State.IDLE]
 
 func _ready():
 	# assert(attacker_data is AttackerData)
+	racial = attacker_data.racial
 	max_hp = Buffable.new(attacker_data.max_hp)
 	hp = max_hp.value()
 	attack = Buffable.new(attacker_data.attack)
@@ -68,17 +76,30 @@ func _ready():
 	bar.hide()
 	life_bar_texture.max_value = max_hp.value()
 	update_health(max_hp.value())
+	
 
 func _process(_delta):
-	if Player.isPause:
+	if Player.atkPause:
 		animated_sprite.stop()
 	else:
 		animated_sprite.play()
 		animated_sprite.speed_scale = Player.speed_mode
 	life_bar_texture.value = round(animated_hp)
+	
+	on_buff_sign()
+	
+#	if isBoss:
+	if racial == "knight" and not usingSkill:
+		skillCD += 1 * Player.speed_mode
+		if skillCD >= 500:
+			on_skill()
+			knight_skill()
+#			robot_skill()
+			skillCD = int(skillCD)%500
+		
 
 func _physics_process(delta):
-	if not Player.isPause:
+	if not Player.atkPause and not usingSkill:
 		if path == null:
 			return
 		# Captured attackers can not move
@@ -86,7 +107,7 @@ func _physics_process(delta):
 			return
 		var old_pos = global_position
 		# Update offset
-		offset += speed.value() * delta * Player.speed_mode * speed_buf
+		offset += speed.value() * delta * Player.speed_mode * speed_buff
 		path.offset = offset
 		global_position = path.global_position + path_offset
 		# Check filp
@@ -166,15 +187,51 @@ func _on_DamageArea_mouse_exited():
 	mouse_state = [State.IDLE]
 
 func buff(s:float):
-	speed_buf = s
+	speed_buff = s
+	
+func on_buff_sign():
+	if speed_buff > speed_nerf:
+		nerf_sign.hide()
+		buff_sign.show()
+	elif speed_buff < speed_nerf:
+		buff_sign.hide()
+		nerf_sign.show()
+	else:
+		buff_sign.hide()
+		nerf_sign.hide()
+
+func knight_skill():
+	for atkers in get_tree().get_nodes_in_group("attacker"):
+		if atkers.racial != "knight":
+			atkers.speed_buff = 2.5
+	yield(get_tree().create_timer(3.0/Player.speed_mode), "timeout")
+	for atkers in get_tree().get_nodes_in_group("attacker"):
+		if atkers.racial != "knight":
+			atkers.speed_buff = 1
+	
+
+func robot_skill():
+	Player.defPause = true
+	yield(get_tree().create_timer(3/Player.speed_mode), "timeout")
+	Player.defPause = false
+
+func on_skill():
+	usingSkill = true
+	animated_sprite.animation = "skill"
+#	animated_sprite.play()
+
+func _on_animation_finished():
+	if usingSkill:
+		usingSkill = false
+		animated_sprite.animation = "walk"
 	
 func burned(att:float):
-	if burned == 0:
-		burned = 1
-		self.animated_sprite.animation = "burned"
+	if not burned:
+		burned = true
+		fire_sign.show()
 		for i in range(5):
 			self.take_damage(att)
 			yield(get_tree().create_timer(1 / (2 * Player.speed_mode) ), "timeout")
-		self.animated_sprite.animation ="walk"
-		burned = 0
+		fire_sign.hide()
+		burned = false
 	
