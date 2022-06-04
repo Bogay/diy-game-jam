@@ -9,12 +9,17 @@ var dict = {
 	"knight":[
 		"Speed up attacker for 3 seconds",
 		"the Kinght",
-		"res://ui/level_menu/boss_ui/boss_img/knight.jpg"
+		"res://ui/level_menu/boss_ui/boss_img/knight.png"
 	],
 	"robot":[
 		"Stop defender for 3 seconds",
 		"Time Controller",
-		"res://ui/level_menu/boss_ui/boss_img/robot.jpg"
+		"res://ui/level_menu/boss_ui/boss_img/robot.png"
+	],
+	"chimera":[
+		"Ramdomly kill your defender",
+		"???????",
+		"res://ui/level_menu/boss_ui/boss_img/chimera.png"
 	]
 }
 

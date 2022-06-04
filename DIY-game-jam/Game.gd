@@ -5,12 +5,17 @@ var opening = preload("res://story/opening/opening.tscn")
 var level_select = preload("res://level/select/level_select.tscn")
 var level0 = preload("res://level/level0/level0.tscn")
 var level1 = preload("res://level/level1/level1.tscn")
+var level2 = preload("res://level/level2/level2.tscn")
+var level3 = preload("res://level/level3/level3.tscn")
+var level4 = preload("res://level/level4/level4.tscn")
+var level5 = preload("res://level/level5/level5.tscn")
+var level6 = preload("res://level/level6/level6.tscn")
+var level7 = preload("res://level/level7/level7.tscn")
 var story_select = preload("res://story/select/story_select.tscn")
-var level1_win = preload("res://story/level1_win/level1_win.tscn")
-var level2_win = preload("res://story/level2_win/level2_win.tscn")
+#var level1_win = preload("res://story/level1_win/level1_win.tscn")
+#var level2_win = preload("res://story/level2_win/level2_win.tscn")
 var current_scene = null
 var the_next_scene = null
-
 
 func _ready():
 	var root = get_tree().get_root()
@@ -46,3 +51,4 @@ func get_scene(scene: String):
 
 func change_to_future_scene():
 	Game.change_scene(the_next_scene)
+	

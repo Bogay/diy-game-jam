@@ -277,6 +277,8 @@ margin_right = 774.0
 margin_bottom = 219.0
 size_flags_horizontal = 3
 size_flags_vertical = 1
+min_value = -30.0
+max_value = 30.0
 
 [node name="HBoxContainer" type="HBoxContainer" parent="ViewportContainer/SettingPanel/VBoxContainer"]
 margin_top = 223.0
@@ -308,5 +310,6 @@ margin_bottom = -28080.0
 
 [connection signal="pressed" from="ViewportContainer/Panel/VBoxContainer/LevelInfo/PlayerStatus/OpenMenu" to="." method="_on_OpenMenu_pressed"]
 [connection signal="pressed" from="ViewportContainer/Panel/VBoxContainer/SpeedMode/SpeedBtn" to="." method="speed_btn_onPressed"]
+[connection signal="value_changed" from="ViewportContainer/SettingPanel/VBoxContainer/HBoxContainer2/HSlider" to="." method="_on_HSlider_value_changed"]
 [connection signal="pressed" from="ViewportContainer/SettingPanel/VBoxContainer/HBoxContainer/continue" to="." method="_on_continue_pressed"]
 [connection signal="pressed" from="ViewportContainer/SettingPanel/VBoxContainer/HBoxContainer/menu" to="." method="_on_menu_pressed"]

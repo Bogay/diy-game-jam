@@ -6,10 +6,10 @@
                 "beastman": 1
             },
             {
-                "beastman": 1
+                "beastman": 2
             },
             {
-                "beastman": 1
+                "beastman": 3
             },
             {
                 "elf": 1
@@ -23,7 +23,7 @@
                 "beastman": 1
             },
             {
-                "beastman": 1
+                "beastman": 2
             },
             {
                 "beastman": 1
@@ -40,7 +40,7 @@
                 "human-soldier": 2
             },
             {
-                "beastman": 1
+                "beastman": 2
             },
             {
                 "beastman": 1
@@ -60,7 +60,7 @@
                 "beastman": 1
             },
             {
-                "beastman": 1
+                "beastman": 3
             },
             {
                 "elf": 1
@@ -91,13 +91,13 @@
                 "yusha": 1
             },
             {
-                "beastman": 1
+                "robot": 1
             },
             {
-                "elf": 1
+                "yusha": 1
             },
             {
-                "elf": 1
+                "yusha": 1
             }
         ]
     }

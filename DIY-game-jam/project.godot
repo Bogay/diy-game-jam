@@ -143,6 +143,7 @@ config/icon="res://icon.png"
 Game="*res://Game.gd"
 Player="*res://player/player.tscn"
 GameSaveManager="*res://player/game_save_manager.tscn"
+Sound="*res://sound/sound.tscn"
 
 [display]
 

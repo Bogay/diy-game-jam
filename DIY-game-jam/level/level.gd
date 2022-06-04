@@ -23,12 +23,14 @@ var attacker_cnt = 0
 onready var attackers = $Entities/Attackers
 
 
+
 func _ready():
+	Sound.play_sound("battle")
 	Player.reset()
 	setup_paths()
 	setup_menu()
 	assert(connect("level_completed", self, "_on_level_completed") == OK)
-	assert(Player.connect("player_died", self, "go_to_level_select") == OK)
+#	assert(Player.connect("player_died", self, "go_to_level_select") == OK)
 	emit_signal("wave_changed", 1, len(waves))
 
 
@@ -99,7 +101,10 @@ func _on_attacker_exiting():
 	if attacker_cnt > 0:
 		return
 	if wave_idx >= waves.size():
-		emit_signal("level_completed")
+		print("ATT:",attacker_cnt)
+		if Player.can_win:
+			emit_signal("level_completed")
+		else: pass
 	else:
 		spawn_next_wave()
 
@@ -108,6 +113,14 @@ func _on_level_completed():
 	var save: GameSave = GameSaveManager.current_save
 	if next_level_name != "" and not next_level_name in save.levels:
 		save.levels.append(next_level_name)
+		if next_level_name == "level3":
+			save.defenders['fire_flower'] = 1
+		elif next_level_name == "level5":
+			save.defenders['salix'] = 1
+			save.defenders['stonegarlic'] = 1
+		elif next_level_name == "level7":
+			save.defenders['sakura'] = 1
+			save.defenders['dandelion'] = 1
 #	if not level_name in save.stories:
 #		save.stories.append(level_name)
 #		# Play story at first unlock
@@ -116,6 +129,7 @@ func _on_level_completed():
 #		Game.change_scene("level_select")
 	
 	emit_signal("show_result_signal")
+	Sound.play_sound("win")
 	# HACK: Add beastman into players defender
 	GameSaveManager.save()
 	print("Level [%s] completed!" % level_name)

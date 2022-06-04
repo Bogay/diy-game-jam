@@ -6,7 +6,7 @@
                 "beastman": 1
             },
             {
-                "elf": 1
+                "elf": 4
             }
         ]
     },
@@ -17,7 +17,7 @@
                 "beastman": 1
             },
             {
-                "elf": 1
+                "elf": 3
             }
         ]
     },
@@ -28,7 +28,7 @@
                 "human-soldier": 2
             },
             {
-                "elf": 1
+                "elf": 2
             }
         ]
     },
@@ -58,9 +58,11 @@
         "time": 15,
         "groups": [
             {
-                "yusha": 1
+                "yusha": 1,
+                "elf": 1
             },
             {
+                "yusha": 1,
                 "elf": 1
             }
         ]

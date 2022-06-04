@@ -38,12 +38,7 @@ func _ready():
 		
 	current_save.defenders["cactus"] = 1
 	current_save.defenders["cherry"] = 1
-	current_save.defenders["dandelion"] = 1
-	current_save.defenders["fire_flower"] = 1
-	current_save.defenders["stonegarlic"] = 1
 	current_save.defenders["lily"] = 1
-	current_save.defenders["sakura"] = 1
-	current_save.defenders["salix"] = 1
 
 
 func save():

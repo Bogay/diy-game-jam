@@ -1,0 +1,15 @@
+[
+    {
+        "time": 0.1,
+        "groups": [
+            {
+                "robot": 1,
+                "human-soldier": 3
+            },
+            {
+                "elf": 3,
+                "beastman": 3
+            }
+        ]
+    }
+]

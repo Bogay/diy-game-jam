@@ -154,7 +154,7 @@ func bomb():
 				detected_attackers[id].take_damage(attack.value())
 				var attacker = detected_attackers[id]
 				attacker.capture = false
-		queue_free()
+		return_slot(self)
 
 
 func _on_attack_distance_changed(dis):
@@ -181,7 +181,7 @@ func enqueue_defender(defender: Defender):
 	var defender_id = defender.get_instance_id()
 	# FIXME: I can't find a way to get the exited node id,
 	#   so I need to scan whole the dictionary to remove attacker.
-	if not defender_id in sup_defenders:
+	if not defender_id in sup_defenders and defender.type != DefenderData.DefenderType.MELEE:
 		sup_defenders[defender_id] = defender
 		print("Got you: ", defender.name)
 
@@ -227,8 +227,7 @@ func refresh_defenders():
 func support():
 	if not sup_defenders.empty():
 		for id in sup_defenders:
-			if sup_defenders[id].type !=DefenderData.DefenderType.MELEE: 
-				if defender_name=="sakura":
+				if defender_name=="sakura" :
 					sup_defenders[id].buff(speed_buf,float(attack.value()))
 				elif defender_name=="lily":
 					sup_defenders[id].buff(speed.value() ,attack_buf)
@@ -257,3 +256,8 @@ func _on_Area2D_mouse_exited():
 func buff(s:float, a:float):
 	speed_buf = s
 	attack_buf = a
+
+func return_slot(defender: Defender):
+	defender.get_parent().sprite.show()
+	defender.get_parent().set_state(State.IDLE)
+	queue_free()

@@ -11,7 +11,7 @@
         "time": 3,
         "groups": [
             {
-                "elf": 1
+                "elf": 2
             }
         ]
     },
@@ -27,7 +27,7 @@
         "time": 9,
         "groups": [
             {
-                "beastman": 2
+                "elf": 2
             }
         ]
     },
@@ -35,7 +35,7 @@
         "time": 12,
         "groups": [
             {
-                "human-soldier": 1
+                "human-soldier": 3
             }
         ]
     },

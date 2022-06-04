@@ -15,12 +15,14 @@ onready var waveText: Label = $ViewportContainer/waveText
 onready var tween = $ViewportContainer/waveText/Tween
 onready var result = $ViewportContainer/result
 onready var bossPanel = $ViewportContainer/bossPanel
+onready var volume_slider = $ViewportContainer/SettingPanel/VBoxContainer/HBoxContainer2/HSlider
 
 var speed_arr = [0.5, 1, 1.5, 2]
 var speed_arr_idx = 1
 
 func set_level(curr_level):
 	level = curr_level
+	volume_slider.value = Sound.soundplayer.volume_db
 	setup_spawn_buttons()
 	register_event_listener()
 	setup_hp_label()
@@ -113,12 +115,21 @@ func _on_continue_pressed():
 
 
 func _on_menu_pressed():
+	Player.can_win = false
 	Game.change_scene("opening", "level_select")
-	Player.atkPause = false
-	Player.defPause = false
+	Sound.play_sound("opening")
+
 
 func show_result():
 	result.show()
 	
 func show_boss_ui(racial):
 	bossPanel.show_boss(racial)
+
+
+func _on_HSlider_value_changed(value):
+	print(Sound.soundplayer.volume_db)
+	Sound.soundplayer.volume_db = value
+	var save: GameSave = GameSaveManager.current_save
+	save.volume = value
+	GameSaveManager.save()

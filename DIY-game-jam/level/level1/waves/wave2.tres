@@ -1,17 +1,23 @@
-[gd_resource type="Resource" load_steps=6 format=2]
+[gd_resource type="Resource" load_steps=9 format=2]
 
 [ext_resource path="res://level/wave.gd" type="Script" id=1]
 [ext_resource path="res://character/enemy/yusha/yusha.tres" type="Resource" id=2]
 [ext_resource path="res://character/enemy/beastman/beastman.tres" type="Resource" id=3]
 [ext_resource path="res://character/enemy/human_soldier/human_soldier.tres" type="Resource" id=4]
 [ext_resource path="res://character/enemy/elf/elf.tres" type="Resource" id=5]
+[ext_resource path="res://character/enemy/knight/knight.tres" type="Resource" id=6]
+[ext_resource path="res://character/enemy/chimera/chimera.tres" type="Resource" id=7]
+[ext_resource path="res://character/enemy/robot/robot.tres" type="Resource" id=8]
 
 [resource]
 script = ExtResource( 1 )
 attackers = {
 "beastman": ExtResource( 3 ),
+"chimera": ExtResource( 7 ),
 "elf": ExtResource( 5 ),
 "human-soldier": ExtResource( 4 ),
+"knight": ExtResource( 6 ),
+"robot": ExtResource( 8 ),
 "yusha": ExtResource( 2 )
 }
 wave_json_path = "res://level/level1/waves/wave2.json"

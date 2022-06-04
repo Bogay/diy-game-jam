@@ -1,0 +1,19 @@
+[gd_resource type="Resource" load_steps=3 format=2]
+
+[ext_resource path="res://character/enemy/attacker_data.gd" type="Script" id=1]
+[ext_resource path="res://character/enemy/robot/animation.tres" type="SpriteFrames" id=3]
+
+[resource]
+script = ExtResource( 1 )
+attacker_scene = "res://character/enemy/test/test.tscn"
+animation = ExtResource( 3 )
+racial = "robot"
+max_hp = 5000
+attack = 0
+defense = 40
+magic_attack = 0
+magic_defense = 0
+attack_distance = 50
+detect_distance = 200
+speed = 5.0
+drop_mana = 15

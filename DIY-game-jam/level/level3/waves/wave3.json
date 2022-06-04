@@ -1,0 +1,12 @@
+[
+    {
+        "time": 0.1,
+        "groups": [
+            {
+                "knight": 1,
+                "human-soldier": 3,
+                "elf": 3
+            }
+        ]
+    }
+]

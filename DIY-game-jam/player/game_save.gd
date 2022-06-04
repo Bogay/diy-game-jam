@@ -7,21 +7,18 @@ export(Array, String) var levels = []
 export(Array, String) var boss = []
 export(Array, String) var stories = []
 export(Dictionary) var captures = {}
+export(int) var volume = 0
 
 
 # FIXME: Find a better place to define these IDs
 func _init():
 	# We have a lv. 1 tentacle initially
 	defenders = {
-		"dandelion": 1,
-		"fire_flower": 1,
 		"cactus": 1,
 		"cherry": 1,
-		"stonegarlic": 1,
-		"salix": 1,
 		"lily": 1,
-		"sakura": 1,
 	}
 	stories = ["opening"]
 	levels = ["level1"]
 	boss = ["beastman", "human-soldier", "elf", "yusha"]
+	volume = 0

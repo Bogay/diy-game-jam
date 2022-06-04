@@ -14,12 +14,15 @@ var mana: int = init_mana setget set_mana
 var atkPause: bool = false setget set_atkpause
 var defPause: bool = false setget set_defpause
 var speed_mode: float = init_speed_mode setget set_speed_mode
-
+var can_win: bool = true
 
 func reset():
 	self.selected_character = null
 	self.hp = max_hp
 	self.mana = init_mana
+	self.atkPause = false
+	self.defPause = false
+	self.can_win = true
 
 
 func change_selection(new_character):
@@ -32,6 +35,9 @@ func set_hp(new_hp: int):
 	print("Player HP: ", hp)
 	if hp <= 0:
 		hp = 0
+		defPause = true
+		atkPause = true
+		Sound.play_sound("lose")
 		emit_signal("show_result_signal")
 		emit_signal("player_died")
 

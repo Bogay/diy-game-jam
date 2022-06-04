@@ -6,7 +6,7 @@
                 "human-soldier": 1
             },
             {
-                "human-soldier": 1
+                "elf": 1
             }
         ]
     },
@@ -14,10 +14,10 @@
         "time": 3,
         "groups": [
             {
-                "human-soldier": 1
+                "elf": 1
             },
             {
-                "human-soldier": 1
+                "elf": 1
             }
         ]
     },
@@ -25,7 +25,7 @@
         "time": 6,
         "groups": [
             {
-                "human-soldier": 2
+                "elf": 2
             },
             {
                 "human-soldier": 1

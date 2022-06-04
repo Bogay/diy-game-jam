@@ -89,13 +89,26 @@ func _process(_delta):
 	on_buff_sign()
 	
 #	if isBoss:
-	if racial == "knight" and not usingSkill:
-		skillCD += 1 * Player.speed_mode
-		if skillCD >= 500:
-			on_skill()
-			knight_skill()
-#			robot_skill()
-			skillCD = int(skillCD)%500
+	if not usingSkill:
+		if racial == "knight":
+			skillCD += 1 * Player.speed_mode
+			if skillCD >= 500:
+				on_skill()
+				knight_skill()
+				skillCD = int(skillCD)%500
+		elif racial == "robot":
+			skillCD += 1 * Player.speed_mode
+			if skillCD >= 500:
+				on_skill()
+				robot_skill()
+				skillCD = int(skillCD)%500
+		elif racial == "chimera":
+			skillCD += 1 * Player.speed_mode
+			if skillCD >= 500:
+				on_skill()
+				chimera_skill()
+				skillCD = int(skillCD)%500
+			
 		
 
 func _physics_process(delta):
@@ -209,11 +222,20 @@ func knight_skill():
 		if atkers.racial != "knight":
 			atkers.speed_buff = 1
 	
-
 func robot_skill():
 	Player.defPause = true
 	yield(get_tree().create_timer(3/Player.speed_mode), "timeout")
 	Player.defPause = false
+	
+func chimera_skill():
+	var l = len(get_tree().get_nodes_in_group("defender"))
+	var k = RandomNumberGenerator.new().randi_range(0, l-1)
+	var cnt = 0
+	for defs in get_tree().get_nodes_in_group("defender"):
+		if cnt == k:
+			defs.return_slot(defs)
+			break
+		cnt += 1
 
 func on_skill():
 	usingSkill = true

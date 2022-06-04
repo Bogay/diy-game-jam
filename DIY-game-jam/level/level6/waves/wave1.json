@@ -3,13 +3,13 @@
         "time": 0.1,
         "groups": [
             {
-                "elf": 1
+                "elf": 3
             },
             {
                 "elf": 1
             },
             {
-                "elf": 1
+                "elf": 2
             }
         ]
     },
@@ -45,13 +45,13 @@
         "time": 9,
         "groups": [
             {
-                "human-soldier": 2
+                "human-soldier": 5
             },
             {
-                "elf": 1
+                "human-soldier": 5
             },
             {
-                "elf": 1
+                "human-soldier": 5
             }
         ]
     },
@@ -59,13 +59,13 @@
         "time": 12,
         "groups": [
             {
-                "elf": 1
+                "beastman": 1
             },
             {
-                "elf": 1
+                "beastman": 2
             },
             {
-                "elf": 1
+                "beastman": 1
             }
         ]
     }

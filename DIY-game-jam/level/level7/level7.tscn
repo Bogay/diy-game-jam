@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://slot/scene/slot-melee.tscn" type="PackedScene" id=1]
 [ext_resource path="res://slot/scene/slot.tscn" type="PackedScene" id=2]
@@ -7,6 +7,8 @@
 [ext_resource path="res://level/level7/waves/wave0.tres" type="Resource" id=5]
 [ext_resource path="res://level/end.gd" type="Script" id=6]
 [ext_resource path="res://level/level7/waves/wave2.tres" type="Resource" id=7]
+[ext_resource path="res://sound/battle_sound.mp3" type="AudioStream" id=8]
+[ext_resource path="res://level/level7/waves/wave3.tres" type="Resource" id=9]
 
 [sub_resource type="StreamTexture" id=6]
 flags = 4
@@ -38,7 +40,7 @@ _data = {
 
 [node name="Level" type="Node2D"]
 script = ExtResource( 3 )
-waves = [ ExtResource( 5 ), ExtResource( 4 ), ExtResource( 7 ) ]
+waves = [ ExtResource( 5 ), ExtResource( 4 ), ExtResource( 7 ), ExtResource( 9 ) ]
 level_name = "level8"
 
 [node name="Background" type="Sprite" parent="."]
@@ -129,3 +131,6 @@ position = Vector2( 302, 503 )
 position = Vector2( 1089, 423 )
 
 [node name="Attackers" type="YSort" parent="Entities"]
+
+[node name="battle" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 8 )

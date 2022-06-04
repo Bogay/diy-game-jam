@@ -37,7 +37,7 @@
                 "beastman": 1
             },
             {
-                "elf": 1
+                "elf": 3
             }
         ]
     },
@@ -48,7 +48,7 @@
                 "beastman": 2
             },
             {
-                "beastman": 1
+                "beastman": 4
             },
             {
                 "elf": 1
@@ -79,7 +79,7 @@
                 "yusha": 1
             },
             {
-                "elf": 1
+                "yusha": 1
             }
         ]
     }

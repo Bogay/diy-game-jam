@@ -73,7 +73,7 @@ margin_right = 1284.65
 margin_bottom = 360.126
 custom_colors/font_color = Color( 0.776471, 0.921569, 0.309804, 1 )
 custom_fonts/font = SubResource( 1 )
-text = "觸手之森"
+text = "迷霧之森"
 align = 1
 valign = 1
 
@@ -84,7 +84,7 @@ margin_right = 1660.18
 margin_bottom = 531.146
 custom_colors/font_color = Color( 0.776471, 0.921569, 0.309804, 1 )
 custom_fonts/font = SubResource( 2 )
-text = "Tentacle in Shubs Jungle"
+text = "Forest of Fog"
 align = 1
 valign = 1
 
