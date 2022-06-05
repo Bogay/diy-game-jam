@@ -1,4 +1,4 @@
-[gd_resource type="Resource" load_steps=8 format=2]
+[gd_resource type="Resource" load_steps=9 format=2]
 
 [ext_resource path="res://level/wave.gd" type="Script" id=1]
 [ext_resource path="res://character/enemy/yusha/yusha.tres" type="Resource" id=2]

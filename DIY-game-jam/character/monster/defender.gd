@@ -20,6 +20,7 @@ var defense: Buffable
 var magic_attack: Buffable
 var magic_defense: Buffable
 var attack_distance: Buffable
+var cost: Buffable
 # Attack speed
 var speed: Buffable
 var speed_buf: float = 1.0
@@ -31,6 +32,8 @@ onready var muzzle: Node2D = $Muzzle
 onready var attack_area: Area2D = $AttackArea
 onready var attack_shape: CollisionShape2D = $AttackArea/CollisionShape2D
 onready var animated_sprite: AnimatedSprite = $AnimatedSprite
+onready var speed_buf_sprite: Sprite = $speed_buf
+onready var attack_buf_sprite: Sprite = $attack_buf
 
 var mouse_state: Array = [State.IDLE]
 
@@ -48,6 +51,8 @@ func _ready():
 	original_muzzle_x = muzzle.position.x
 	add_to_group("defender")
 	Player.selected_character = self
+	speed_buf_sprite.hide()
+	attack_buf_sprite.hide()
 
 
 func _process(_delta: float):
@@ -61,7 +66,7 @@ func _process(_delta: float):
 		if type == DefenderData.DefenderType.REMOTE:
 			try_shoot()
 		elif type == DefenderData.DefenderType.MELEE:
-			bomb()
+			try_bomb()
 		elif type == DefenderData.DefenderType.AREA:
 			try_area_attack()
 		else:
@@ -81,6 +86,7 @@ func set_defender_data(new_data: DefenderData):
 	magic_attack = Buffable.new(defender_data.magic_attack)
 	magic_defense = Buffable.new(defender_data.magic_defense)
 	speed = Buffable.new(defender_data.speed)
+	cost = Buffable.new(defender_data.cost)
 	attack_distance = Buffable.new(defender_data.attack_distance)
 
 
@@ -142,19 +148,23 @@ func get_target_attacker():
 	return detected_attackers[id]
 
 
-func bomb():
+func try_bomb():
 	for id in detected_attackers:
 		var attacker = detected_attackers[id]
 		attacker.capture = true
-	if detected_attackers.size() >= 3:
-		if defender_name=="cherry":
-			play_attack_animation()
-			yield(get_tree().create_timer(1 / (Player.speed_mode ) ), "timeout")
-			for id in detected_attackers:
-				detected_attackers[id].take_damage(attack.value())
-				var attacker = detected_attackers[id]
-				attacker.capture = false
-		return_slot(self)
+	if detected_attackers.size() >= 3 and can_attack:
+		bomb()
+
+func bomb():
+	can_attack = 0
+	if defender_name=="cherry":
+		play_attack_animation()
+		yield(get_tree().create_timer(1 / (Player.speed_mode ) ), "timeout")
+		for id in detected_attackers:
+			detected_attackers[id].take_damage(attack.value())
+			var attacker = detected_attackers[id]
+			attacker.capture = false
+	return_slot(self)
 
 
 func _on_attack_distance_changed(dis):
@@ -181,7 +191,7 @@ func enqueue_defender(defender: Defender):
 	var defender_id = defender.get_instance_id()
 	# FIXME: I can't find a way to get the exited node id,
 	#   so I need to scan whole the dictionary to remove attacker.
-	if not defender_id in sup_defenders and defender.type != DefenderData.DefenderType.MELEE:
+	if not defender_id in sup_defenders:
 		sup_defenders[defender_id] = defender
 		print("Got you: ", defender.name)
 
@@ -200,6 +210,11 @@ func dequeue_attacker(attacker: Attacker):
 	detected_attackers.erase(attacker_id)
 	print("Good bye: ", attacker.name)
 
+func dequeue_defender(defender: Defender):
+	var defender_id = defender.get_instance_id()
+	#assert(defender_id in sup_defenders)
+	sup_defenders.erase(defender_id)
+	print("Good bye: ", defender.name)
 
 func refresh_attackers():
 	var will_remove = []
@@ -217,20 +232,26 @@ func _input(event):
 		if mouse_state.find(State.PRESSED) and event.button_index == BUTTON_LEFT and event.is_action_released("click"):
 			Player.selected_character = defender_data
 			mouse_state += [State.SELECTED]
+			if Player.remove_defender_mode:
+				Player.mana += self.cost.value()
+				return_slot(self)
+
 
 func refresh_defenders():
 	for a in attack_area.get_overlapping_areas():
 		var defender_supp = a.get_parent() as Defender
 		if defender_supp != null and defender_supp.type != DefenderData.DefenderType.SUP:
-			enqueue_defender(defender_supp)
+			self.enqueue_defender(defender_supp)
 		
 func support():
 	if not sup_defenders.empty():
 		for id in sup_defenders:
-				if defender_name=="sakura" :
-					sup_defenders[id].buff(speed_buf,float(attack.value()))
-				elif defender_name=="lily":
-					sup_defenders[id].buff(speed.value() ,attack_buf)
+			if defender_name=="sakura" :
+				sup_defenders[id].buff(speed_buf,float(attack.value()))
+				sup_defenders[id].attack_buf_sprite.show()
+			elif defender_name=="lily":
+				sup_defenders[id].buff(speed.value() ,attack_buf)
+				sup_defenders[id].speed_buf_sprite.show()
 
 func area_attack():
 	if not detected_attackers.empty():
@@ -260,4 +281,24 @@ func buff(s:float, a:float):
 func return_slot(defender: Defender):
 	defender.get_parent().sprite.show()
 	defender.get_parent().set_state(State.IDLE)
+	if defender.type == DefenderData.DefenderType.SUP:
+		for id in sup_defenders:
+			if defender_name=="sakura" :
+					sup_defenders[id].buff(speed_buf,1.0)
+					sup_defenders[id].attack_buf_sprite.hide()
+			elif defender_name=="lily":
+				sup_defenders[id].buff(1.0 ,attack_buf)
+				sup_defenders[id].speed_buf_sprite.hide()
+		defender.sup_defenders.clear()
+	else:	
+		for defs in get_tree().get_nodes_in_group("defender"):
+			if defs.type == DefenderData.DefenderType.SUP:
+				var id = defender.get_instance_id()
+				if defender_name=="sakura" :
+					sup_defenders[id].buff(speed_buf,1.0)
+					sup_defenders[id].attack_buf_sprite.hide()
+				elif defender_name=="lily":
+					sup_defenders[id].buff(1.0 ,attack_buf)
+					sup_defenders[id].speed_buf_sprite.hide()
+				defs.dequeue_defender(defender)
 	queue_free()

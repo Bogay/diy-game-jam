@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://slot/scene/slot-melee.tscn" type="PackedScene" id=1]
 [ext_resource path="res://slot/scene/slot.tscn" type="PackedScene" id=2]
@@ -8,7 +8,6 @@
 [ext_resource path="res://level/end.gd" type="Script" id=6]
 [ext_resource path="res://level/level0/background.jpg" type="Texture" id=7]
 [ext_resource path="res://level/level0/waves/wave2.tres" type="Resource" id=8]
-[ext_resource path="res://sound/battle_sound.mp3" type="AudioStream" id=10]
 
 [sub_resource type="CapsuleShape2D" id=1]
 radius = 28.6085
@@ -51,6 +50,8 @@ curve = SubResource( 7 )
 
 [node name="Entities" type="YSort" parent="."]
 
+[node name="Attackers" type="YSort" parent="Entities"]
+
 [node name="Slots" type="YSort" parent="Entities"]
 
 [node name="Remotes" type="Node" parent="Entities/Slots"]
@@ -74,8 +75,3 @@ position = Vector2( 229, 864 )
 
 [node name="Slot2" parent="Entities/Slots/Melee" instance=ExtResource( 1 )]
 position = Vector2( 970, 255 )
-
-[node name="Attackers" type="YSort" parent="Entities"]
-
-[node name="battle" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource( 10 )

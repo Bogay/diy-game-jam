@@ -1,0 +1,17 @@
+[gd_resource type="Resource" load_steps=2 format=2]
+
+[ext_resource path="res://player/game_save.gd" type="Script" id=1]
+
+[resource]
+script = ExtResource( 1 )
+defenders = {
+"cactus": 1,
+"cherry": 1,
+"lily": 1
+}
+levels = [ "level1" ]
+boss = [ "beastman", "human-soldier", "elf", "yusha" ]
+stories = [ "opening" ]
+captures = {
+}
+volume = 0

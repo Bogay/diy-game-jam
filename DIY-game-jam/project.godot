@@ -156,6 +156,10 @@ window/size/test_height=1080
 window/stretch/mode="2d"
 window/stretch/aspect="keep"
 
+[global]
+
+export=false
+
 [input]
 
 click={

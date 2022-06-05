@@ -1,7 +1,6 @@
 extends Node
 
-
-const save_path = "user://game_save.tres"
+var save_path = "res://game_save.tres"
 const cactus = preload("res://character/monster/cactus/cactus.tres")
 const cherry = preload("res://character/monster/cherry/cherry.tres")
 const dandelion = preload("res://character/monster/dandelion/dandelion.tres")

@@ -9,6 +9,7 @@ onready var wave_label: Label = $ViewportContainer/Panel/VBoxContainer/LevelInfo
 onready var hp_label: Label = $ViewportContainer/Panel/VBoxContainer/LevelInfo/PlayerStatus/HPValue
 onready var mana_label: Label = $ViewportContainer/Panel/VBoxContainer/LevelInfo/PlayerStatus/ManaValue
 onready var speed_btn: Button = $ViewportContainer/Panel/VBoxContainer/SpeedMode/SpeedBtn
+onready var slot_btn: Button = $ViewportContainer/Panel/VBoxContainer/remove_defender/SlotBtn
 onready var setting_panel: Panel = $ViewportContainer/SettingPanel
 onready var bgPanel: Panel = $ViewportContainer/SettingPanel/bgPanel
 onready var waveText: Label = $ViewportContainer/waveText
@@ -133,3 +134,13 @@ func _on_HSlider_value_changed(value):
 	var save: GameSave = GameSaveManager.current_save
 	save.volume = value
 	GameSaveManager.save()
+
+
+func _on_SlotBtn_pressed():
+	if Player.remove_defender_mode:
+		Player.remove_defender_mode = false
+		slot_btn.text = "remove mode: off"
+	else:
+		Player.remove_defender_mode = true
+		slot_btn.text = "remove mode: on"
+	

@@ -15,6 +15,7 @@ var atkPause: bool = false setget set_atkpause
 var defPause: bool = false setget set_defpause
 var speed_mode: float = init_speed_mode setget set_speed_mode
 var can_win: bool = true
+var remove_defender_mode: bool = false
 
 func reset():
 	self.selected_character = null

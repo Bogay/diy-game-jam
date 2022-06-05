@@ -1,7 +1,9 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://character/monster/defender.gd" type="Script" id=1]
+[ext_resource path="res://character/monster/test/attack_buf.png" type="Texture" id=2]
 [ext_resource path="res://character/monster/cherry/cherry.tres" type="Resource" id=3]
+[ext_resource path="res://character/monster/test/speed_buf.png" type="Texture" id=4]
 
 [sub_resource type="CapsuleShape2D" id=1]
 radius = 33.8865
@@ -10,6 +12,16 @@ height = 23.0166
 [node name="Defender" type="Node2D"]
 script = ExtResource( 1 )
 defender_data = ExtResource( 3 )
+
+[node name="speed_buf" type="Sprite" parent="."]
+position = Vector2( 3.8147e-06, -54 )
+scale = Vector2( 0.153438, 0.156562 )
+texture = ExtResource( 4 )
+
+[node name="attack_buf" type="Sprite" parent="."]
+position = Vector2( 0, -42.5938 )
+scale = Vector2( 0.153438, 0.123516 )
+texture = ExtResource( 2 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 position = Vector2( 0, -45.3059 )
